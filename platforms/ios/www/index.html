@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!--<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />-->
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!--CSS IMPORTS-->
+	<link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/flexslider.css" rel="stylesheet" type="text/css" media="screen" />
+	<link rel='stylesheet' href="css/styles.css" />
+	<link rel='stylesheet' media='only screen and (min-device-width: 768px)' href="css/styles_ipad.css" />
+	<!--SCRIPT IMPORTS-->
+	<script src="phonegap.js"></script>
+	<script src="lib/jquery-1.10.2.min.js"></script>
+	<script src="lib/jquery.mobile-1.3.2.min.js"></script>
+	<script src="lib/jquery.flexslider.js"></script>
+	<script src="js/storage/memory-store.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script src="js/mapView.js"></script>
+	<script src="js/main.js"></script>
+</head>
+
+<body>
+
+
+<!--HOME PAGE-->
+<div data-role="page" id="homepage">
+	<div id="header" data-theme="b" data-role="header" class="header">
+		<h3>City of Riverside Tour Guide</h3>
+	</div>
+	<div data-role="content">
+        <div id="home_navigation" data-role="navbar" data-iconpos="top" class="home_navigation">
+            <ul>
+                <li id="map_link">
+                    <a  onclick="location.href='#tourpage_home'"data-transition="fade" data-theme="e" data-icon="star">
+                        Begin Tour
+                    </a>
+                </li>
+                <li>
+                    <a id="list_link" onclick="location.href='#statuelist'" data-transition="fade" data-theme="e" data-icon="bars">
+                        Statue List
+                    </a>
+                </li>
+                <li>
+                    <a id="settings_link" onclick="location.href='#settings'" data-transition="fade" data-theme="e" data-icon="gear">
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+ 	<div id="home_text_container">
+ 		<p id = "home_title">		
+		</P>
+		<p id='home_text' class="paragraph_display"></p>		
+	</div>
+	
+	<div id='home_audioContainer'>
+		<audio class= 'home_audioControl' controls>
+			<source class='home_audioFile' type="audio/mpeg">
+				Your browser does not support the audio element.
+		</audio>
+	</div>
+</div>
+
+<!--TOURPAGE_HOME-->
+<div data-role="page" id="tourpage_home">
+	<div id='header' data-role="header" data-theme='b' data-position="inline">
+		<h1>Tour</h1>
+			<a id='default_tour_page_back_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a> 
+			<a href="#popupBasic" data-rel="popup" id='default_tour_page_help_button' class='button' class="ui-btn-left" data-icon="info" data-theme='e' data-direction="reverse"></a>
+			
+			<div data-role="popup" id="popupBasic" data-position-to="window" data-theme="e" class="ui-content">
+				<a data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+				<p></p>
+			</div>
+	</div>
+	<div id='map-canvas_holder'>
+		<div id='map-canvas'></div>
+	</div>  	  
+	
+	<div data-theme="a" data-role="footer" data-position="fixed"></div>
+</div>
+
+<!--TOUR PAGE-->
+<div data-role="page" id="tourpage">
+	<div id='header' data-role="header" data-theme='b' data-position="inline">
+		<h1 id='headerText'>Tour</h1>
+			<a id='tour_page_back_button' class='button' onclick="location.href='#tourpage_home'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse">
+			</a>  
+	</div>
+	<div id='slideSize' class='sizeControl'>
+		<div class="flexslider">
+			<ul class="slides">
+				<li>
+					<img class='image_1' src="img/tibbets_1.jpg" />
+				</li>
+				<li>
+					<img class='image_2' src="img/tibbets_2.jpg" />
+				</li>
+				<li>
+					<img class='image_3' src="img/tibbets_3.jpg" />
+				</li>
+				<li>
+					<img class='image_4' src="img/tibbets_4.jpg" />
+				</li>
+				<!--<li>
+					<img class='image_5' src="img/tibbets_5.jpg" />
+				</li>-->
+			</ul>
+		</div>
+	</div>	
+	<div id='audioContainer'>
+		<audio class= 'audioControl' controls>
+			<source class='audioFile' src='audio/tibbets_eng.mp3' type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+	</div>
+	<div id='textContainer'>
+		<div id='statue_text' class='paragraph_display'>
+		</div>
+	</div>
+</div>
+
+<!--STATUE LIST PAGE-->
+<div data-role="page" id="statuelist">
+	<div id='header' data-role="header" data-theme='b' data-position="inline">
+		<h1>Statue List</h1>
+		<a id='tour_page_back_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>  
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-theme='a' id='statuelist_holder'></ul>
+	</div>
+</div>
+
+<!--STATUE DETAILS PAGE-->
+<div data-role="page" id="statuedetails">
+	<div id='header' data-role="header" data-theme='b' data-position="inline">
+		<h1>Statue Details</h1>
+		<a id='tour_page_back_button' class='button' onclick="location.href='#statuelist'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>  
+	</div>
+	<div data-role="content" data-theme='a'>
+		<table width="100%">
+		<tr>
+			<td width="1%" style="vertical-align: top; padding: 6px">
+				<img id='statuedetails_thumb' src="">      				
+			</td>
+			
+			<td style="vertical-align: top">
+				<div id='statuedetails_thumbtext'>
+				<h2 style="margin-top: 0px"></h2>
+				<p><strong></strong></p>
+				</div>
+			</td>				
+		</tr>		      
+		</table>
+		
+ 		<div id='audio_box' data-role="collapsible" data-theme="b" data-content-theme="e" data-collapsed="false">
+			<h3>Audio</h3>
+                <div id='statuedetails_audio_container'>
+					<audio id='statuedetails_audioControl' class= 'statuedetails_audioControl' controls>
+						<source class='statuedetails_audioFile' type="audio/mpeg">
+						Your browser does not support the audio element.
+					</audio>
+				</div>
+		</div>		
+		<div id='address_box' data-role="collapsible" data-theme="b" data-content-theme="e" data-collapsed="false">
+			<h3>Location</h3>
+                <div id='statuedetails_address'>
+				<p></p>
+				<a href="#tourpage_home" id="mapit"></a>
+			</div>
+		</div>
+		<div id='static_map_box' data-role="collapsible" data-theme="b" data-content-theme="e" data-collapsed="false">
+			<h3>Map</h3>
+                <div id='statuedetails_static_map'>
+				<img id='statuedetails_static_map_img'>
+				</div>
+		</div>
+		<div id='detail_box' data-role="collapsible" data-theme="b" data-content-theme="e" data-collapsed="false">
+			<h3>Detail</h3>
+                <div id='statuedetails_detailstext'>
+				<p></p>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>
+
+<!--SETTINGS PAGE-->
+<div data-role="page" id="settings">
+	<div id='header' data-role="header" data-theme='b' data-position="inline">
+		<h1>Settings</h1>
+        	<a id='settings_home_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="home" data-theme='e' data-direction="reverse"></a>
+    </div>	
+	<ul data-role="listview" data-theme='c'>
+	<li>
+	<form action="">
+		<div data-role="fieldcontain" >
+    		<fieldset data-role="controlgroup">
+    			<legend id='settings_legend_1'><div><a data-theme="e">Language</a></div></legend>
+         		<input type="radio" name="radio-choice-2" id="radio-choice-21" value="english" checked="checked" />
+         		<label for="radio-choice-21">English</label>
+
+         		<input type="radio" name="radio-choice-2" id="radio-choice-22" value="spanish"  />
+         		<label for="radio-choice-22">Español</label>
+    		</fieldset>
+    		<!--<div><button id="settings_save" class="button" onclick="location.href='options.html'" data-theme="e"> Save</button><br><br></div>-->
+		</div>
+	</form>	
+	</li>
+	<li>
+	<div data-role="fieldcontain">
+ 	<fieldset data-role="controlgroup">
+ 		<legend id='settings_legend_2'><div><a data-theme="e">Disable auto-routing</a></div></legend>
+		<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
+		<label for="checkbox-1">OK</label>
+    </fieldset>
+	</div>
+	</li>
+	<li>
+	<div data-role="fieldcontain">
+ 	<fieldset data-role="controlgroup">
+ 		<legend id='settings_legend_3'><div><a data-theme="e">Enable silent mode</a></div></legend>
+		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
+		<label for="checkbox-2">OK</label>
+    </fieldset>
+	</div>
+		</form>
+	</li>		
+	</ul>
+</div>
