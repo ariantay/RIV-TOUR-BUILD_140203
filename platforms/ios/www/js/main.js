@@ -43,7 +43,7 @@ var app = {
 		var language = $('input[name="radio-choice-2"]:checked').val();
 		if (language == 'english'){
 			$('#statuedetails_detailstext p').html(statue.info.english);
-            	$('#statuedetails_address a').html(statue.street);
+            $('#statuedetails_address a').html(statue.street);
 			$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
 		}else{
 			$('#statuedetails_detailstext p').html(statue.info.spanish);
@@ -147,6 +147,7 @@ var app = {
         var self = this;
         this.detailsURL = /^#statues\/(\d{1,})/;
         this.registerEvents();
+		//initialize and create map
         this.store = new MemoryStore(function() {
            //commented for now - checking no connection options
            //window.mapper.initialize();
@@ -165,7 +166,8 @@ var globalLon = 0; //used to store geolocation result
 //HOMEPAGE
 $(document).on("pagecreate", "#homepage", function () {
 	if(!app.initialized){
-		app.initialize();	
+		app.initialize();
+		//start geolocation tracking
 		watchID = app.startTracking();
 	}
 	cur_page = 0;

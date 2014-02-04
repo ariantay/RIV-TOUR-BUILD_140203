@@ -41,14 +41,13 @@ var mapper = {
             styles: [{featureType: "poi", stylers: [{visibility: "off"}]}]
 		};
 		this.map = new google.maps.Map(document.getElementById('map-canvas'),this.mapOptions); 
-		//define curren position icon
+		//define current position icon
 		var pinImage = new google.maps.MarkerImage(
 			'img/nav_plain_blue.png',
 			null,
 			new google.maps.Point(0, 0),
 			new google.maps.Point(8, 8),
 			new google.maps.Size(16, 16)
-			
 		);
 		//define current position marker
 		this.marker = new google.maps.Marker({
