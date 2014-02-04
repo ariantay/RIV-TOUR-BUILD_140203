@@ -45,18 +45,21 @@ var app = {
 		var language = $('input[name="radio-choice-2"]:checked').val();
 		if (language == 'english'){
 			$('#statuedetails_detailstext p').html(statue.info.english);
-            	$('#statuedetails_address p').html(statue.street);
+            	$('#statuedetails_address a').html(statue.street);
 			$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
 		}else{
 			$('#statuedetails_detailstext p').html(statue.info.spanish);
-            $('#statuedetails_address p').html(statue.street_spanish);
+            $('#statuedetails_address a').html(statue.street_spanish);
 			$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_esp.mp3');
 		}
 		$('.statuedetails_audioControl').trigger('load');
-        
-	
-        
 		$('#statuedetails_static_map_img').attr('src','img/'+statue.urlstring+'_map.jpg');
+        $('#mapit, #statuedetails_static_map_img').click(function(){
+           var siteURL = 'http://maps.google.com/maps?' +
+                         'saddr=' + globalLat + ',' + globalLon + '&' +
+                         'daddr=' + statue.lat + ',' + statue.lon;
+           window.open(siteURL, '_blank', 'location=yes');
+        });
 		$.mobile.changePage("#statuedetails");
 	},
 	createStatuelist: function() {
@@ -92,6 +95,9 @@ var app = {
 		return navigator.geolocation.watchPosition(app.onSuccess, app.onError, options);
 	},
 	onSuccess: function (position) {
+        //update global variables
+        globalLat = position.coords.latitude;
+        globalLon = position.coords.longitude;
 		//update our map marker and radius
 		if (mapper){
 			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -154,6 +160,8 @@ var app = {
 var cur_statue = -1;
 var cur_page = 0;  //used to determine if on tour pages or not
 var first_run = 1;
+var globalLat = 0; //used to store geolocation result
+var globalLon = 0; //used to store geolocation result
 
 //jquery mobile events handling
 //HOMEPAGE
