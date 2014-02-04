@@ -151,7 +151,7 @@ var app = {
         this.detailsURL = /^#statues\/(\d{1,})/;
         this.registerEvents();
         this.store = new MemoryStore(function() {
-           window.mapper.initialize();
+           //window.mapper.initialize();
         });
 		this.initialized = true;
 		this.statuelistCreated = false;
