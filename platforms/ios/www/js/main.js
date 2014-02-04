@@ -24,7 +24,6 @@ var app = {
 				$('.audioFile').attr('src','audio/'+statue.urlstring+'_esp.mp3');
 			}
             $('.audioControl').trigger('load');
-			
 			//change images
 			$('.image_1').attr('src','img/'+statue.urlstring+'_1.jpg');
 			$('.image_2').attr('src','img/'+statue.urlstring+'_2.jpg');
@@ -32,7 +31,6 @@ var app = {
 			$('.image_4').attr('src','img/'+statue.urlstring+'_4.jpg');
 			$('.image_5').attr('src','img/'+statue.urlstring+'_5.jpg');
 		}
-		
         cur_statue = statueID;
 		$.mobile.changePage("#tourpage", {allowSamePageTransition:true});
 	},
@@ -73,7 +71,6 @@ var app = {
 				html += '<li>';
 				html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
 				html += '<h3>' + statue.name + '</h3>';
-				//html += '<p style="font-size: 0.7em">' + statue.lon + ", " + statue.lat + '</p>';
 				html += '</li>';
 			}
 			$('#statuelist_holder').append(html);
@@ -81,7 +78,7 @@ var app = {
 		//add onclick 
 		$('#statuelist_holder li').each(function(i) {
 			$(this).click(function(){
-				//link to details page
+				//change page to statuedetails
 				app.showDetails(i);
 			});
 		});
@@ -93,7 +90,6 @@ var app = {
 			maximumAge : 1000,
 			enableHighAccuracy : true
 		};
-		//app.watchID = navigator.geolocation.watchPosition(app.onSuccess, app.onError, options);
 		return navigator.geolocation.watchPosition(app.onSuccess, app.onError, options);
 	},
 	onSuccess: function (position) {
@@ -148,11 +144,11 @@ var app = {
 		this.functionRunning = false;
 		this.counter = 0;
         this.lock = 0;
-		//var watchID = app.startTracking();
         var self = this;
         this.detailsURL = /^#statues\/(\d{1,})/;
         this.registerEvents();
         this.store = new MemoryStore(function() {
+           //commented for now - checking no connection options
            //window.mapper.initialize();
         });
 		this.initialized = true;
@@ -208,7 +204,7 @@ $(document).on("pagehide", "#homepage", function () {
 
 //TOURPAGE_HOME EVENTS
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
-	//pop up on fires on first run
+	//pop up only fires on first run
 	if (first_run == 1){
 		$( '#popupBasic').popup( 'open');
 		first_run = 0;
@@ -225,7 +221,6 @@ $(document).on("pagebeforeshow", "#tourpage_home", function () {
 $(document).on("pageshow", "#tourpage_home", function () {
 	if(!$('#checkbox-2').is(':checked')){
 		console.log($('#checkbox-2').is(':checked'))
-		//$('.audioControl').trigger('play');
 		//$('#tourhome_audioContainer audio').trigger('play');
 	}
 	mapper.resize();
@@ -237,48 +232,48 @@ $(document).on("pageshow", "#tourpage_home", function () {
 
 
 $(document).on("pagehide", "#tourpage_home", function () {
+    //triggering multiple audio elements using class causes issues
 	//$('.audioControl').trigger('pause');
 	//$('.audioControl').prop('currentTime',0);
 });
 $(document).on("pagebeforehide", "#homepage", function () {
-               //$(window).resize();		//slider won't show until resize...
-               navigator.splashscreen.show();
-               });
+    //slider won't show until resize...
+    //$(window).resize();
+    navigator.splashscreen.show();
+});
 $(document).on("pagebeforehide", "#tourpage", function () {
-               //$('.flexslider').flexslider(0);
-               navigator.splashscreen.show();
-               });
+    //$('.flexslider').flexslider(0);
+    navigator.splashscreen.show();
+});
 $(document).on("pagebeforehide", "#tourpage_home", function () {
-               //$('.flexslider').flexslider(0);
-               navigator.splashscreen.show();
-               });
+    //$('.flexslider').flexslider(0);
+    navigator.splashscreen.show();
+});
 $(document).on("pagebeforehide", "#settings", function () {
-               //$('.flexslider').flexslider(0);
-               navigator.splashscreen.show();
-               });
+    //$('.flexslider').flexslider(0);
+    navigator.splashscreen.show();
+});
 $(document).on("pagebeforehide", "#statuelist", function () {
-               //$('.flexslider').flexslider(0);
-               navigator.splashscreen.show();
-               });
+    //$('.flexslider').flexslider(0);
+    navigator.splashscreen.show();
+});
 $(document).on("pagebeforehide", "#statuedetails", function () {
-               //$('.flexslider').flexslider(0);
-               navigator.splashscreen.show();
-               });
+    //$('.flexslider').flexslider(0);
+    navigator.splashscreen.show();
+});
 
 $(document).on("pageshow", "#homepage", function () {
-               //$(window).resize();		//slider won't show until resize...
-               navigator.splashscreen.hide();
-               });
+    //$(window).resize();		//slider won't show until resize...
+    navigator.splashscreen.hide();
+});
 $(document).on("pageshow", "#statuelist", function () {
-               //$('.flexslider').flexslider(0);
-               navigator.splashscreen.hide();
-               });
+    //$('.flexslider').flexslider(0);
+    navigator.splashscreen.hide();
+});
 $(document).on("pageshow", "#statuedetails", function () {
-               //$('.flexslider').flexslider(0);
-               navigator.splashscreen.hide();
-               });
-
-
+    //$('.flexslider').flexslider(0);
+    navigator.splashscreen.hide();
+});
 
 //TOURPAGE EVENTS
 $(document).on("pagebeforeshow", "#tourpage", function () {
@@ -298,15 +293,17 @@ $(document).on("pageshow", "#tourpage", function () {
    });
 	if(!$('#checkbox-2').is(':checked')){
 	$('.audioControl').trigger('play');
+        //referring to the container also causes issues...
 		//$('#audioContainer audio').trigger('play');
 	}
-	//$("#statue_text").scrollTop(0);
+	//reset position of text
 	$("#textContainer").scrollTop(0);
-	$(window).resize();		//slider won't show until resize...
+    //slider won't show until resize...
+	$(window).resize();
 	cur_page = 1;
     lock = 0;
                
-               navigator.splashscreen.hide();
+    navigator.splashscreen.hide();
 });
 
 $(document).on("pagehide", "#tourpage", function () {
@@ -334,7 +331,7 @@ $(document).on("pageshow", "#settings", function () {
 	mapper.resize();
 	cur_page = 0;
 	cur_statue = -1;
-               navigator.splashscreen.hide();
+    navigator.splashscreen.hide();
 });
 //STATUELIST EVENTS
 $(document).on("pagecreate", "#statuelist", function () {
