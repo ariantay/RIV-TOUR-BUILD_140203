@@ -199,7 +199,11 @@ $(document).on("pagebeforeshow", "#homepage", function () {
 	$('.home_audioControl').trigger('load');
 });
 
-$(document).on("pagehide", "#homepage", function () {
+$(document).on("pagebeforehide", "#homepage", function () {
+    console.log(first_run);
+    if (first_run == 1){
+        window.mapper.initialize();
+    }
 	$('.home_audioControl').trigger('pause');
 	$('.home_audioControl').prop('currentTime',0);
 });
@@ -208,7 +212,7 @@ $(document).on("pagehide", "#homepage", function () {
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
 	//pop up only fires on first run
 	if (first_run == 1){
-		$( '#popupBasic').popup( 'open');
+		$('#popupBasic').popup('open');
 		first_run = 0;
 	}	 
 	var language = $('input[name="radio-choice-2"]:checked').val();   
@@ -225,11 +229,11 @@ $(document).on("pageshow", "#tourpage_home", function () {
 		console.log($('#checkbox-2').is(':checked'))
 		//$('#tourhome_audioContainer audio').trigger('play');
 	}
-	mapper.resize();
+	//mapper.resize();
 	cur_page = 1;
 	cur_statue = -1;
 	lock = 0;
-               navigator.splashscreen.hide();
+    navigator.splashscreen.hide();
 });
 
 
