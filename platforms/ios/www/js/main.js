@@ -37,11 +37,11 @@ var app = {
 		$.mobile.changePage("#tourpage", {allowSamePageTransition:true});
 	},
 	showDetails: function(statueID) {
+        //unbind previous onclick event
+        $('#mapit, #statuedetails_static_map_img').off('click');
 		var statue = app.store.statues[statueID];
 		$('#statuedetails_thumb').attr('src','img/'+statue.urlstring+'_thumb3.jpg');
 		$('#statuedetails_thumbtext h2').html(statue.name);
-		//$('#statuedetails_thumbtext p').html(statue.lon + ' ' + statue.lat);
-		
 		var language = $('input[name="radio-choice-2"]:checked').val();
 		if (language == 'english'){
 			$('#statuedetails_detailstext p').html(statue.info.english);
@@ -54,13 +54,15 @@ var app = {
 		}
 		$('.statuedetails_audioControl').trigger('load');
 		$('#statuedetails_static_map_img').attr('src','img/'+statue.urlstring+'_map.jpg');
+        var siteURL = 'http://maps.google.com/maps?' +
+            'saddr=' + globalLat + ',' + globalLon + '&' +
+            'daddr=' + statue.lat + ',' + statue.lon;
+        //bind new onclick event
         $('#mapit, #statuedetails_static_map_img').click(function(){
-           var siteURL = 'http://maps.google.com/maps?' +
-                         'saddr=' + globalLat + ',' + globalLon + '&' +
-                         'daddr=' + statue.lat + ',' + statue.lon;
-           window.open(siteURL, '_blank', 'location=yes');
-        });
-		$.mobile.changePage("#statuedetails");
+         console.log(siteURL);
+         window.open(siteURL, '_blank', 'location=yes');
+         });
+        $.mobile.changePage("#statuedetails");
 	},
 	createStatuelist: function() {
 		//append list
