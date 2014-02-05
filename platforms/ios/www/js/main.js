@@ -57,9 +57,9 @@ var app = {
             'daddr=' + statue.lat + ',' + statue.lon;
         //bind new onclick event
         $('#mapit, #statuedetails_static_map_img').click(function(){
-         console.log(siteURL);
-         window.open(siteURL, '_blank', 'location=yes');
-         });
+             console.log(siteURL);
+             window.open(siteURL, '_blank', 'location=yes');
+             });
         $.mobile.changePage("#statuedetails");
 	},
 	createStatuelist: function() {
@@ -214,7 +214,7 @@ $(document).on("pagecreate", "#tourpage_home", function () {
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
 	//pop up only fires on first run
 	if (first_run == 1){
-		$('#popupBasic').popup('open');      
+		$('#popupBasic').popup('open');
 		first_run = 0;
 	}	 
 	var language = $('input[name="radio-choice-2"]:checked').val();   
