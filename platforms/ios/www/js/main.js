@@ -200,19 +200,21 @@ $(document).on("pagebeforeshow", "#homepage", function () {
 });
 
 $(document).on("pagebeforehide", "#homepage", function () {
-    console.log(first_run);
-    if (first_run == 1){
-        window.mapper.initialize();
-    }
 	$('.home_audioControl').trigger('pause');
 	$('.home_audioControl').prop('currentTime',0);
 });
 
 //TOURPAGE_HOME EVENTS
+$(document).on("pagecreate", "#tourpage_home", function () {
+    console.log(first_run);
+    if (first_run == 1){
+        window.mapper.initialize();
+    }
+});
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
 	//pop up only fires on first run
 	if (first_run == 1){
-		$('#popupBasic').popup('open');
+		$('#popupBasic').popup('open');      
 		first_run = 0;
 	}	 
 	var language = $('input[name="radio-choice-2"]:checked').val();   
@@ -334,7 +336,6 @@ $(document).on("pagebeforeshow", "#settings", function () {
 	}
 });
 $(document).on("pageshow", "#settings", function () {
-	mapper.resize();
 	cur_page = 0;
 	cur_statue = -1;
     navigator.splashscreen.hide();
