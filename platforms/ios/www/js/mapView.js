@@ -3,7 +3,7 @@ var mapper = {
         google.maps.event.trigger(mapper.map, 'resize');
         var tempCenter = new google.maps.LatLng(33.981905, -117.374513);
         mapper.map.setCenter(tempCenter);
-        mapper.map.setZoom(17);
+        //mapper.map.setZoom(17);
     },
 	createMarker: function(statue) {
 		var marker = new google.maps.Marker({
@@ -77,11 +77,17 @@ var mapper = {
 		}		
 		this.attached = false;
         //idle fires when map is ready, resize is called to size map to div
-        google.maps.event.addListenerOnce(mapper.map, 'idle', function() {
+        /*google.maps.event.addListenerOnce(mapper.map, 'idle', function() {
             google.maps.event.trigger(mapper.map, 'resize');
             var tempCenter = new google.maps.LatLng(33.981905, -117.374513);
             mapper.map.setCenter(tempCenter); 
             mapper.map.setZoom(17);
+        });*/
+        google.maps.event.addListenerOnce(mapper.map, 'bounds_changed', function() {
+           google.maps.event.trigger(mapper.map, 'resize');
+           var tempCenter = new google.maps.LatLng(33.981905, -117.374513);
+           mapper.map.setCenter(tempCenter);
+           mapper.map.setZoom(17);
         });
 		console.log(mapper.map);
     }    

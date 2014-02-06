@@ -151,12 +151,13 @@ var app = {
         this.store = new MemoryStore(function() {
            //commented for now - checking no connection options
            //issues with resize, putting this back here for now
-           window.mapper.initialize();
+           //window.mapper.initialize();
         });
 		this.initialized = true;
 		this.statuelistCreated = false;
     }
 };
+////////////////////////////////////////////////////////////////////////////////////
 var cur_statue = -1;
 var cur_page = 0;  //used to determine if on tour pages or not
 var first_run = 1;
@@ -207,12 +208,11 @@ $(document).on("pagebeforehide", "#homepage", function () {
 
 //TOURPAGE_HOME EVENTS
 $(document).on("pagecreate", "#tourpage_home", function () {
-    /*moving map creation back to beginning
+    //moving map creation back to beginning
     console.log(first_run);
     if (first_run == 1){
         window.mapper.initialize();
     }
-    */
 });
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
 	//pop up only fires on first run
@@ -231,7 +231,8 @@ $(document).on("pagebeforeshow", "#tourpage_home", function () {
 });
 $(document).on("pageshow", "#tourpage_home", function () {
     navigator.splashscreen.hide();
-    mapper.resize();
+    //testing bounds changed
+    //mapper.resize();
     cur_page = 1;
 	cur_statue = -1;
 	lock = 0;
@@ -379,6 +380,10 @@ $(document).on("pagebeforeshow", "#statuedetails", function () {
 	$('#address_box').trigger('expand');
 	$('#static_map_box').trigger('expand');
 	$('#detail_box').trigger('expand');
+});
+$(document).on("pagebeforehide", "#statuedetails", function () {
+    $('.statuedetails_audioControl').trigger('pause');
+    $('.statuedetails_audioControl').prop('currentTime',0);
 });
 $(document).on("pagehide", "#statuedetails", function () {
 	$('.statuedetails_audioControl').trigger('pause');
