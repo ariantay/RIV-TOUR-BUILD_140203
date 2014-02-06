@@ -150,7 +150,8 @@ var app = {
 		//initialize and create map
         this.store = new MemoryStore(function() {
            //commented for now - checking no connection options
-           //window.mapper.initialize();
+           //issues with resize, putting this back here for now
+           window.mapper.initialize();
         });
 		this.initialized = true;
 		this.statuelistCreated = false;
@@ -206,10 +207,12 @@ $(document).on("pagebeforehide", "#homepage", function () {
 
 //TOURPAGE_HOME EVENTS
 $(document).on("pagecreate", "#tourpage_home", function () {
+    /*moving map creation back to beginning
     console.log(first_run);
     if (first_run == 1){
         window.mapper.initialize();
     }
+    */
 });
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
 	//pop up only fires on first run
@@ -227,15 +230,11 @@ $(document).on("pagebeforeshow", "#tourpage_home", function () {
 	}
 });
 $(document).on("pageshow", "#tourpage_home", function () {
-	if(!$('#checkbox-2').is(':checked')){
-		console.log($('#checkbox-2').is(':checked'))
-		//$('#tourhome_audioContainer audio').trigger('play');
-	}
-	//mapper.resize();
-	cur_page = 1;
+    navigator.splashscreen.hide();
+    mapper.resize();
+    cur_page = 1;
 	cur_statue = -1;
 	lock = 0;
-    navigator.splashscreen.hide();
 });
 
 
@@ -250,8 +249,13 @@ $(document).on("pagebeforehide", "#homepage", function () {
     navigator.splashscreen.show();
 });
 $(document).on("pagebeforehide", "#tourpage", function () {
+    $('.audioControl').trigger('pause');
+    $('.audioControl').prop('currentTime',0);
     //$('.flexslider').flexslider(0);
     navigator.splashscreen.show();
+    //moving map creation back to beginning for now...
+    //google.maps.event.trigger(mapper.map, 'resize');
+               
 });
 $(document).on("pagebeforehide", "#tourpage_home", function () {
     //$('.flexslider').flexslider(0);
@@ -315,8 +319,9 @@ $(document).on("pageshow", "#tourpage", function () {
 });
 
 $(document).on("pagehide", "#tourpage", function () {
-	$('.audioControl').trigger('pause');
-	$('.audioControl').prop('currentTime',0);
+    //too slow, move pause further up
+	//$('.audioControl').trigger('pause');
+	//$('.audioControl').prop('currentTime',0);
 
 });
 

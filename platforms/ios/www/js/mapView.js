@@ -1,4 +1,10 @@
 var mapper = {
+    resize: function() {
+        google.maps.event.trigger(mapper.map, 'resize');
+        var tempCenter = new google.maps.LatLng(33.981905, -117.374513);
+        mapper.map.setCenter(tempCenter);
+        mapper.map.setZoom(17);
+    },
 	createMarker: function(statue) {
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(statue.lat,statue.lon),
@@ -75,7 +81,7 @@ var mapper = {
             google.maps.event.trigger(mapper.map, 'resize');
             var tempCenter = new google.maps.LatLng(33.981905, -117.374513);
             mapper.map.setCenter(tempCenter); 
-            mapper.map.setZoom(16);
+            mapper.map.setZoom(17);
         });
 		console.log(mapper.map);
     }    
