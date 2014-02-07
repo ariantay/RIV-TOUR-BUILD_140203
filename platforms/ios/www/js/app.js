@@ -46,13 +46,11 @@ var app = {
         $('#statuedetails_image_3').attr('href','img/'+statue.urlstring+'_3.jpg');
         $('#statuedetails_image_4').attr('href','img/'+statue.urlstring+'_4.jpg');
         $('#statuedetails_image_5').attr('href','img/'+statue.urlstring+'_5.jpg');
-        $('.statuedetails_gallery').colorbox({rel:'gal', width:'200px', height:'200px'});
-        $('#statuedetails_imgholder').click( function(){
-            //console.log($('#statuedetails_image_1').attr('href'));
-            //var imgurl = '#'+$('#statuedetails_image_1').attr('href');
-            //console.log(imgurl);
-            //location.href='img/king_1.jpg';
-        });
+        //$('.statuedetails_gallery').colorbox({rel:'gal'});
+        //$('.statuedetails_imgholder').click( function(){
+        //    location.href=$('#'+$('#statuedetails_image_1').attr('href');
+        //});
+        
 		var language = $('input[name="radio-choice-2"]:checked').val();
 		if (language == 'english'){
 			$('#statuedetails_detailstext p').html(statue.info.english);
