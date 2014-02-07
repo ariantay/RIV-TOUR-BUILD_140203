@@ -93,32 +93,25 @@ $(document).on("pagebeforehide", "#tourpage", function () {
                
 });
 $(document).on("pagebeforehide", "#tourpage_home", function () {
-    //$('.flexslider').flexslider(0);
     navigator.splashscreen.show();
 });
 $(document).on("pagebeforehide", "#settings", function () {
-    //$('.flexslider').flexslider(0);
     navigator.splashscreen.show();
 });
 $(document).on("pagebeforehide", "#statuelist", function () {
-    //$('.flexslider').flexslider(0);
     navigator.splashscreen.show();
 });
 $(document).on("pagebeforehide", "#statuedetails", function () {
-    //$('.flexslider').flexslider(0);
     navigator.splashscreen.show();
 });
 
 $(document).on("pageshow", "#homepage", function () {
-    //$(window).resize();		//slider won't show until resize...
     navigator.splashscreen.hide();
 });
 $(document).on("pageshow", "#statuelist", function () {
-    //$('.flexslider').flexslider(0);
     navigator.splashscreen.hide();
 });
 $(document).on("pageshow", "#statuedetails", function () {
-    //$('.flexslider').flexslider(0);
     navigator.splashscreen.hide();
 });
 
@@ -139,10 +132,10 @@ $(document).on("pageshow", "#tourpage", function () {
 		}
    });
 	if(!$('#checkbox-2').is(':checked')){
-	$('.audioControl').trigger('play');
-        //referring to the container also causes issues...
-		//$('#audioContainer audio').trigger('play');
-	}
+       //referring to the container also causes issues...
+       //$('#audioContainer audio').trigger('play');
+       $('.audioControl').trigger('play');
+    }
 	//reset position of text
 	$("#textContainer").scrollTop(0);
     //slider won't show until resize...
@@ -152,14 +145,6 @@ $(document).on("pageshow", "#tourpage", function () {
                
     navigator.splashscreen.hide();
 });
-
-$(document).on("pagehide", "#tourpage", function () {
-    //too slow, move pause further up
-	//$('.audioControl').trigger('pause');
-	//$('.audioControl').prop('currentTime',0);
-
-});
-
 //SETTINGS EVENTS
 $(document).on("pagebeforeshow", "#settings", function () {
 	var language = $('input[name="radio-choice-2"]:checked').val();
