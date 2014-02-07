@@ -41,14 +41,14 @@ var app = {
 		$('#statuedetails_thumb').attr('src','img/'+statue.urlstring+'_thumb3.jpg');
 		$('#statuedetails_thumbtext h2').html(statue.name);
         //change images
-        $('#statuedetails_image_1').attr('href','img/'+statue.urlstring+'_1.jpg');
+        $('#statuedetails_imgholder').attr('href','img/'+statue.urlstring+'_1.jpg');
         $('#statuedetails_image_2').attr('href','img/'+statue.urlstring+'_2.jpg');
         $('#statuedetails_image_3').attr('href','img/'+statue.urlstring+'_3.jpg');
         $('#statuedetails_image_4').attr('href','img/'+statue.urlstring+'_4.jpg');
-        $('#statuedetails_image_5').attr('href','img/'+statue.urlstring+'_5.jpg');
-        //$('.statuedetails_gallery').colorbox({rel:'gal'});
-        //$('.statuedetails_imgholder').click( function(){
+        $('.statuedetails_gallery').colorbox({rel:'gal'});
+        //$('#statuedetails_imgholder').click( function(){
         //    location.href=$('#'+$('#statuedetails_image_1').attr('href');
+        //    location.href='img/king_1.jpg';
         //});
         
 		var language = $('input[name="radio-choice-2"]:checked').val();
