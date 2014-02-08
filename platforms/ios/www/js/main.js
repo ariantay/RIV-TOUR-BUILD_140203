@@ -183,22 +183,23 @@ $(document).on("pagebeforeshow", "#statuelist", function () {
 $(document).on("pagecreate", "#statuedetails", function () {
 	cur_page = 0;
 	cur_statue = -1;
+    var language = $('input[name="radio-choice-2"]:checked').val();
+    if (language == 'english'){
+        $('#address_box span.ui-btn-text').html("Location");
+        $('#static_map_box span.ui-btn-text').html("Map");
+    }else{
+        $('#detail_box span.ui-btn-text').html("Detalles");
+        $('#address_box span.ui-btn-text').html("Ubicación");
+        $('#static_map_box span.ui-btn-text').html("Mapa");
+    }
 });
 $(document).on("pagebeforeshow", "#statuedetails", function () {
-	var language = $('input[name="radio-choice-2"]:checked').val();
-	if (language == 'english'){
-		$('#detail_box span.ui-btn-text').html("Detail");
-		$('#address_box span.ui-btn-text').html("Location");
-		$('#static_map_box span.ui-btn-text').html("Map");
-	}else{
-		$('#detail_box span.ui-btn-text').html("Detalles");
-		$('#address_box span.ui-btn-text').html("Ubicación");
-		$('#static_map_box span.ui-btn-text').html("Mapa");
-	}
-	$('#audio_box').trigger('collapse');
-	$('#address_box').trigger('expand');
-	$('#static_map_box').trigger('expand');
-	$('#detail_box').trigger('expand');
+    //colorbox intialization
+    $('.statuedetails_gallery').colorbox({rel:'gal', maxWidth: '90%', maxHeight: '90%'});
+    $('#audio_box').trigger('collapse');
+    $('#address_box').trigger('expand');
+    $('#static_map_box').trigger('expand');
+    $('#detail_box').trigger('expand');
 });
 $(document).on("pagebeforehide", "#statuedetails", function () {
     $('.statuedetails_audioControl').trigger('pause');
