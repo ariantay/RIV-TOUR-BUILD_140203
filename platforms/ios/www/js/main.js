@@ -195,7 +195,7 @@ $(document).on("pagecreate", "#statuedetails", function () {
 });
 $(document).on("pagebeforeshow", "#statuedetails", function () {
     //colorbox intialization
-    $('.statuedetails_gallery').colorbox({rel:'gal', maxWidth: '90%', maxHeight: '90%'});
+    $('.statuedetails_gallery').colorbox({rel:'gal', maxWidth: '95%', maxHeight: '95%'});
     $('#audio_box').trigger('collapse');
     $('#address_box').trigger('expand');
     $('#static_map_box').trigger('expand');
