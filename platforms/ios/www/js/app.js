@@ -42,9 +42,9 @@ var app = {
 		$('#statuedetails_thumbtext h2').html(statue.name);
         //change images
         $('#statuedetails_imgholder').attr('href','img/'+statue.urlstring+'_1.jpg');
-        $('#statuedetails_image_2').attr('href','img/'+statue.urlstring+'_2.jpg');
-        $('#statuedetails_image_3').attr('href','img/'+statue.urlstring+'_3.jpg');
-        $('#statuedetails_image_4').attr('href','img/'+statue.urlstring+'_4.jpg');
+        $('#statuedetails_img_2').attr('href','img/'+statue.urlstring+'_2.jpg');
+        $('#statuedetails_img_3').attr('href','img/'+statue.urlstring+'_3.jpg');
+        $('#statuedetails_img_4').attr('href','img/'+statue.urlstring+'_4.jpg');
 		var language = $('input[name="radio-choice-2"]:checked').val();
 		if (language == 'english'){
 			$('#statuedetails_detailstext p').html(statue.info.english);
