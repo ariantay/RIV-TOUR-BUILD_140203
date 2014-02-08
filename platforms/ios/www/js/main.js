@@ -196,7 +196,7 @@ $(document).on("pagecreate", "#statuedetails", function () {
 $(document).on("pagebeforeshow", "#statuedetails", function () {
     //colorbox intialization
     $('.statuedetails_gallery').colorbox({rel:'gal', maxWidth: '95%', maxHeight: '95%'});
-    $('#audio_box').trigger('collapse');
+    $('#audio_box').trigger('expand');
     $('#address_box').trigger('expand');
     $('#static_map_box').trigger('expand');
     $('#detail_box').trigger('expand');
