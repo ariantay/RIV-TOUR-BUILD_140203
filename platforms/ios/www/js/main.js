@@ -4,14 +4,17 @@ var first_run = 1;
 var globalLat = 0; //used to store geolocation result
 var globalLon = 0; //used to store geolocation result
 var mapTimeout = 4; //if map doesn't load in tour home, kick back to homepage
-var mapLoaded = false; 
+var mapLoaded = false;
+var timer = 0; //to countdown map loading
 
 //jquery mobile events handling
 //HOMEPAGE
 $(document).on("pagecreate", "#homepage", function () {
 	if(!app.initialized){
 		app.initialize();
-		//start geolocation tracking
+        //add timeout counter
+        //timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
+ 		//start geolocation tracking
 		watchID = app.startTracking();
 	}
 	cur_statue = -1;
@@ -48,10 +51,14 @@ $(document).on("pagebeforehide", "#homepage", function () {
 });
 //TOURPAGE_HOME EVENTS
 $(document).on("pagecreate", "#tourpage_home", function () {
-    //moving map creation back to beginning
+    //creating map
     console.log(first_run);
-    if (first_run == 1 || !mapLoaded){
-        window.mapper.initialize();
+    //if (first_run == 1 || !mapLoaded){
+        //window.mapper.initialize();
+    //}
+    if (!mapLoaded){
+        window.clearTimeout(timer);
+        timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
     }
     var language = $('input[name="radio-choice-2"]:checked').val();
     if (language == 'english'){
@@ -65,6 +72,9 @@ $(document).on("pagecreate", "#tourpage_home", function () {
 $(document).on("pageshow", "#tourpage_home", function () {
     //google.map.events.trigger(mapper.map, 'resize');
     navigator.splashscreen.hide();
+    if (mapLoaded){
+       mapper.resize();
+    }
     //pop up only fires on first run
     if (first_run == 1){
        $('#popupBasic').popup('open');

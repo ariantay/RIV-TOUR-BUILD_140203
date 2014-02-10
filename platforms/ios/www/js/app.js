@@ -2,6 +2,21 @@ var app = {
     registerEvents: function() {
         $(window).on('hashchange', $.proxy(this.route, this));
     },
+    
+    loadMapScript: function() {
+        var script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false";
+        //&"+"callback=app.gotoTourHome";
+        document.body.appendChild(script);
+    },
+    gotoTourHome: function() {
+         //window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
+        if (typeof google === 'object' && typeof google.maps === 'object') {
+            $.mobile.changePage('#tourpage_home');
+        }else{
+            window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
+        }
+    },
 	routeTo: function(statueID) {
 		//to prevent auto routing 
 		if($('#checkbox-1').is(':checked')){
@@ -150,13 +165,16 @@ var app = {
 		this.counter = 0;
         this.lock = 0;
         var self = this;
-        this.detailsURL = /^#statues\/(\d{1,})/;
+        //this.detailsURL = /^#statues\/(\d{1,})/;
         this.registerEvents();
 		//initialize and create map
         this.store = new MemoryStore(function() {
            //commented for now - checking no connection options
            //issues with resize, putting this back here for now
            //window.mapper.initialize();
+           //lets try load google maps javascript here
+           //app.loadMapScript();
+           mapper.initialize();
         });
 		this.initialized = true;
 		this.statuelistCreated = false;

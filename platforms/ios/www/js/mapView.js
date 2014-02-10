@@ -6,8 +6,8 @@ var mapper = {
         //mapper.map.setZoom(17);
     },
     mapLoadFail: function() {
-        window.alert("Unable to load maps; this feature requires a network connection.  Please check back later when your connection is stable.  For the meanwhile, check out the Statue List link!");
-        $.mobile.changePage("#homepage");
+        window.alert("Unable to load maps; this feature requires a network connection. Please check back later when your connection is stable. For the meanwhile, please use the Statue List page instead");
+        $.mobile.changePage("#homepage", {allowSamePageTransition:true});
     },
 	createMarker: function(statue) {
 		var marker = new google.maps.Marker({
@@ -44,7 +44,7 @@ var mapper = {
 		};
 		this.map = new google.maps.Map(document.getElementById('map-canvas'),this.mapOptions);
         //add timeout counter
-        var timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
+        timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
 		//define current position icon
 		var pinImage = new google.maps.MarkerImage(
 			'img/nav_plain_blue.png',
