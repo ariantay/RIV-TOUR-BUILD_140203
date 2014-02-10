@@ -5,6 +5,10 @@ var mapper = {
         mapper.map.setCenter(tempCenter);
         //mapper.map.setZoom(17);
     },
+    mapLoadFail: function() {
+        window.alert("Unable to load maps; this feature requires a network connection.  Please check back later when your connection is stable.  For the meanwhile, check out the Statue List link!");
+        $.mobile.changePage("#homepage");
+    },
 	createMarker: function(statue) {
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(statue.lat,statue.lon),
@@ -38,7 +42,9 @@ var mapper = {
             overviewMapControl: false,
             styles: [{featureType: "poi", stylers: [{visibility: "off"}]}]
 		};
-		this.map = new google.maps.Map(document.getElementById('map-canvas'),this.mapOptions); 
+		this.map = new google.maps.Map(document.getElementById('map-canvas'),this.mapOptions);
+        //add timeout counter
+        var timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
 		//define current position icon
 		var pinImage = new google.maps.MarkerImage(
 			'img/nav_plain_blue.png',
@@ -76,11 +82,17 @@ var mapper = {
 			mapper.createMarker(app.store.statues[i]);
 		}		
 		this.attached = false;
+        //Add listener to detect if map.resize() is needed
         google.maps.event.addListenerOnce(mapper.map, 'bounds_changed', function() {
            google.maps.event.trigger(mapper.map, 'resize');
            var tempCenter = new google.maps.LatLng(33.981905, -117.374513);
            mapper.map.setCenter(tempCenter);
            mapper.map.setZoom(17);
+        });
+        //Add listener to detect if map failed to load (timeout)
+        google.maps.event.addListener(mapper.map, 'tilesloaded', function() {
+           window.clearTimeout(timer);
+           mapLoaded = true;
         });
 		console.log(mapper.map);
     }    

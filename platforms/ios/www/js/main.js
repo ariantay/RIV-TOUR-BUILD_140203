@@ -3,6 +3,8 @@ var cur_page = 0;  //used to determine if on tour pages or not
 var first_run = 1;
 var globalLat = 0; //used to store geolocation result
 var globalLon = 0; //used to store geolocation result
+var mapTimeout = 4; //if map doesn't load in tour home, kick back to homepage
+var mapLoaded = false; 
 
 //jquery mobile events handling
 //HOMEPAGE
