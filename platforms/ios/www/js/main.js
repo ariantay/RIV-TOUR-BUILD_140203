@@ -50,7 +50,7 @@ $(document).on("pagebeforehide", "#homepage", function () {
 $(document).on("pagecreate", "#tourpage_home", function () {
     //moving map creation back to beginning
     console.log(first_run);
-    if (first_run == 1){
+    if (first_run == 1 || !mapLoaded){
         window.mapper.initialize();
     }
     var language = $('input[name="radio-choice-2"]:checked').val();
@@ -63,6 +63,7 @@ $(document).on("pagecreate", "#tourpage_home", function () {
     }
 });
 $(document).on("pageshow", "#tourpage_home", function () {
+    //google.map.events.trigger(mapper.map, 'resize');
     navigator.splashscreen.hide();
     //pop up only fires on first run
     if (first_run == 1){
