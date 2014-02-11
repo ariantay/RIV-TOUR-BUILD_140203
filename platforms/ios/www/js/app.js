@@ -2,14 +2,14 @@ var app = {
     registerEvents: function() {
         $(window).on('hashchange', $.proxy(this.route, this));
     },
-    /* // LOTS OF ISSUES GETTING THIS TO WORK, SET ASIDE FOR NOW
+    /* // LOTS OF ISSUES GETTING THIS TO WORK, SET ASIDE FOR NOW*/
     loadMapScript: function() {
         var script = document.createElement('script');
-        script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false";
+        script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"
+        +"&callback=mapper.initialize";
         //&"+"callback=app.gotoTourHome";
         document.body.appendChild(script);
     },
-     */
     gotoTourHome: function() {
          //window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
         if (typeof google === 'object' && typeof google.maps === 'object') {
@@ -170,9 +170,9 @@ var app = {
         this.registerEvents();
 		//initialize and create map
         this.store = new MemoryStore(function() {
-           window.mapper.initialize();
+           //window.mapper.initialize();
            //issues with async loading, dont use
-           //app.loadMapScript();
+           app.loadMapScript();
         });
 		this.initialized = true;
 		this.statuelistCreated = false;
