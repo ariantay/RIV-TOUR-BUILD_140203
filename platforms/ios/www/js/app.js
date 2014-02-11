@@ -6,7 +6,7 @@ var app = {
     loadMapScript: function() {
         var script = document.createElement('script');
         script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false";
-        //&"+"callback=app.gotoTourHome";
+        script.onload = mapper.initialize();
         document.body.appendChild(script);
     },
     gotoTourHome: function() {
@@ -26,7 +26,6 @@ var app = {
 		if (statueID === app.numStatues){
 			$('#headerText').html('City of Riverside');
             $('.audioFile_home').attr('src','audio/tourhome_eng.mp3');
-            
 		}else{
 			var statue = app.store.statues[statueID];
 			$('#headerText').html(statue.name);
@@ -173,8 +172,8 @@ var app = {
            //issues with resize, putting this back here for now
            //window.mapper.initialize();
            //lets try load google maps javascript here
-           //app.loadMapScript();
-           mapper.initialize();
+           app.loadMapScript();
+           //mapper.initialize();
         });
 		this.initialized = true;
 		this.statuelistCreated = false;
