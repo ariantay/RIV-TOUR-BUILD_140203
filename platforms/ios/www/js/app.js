@@ -2,14 +2,14 @@ var app = {
     registerEvents: function() {
         $(window).on('hashchange', $.proxy(this.route, this));
     },
-    /* // LOTS OF ISSUES GETTING THIS TO WORK, SET ASIDE FOR NOW*/
+    /* // LOTS OF ISSUES GETTING THIS TO WORK, SET ASIDE FOR NOW
     loadMapScript: function() {
         var script = document.createElement('script');
         script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"
         +"&callback=mapper.initialize";
         //&"+"callback=app.gotoTourHome";
         document.body.appendChild(script);
-    },
+    },*/
     gotoTourHome: function() {
          //window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
         if (typeof google === 'object' && typeof google.maps === 'object') {
@@ -124,8 +124,8 @@ var app = {
 			mapper.circle.setCenter(latlng);
 			//mapper.circle.setRadius(position.coords.accuracy);
 		}	
-        if (cur_page == 1 && lock == 0){
-            lock = 1;
+        if (cur_page == 1 && app.lock == 0){
+            app.lock = 1;
 			console.log("calling on success");			
 			for (var i=0; i<app.numStatues; i++) {
 				var statue = app.store.statues[i];
@@ -136,7 +136,7 @@ var app = {
 					return;
 				}
 			}
-			lock = 0;
+			app.lock = 0;
 		}
 	},
 	onError: function (error) {
@@ -161,18 +161,18 @@ var app = {
 	},    
     initialize: function() {
 		//this.statueID = 0;	// **not needed, explicitly call destination **
-		this.numStatues = 6;
-		this.functionRunning = false;
-		this.counter = 0;
-        this.lock = 0;
+		app.numStatues = 6;
+		app.functionRunning = false;
+		app.counter = 0;
+        app.lock = 0;
         var self = this;
         //this.detailsURL = /^#statues\/(\d{1,})/;
         this.registerEvents();
 		//initialize and create map
         this.store = new MemoryStore(function() {
-           //window.mapper.initialize();
+           window.mapper.initialize();
            //issues with async loading, dont use
-           app.loadMapScript();
+           //app.loadMapScript();
         });
 		this.initialized = true;
 		this.statuelistCreated = false;

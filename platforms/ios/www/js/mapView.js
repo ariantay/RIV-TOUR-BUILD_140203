@@ -33,7 +33,6 @@ var mapper = {
 	},
     initialize: function() {
 		//create the map
-        alert("heeeey");
 		mapper.mapOptions = {
 			zoom: 16,
 			center: new google.maps.LatLng(33.981905, -117.374513),

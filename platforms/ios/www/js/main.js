@@ -75,7 +75,7 @@ $(document).on("pageshow", "#tourpage_home", function () {
     }
     cur_page = 1;
 	cur_statue = -1;
-	lock = 0;
+	app.lock = 0;
 });
 $(document).on("pagebeforehide", "#homepage", function () {
     navigator.splashscreen.show();
@@ -135,7 +135,7 @@ $(document).on("pageshow", "#tourpage", function () {
     //slider won't show until resize...
 	$(window).resize();
 	cur_page = 1;
-    lock = 0;
+    app.lock = 0;
                
     navigator.splashscreen.hide();
 });
