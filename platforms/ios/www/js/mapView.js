@@ -12,7 +12,7 @@ var mapper = {
 	createMarker: function(statue) {
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(statue.lat,statue.lon),
-			map: mapper.map,
+			map: this.map,
 			title:statue.name,
 			index: statue.id
 		});
@@ -33,9 +33,7 @@ var mapper = {
 	},
     initialize: function() {
 		//create the map
-        mapper.test = new google.maps.LatLng(33.981905, -117.374513);
-        alert(mapper.test);
-		mapper.mapOptions = {
+		this.mapOptions = {
 			zoom: 16,
 			center: new google.maps.LatLng(33.981905, -117.374513),
             panControl: false,
@@ -44,8 +42,7 @@ var mapper = {
             overviewMapControl: false,
             styles: [{featureType: "poi", stylers: [{visibility: "off"}]}]
 		};
-        window.alert("mapper.mapOptions");
-		mapper.map = new google.maps.Map(document.getElementById('map-canvas'),mapper.mapOptions);
+		this.map = new google.maps.Map(document.getElementById('map-canvas'),this.mapOptions);
         //add timeout counter
         timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
 		//define current position icon
@@ -56,11 +53,10 @@ var mapper = {
 			new google.maps.Point(8, 8),
 			new google.maps.Size(16, 16)
 		);
-        window.alert("in initialize2");
 		//define current position marker
-		mapper.marker = new google.maps.Marker({
+		this.marker = new google.maps.Marker({
 			position: new google.maps.LatLng(33.981905, -117.374513),
-			map: mapper.map,
+			map: this.map,
 			title:"You are here",
 			index: app.numStatues,
 			icon: pinImage
@@ -76,7 +72,7 @@ var mapper = {
 			center: new google.maps.LatLng(33.981905, -117.374513),
 			radius: 60
 		};
-		mapper.circle = new google.maps.Circle(options);
+		this.circle = new google.maps.Circle(options);
 		//current position on click
 		google.maps.event.addListener(mapper.marker, 'click', function() {
 			//app.routeTo(marker.index);
@@ -85,8 +81,7 @@ var mapper = {
 		for (var i=0; i < app.numStatues; i++) {	
 			mapper.createMarker(app.store.statues[i]);
 		}		
-		mapper.attached = false;
-        window.alert("in initialize3");
+		this.attached = false;
         //Add listener to detect if map.resize() is needed
         google.maps.event.addListenerOnce(mapper.map, 'bounds_changed', function() {
            google.maps.event.trigger(mapper.map, 'resize');
@@ -100,6 +95,5 @@ var mapper = {
            mapLoaded = true;
         });
 		console.log(mapper.map);
-        window.alert("test");
     }    
 }

@@ -58,7 +58,7 @@ $(document).on("pagecreate", "#tourpage_home", function () {
     //}
     if (!mapLoaded){
         window.clearTimeout(timer);
-        timer = window.setTimeout(mapper.mapLoadFail, 2 * 1000);
+        timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
     }
     var language = $('input[name="radio-choice-2"]:checked').val();
     if (language == 'english'){
