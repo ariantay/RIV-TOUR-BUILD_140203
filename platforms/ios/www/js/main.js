@@ -10,6 +10,7 @@ var timer = 0; //to countdown map loading
 //jquery mobile events handling
 //HOMEPAGE
 $(document).on("pagecreate", "#homepage", function () {
+
 	if(!app.initialized){
 		app.initialize();
         //add timeout counter
@@ -42,6 +43,9 @@ $(document).on("pagecreate", "#homepage", function () {
     }
     $('.home_audioControl').trigger('load');
 });
+$(document).on("pageshow", "#homepage", function () {
+               //navigator.notification.activityStart();
+               });
 $(document).on("pagebeforehide", "#homepage", function () {
 	$('.home_audioControl').trigger('pause');
 	$('.home_audioControl').prop('currentTime',0);
@@ -57,7 +61,8 @@ $(document).on("pagecreate", "#tourpage_home", function () {
     var language = $('input[name="radio-choice-2"]:checked').val();
     if (language == 'english'){
     $('#header h1').html("Tour");
-    $('#popupBasic p').html("Your position is indicated on the map by the blue dot.  Please make your way to the nearest statue represented by the red markers.  Once you arrive at that statue's location, information regarding that statue will automatically be displayed.");
+    //$('#popupBasic p').html("Your position is indicated on the map by the blue dot.  Please make your way to the nearest statue represented by the red markers.  Once you arrive at that statue's location, information regarding that statue will automatically be displayed.");
+       $('#popupBasic p').html("Your position is indicated by the blue dot.  Please make your way to the nearest statue (the red markers).  When you are nearby, the tour will automatically begin.");
     }else{
     $('#header h1').html("Gira");
     $('#popupBasic p').html("Su posición está indicada en el mapa vía el punto azul. Por favor camine hacia la estatua más cercana representada por el marcador rojo.  Al llegar a la ubicación de esa estatua, información con respecto a esa estatua será desplegada automáticamente.");

@@ -89,7 +89,7 @@ var mapper = {
            mapper.map.setCenter(tempCenter);
            mapper.map.setZoom(17);
         });
-        //Add listener to detect if map failed to load (timeout)
+        //Add listener to detect if map has loaded tiles(for timeout)
         google.maps.event.addListener(mapper.map, 'tilesloaded', function() {
            window.clearTimeout(timer);
            mapLoaded = true;

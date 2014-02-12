@@ -43,12 +43,12 @@
                     </a>
                 </li>
                 <li>
-                    <a id="list_link" onclick="location.href='#statuelist'" data-transition="fade" data-theme="e" data-icon="bars">
+                    <a id="list_link" onclick="app.gotoPage('#statuelist')" data-transition="fade" data-theme="e" data-icon="bars">
                         Statue List
                     </a>
                 </li>
                 <li>
-                    <a id="settings_link" onclick="location.href='#settings'" data-transition="fade" data-theme="e" data-icon="gear">
+                    <a id="settings_link" onclick="app.gotoPage('#settings')" data-transition="fade" data-theme="e" data-icon="gear">
                         Settings
                     </a>
                 </li>
@@ -73,7 +73,7 @@
 <div data-role="page" id="tourpage_home">
 	<div id='header' data-role="header" data-theme='b' data-position="inline">
 		<h1>Tour</h1>
-			<a id='default_tour_page_back_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a> 
+			<a id='default_tour_page_back_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
 			<a href="#popupBasic" data-rel="popup" id='default_tour_page_help_button' class='button' class="ui-btn-left" data-icon="info" data-theme='e' data-direction="reverse"></a>
 			
 			<div data-role="popup" id="popupBasic" data-position-to="window" data-theme="e" class="ui-content">
@@ -92,7 +92,7 @@
 <div data-role="page" id="tourpage">
 	<div id='header' data-role="header" data-theme='b' data-position="inline">
 		<h1 id='headerText'>Tour</h1>
-			<a id='tour_page_back_button' class='button' onclick="location.href='#tourpage_home'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse">
+			<a id='tour_page_back_button' class='button' onclick="app.gotoPage('#tourpage_home')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse">
 			</a>  
 	</div>
 	<div id='slideSize' class='sizeControl'>
@@ -129,7 +129,7 @@
 <div data-role="page" id="statuelist">
 	<div id='header' data-role="header" data-theme='b' data-position="fixed" data-tap-toggle="false">
 		<h1>Statue List</h1>
-		<a id='tour_page_back_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>  
+		<a id='tour_page_back_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
 	</div>
 	<div data-role="content">
 		<ul data-role="listview" data-theme='a' id='statuelist_holder'></ul>
@@ -139,7 +139,7 @@
 <div data-role="page" id="statuedetails">
 	<div id='header' data-role="header" data-theme='b' data-position="fixed" data-tap-toggle="false">
 		<h1>Statue Details</h1>
-		<a id='tour_page_back_button' class='button' onclick="location.href='#statuelist'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>  
+		<a id='tour_page_back_button' class='button' onclick="app.gotoPage('#statuelist')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
 	</div>
 	<div data-role="content" data-theme='a'>
         <!--Div stores href to first image in gallery-->
@@ -165,6 +165,7 @@
             <a id='statuedetails_img_3' class="statuedetails_gallery" href="img/king_1"></a>
             <a id='statuedetails_img_4' class="statuedetails_gallery" href="img/king_1"></a>
         </div>
+        <!--End Colorbox images-->
  		<div id='audio_box' data-role="collapsible" data-theme="b" data-content-theme="e" data-collapsed="false">
 			<h3>Audio</h3>
                 <div id='statuedetails_audio_container'>
@@ -203,7 +204,7 @@
 <div data-role="page" id="settings">
 	<div id='header' data-role="header" data-theme='b' data-position="inline">
 		<h1>Settings</h1>
-        	<a id='settings_home_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="home" data-theme='e' data-direction="reverse"></a>
+        	<a id='settings_home_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="home" data-theme='e' data-direction="reverse"></a>
     </div>	
 	<ul data-role="listview" data-theme='c'>
 	<li>

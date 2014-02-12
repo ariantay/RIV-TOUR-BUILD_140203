@@ -18,8 +18,11 @@ var app = {
             window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
         }
     },
+    gotoPage: function(page) {
+        $.mobile.changePage(page);
+    },
 	routeTo: function(statueID) {
-		//to prevent auto routing 
+		//to prevent auto routing
 		if($('#checkbox-1').is(':checked')){
 			return;
 		}
