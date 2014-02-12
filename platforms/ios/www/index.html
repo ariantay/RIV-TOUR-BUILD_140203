@@ -7,18 +7,21 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<!--CSS IMPORTS-->
+    <link href="css/colorbox.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet" type="text/css" />
 	<link href="css/flexslider.css" rel="stylesheet" type="text/css" media="screen" />
-	<link rel='stylesheet' href="css/styles.css" />
-	<link rel='stylesheet' media='only screen and (min-device-width: 768px)' href="css/styles_ipad.css" />
+	<link href="css/styles.css" rel='stylesheet' />
+	<link href="css/styles_ipad.css" rel='stylesheet' media='only screen and (min-device-width: 768px)'  />
 	<!--SCRIPT IMPORTS-->
 	<script src="phonegap.js"></script>
 	<script src="lib/jquery-1.10.2.min.js"></script>
 	<script src="lib/jquery.mobile-1.3.2.min.js"></script>
 	<script src="lib/jquery.flexslider.js"></script>
+    <script src="lib/jquery.colorbox-min.js"></script>
 	<script src="js/storage/memory-store.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="js/mapView.js"></script>
+    <script src="js/app.js"></script>
 	<script src="js/main.js"></script>
 </head>
 
@@ -34,17 +37,18 @@
         <div id="home_navigation" data-role="navbar" data-iconpos="top" class="home_navigation">
             <ul>
                 <li id="map_link">
-                    <a  onclick="location.href='#tourpage_home'"data-transition="fade" data-theme="e" data-icon="star">
+                    <!--a  onclick="location.href='#tourpage_home'"data-transition="fade" data-theme="e" data-icon="star"-->
+                    <a  onclick="app.gotoTourHome()"data-transition="fade" data-theme="e" data-icon="star">
                         Begin Tour
                     </a>
                 </li>
                 <li>
-                    <a id="list_link" onclick="location.href='#statuelist'" data-transition="fade" data-theme="e" data-icon="bars">
+                    <a id="list_link" onclick="app.gotoPage('#statuelist')" data-transition="fade" data-theme="e" data-icon="bars">
                         Statue List
                     </a>
                 </li>
                 <li>
-                    <a id="settings_link" onclick="location.href='#settings'" data-transition="fade" data-theme="e" data-icon="gear">
+                    <a id="settings_link" onclick="app.gotoPage('#settings')" data-transition="fade" data-theme="e" data-icon="gear">
                         Settings
                     </a>
                 </li>
@@ -69,7 +73,7 @@
 <div data-role="page" id="tourpage_home">
 	<div id='header' data-role="header" data-theme='b' data-position="inline">
 		<h1>Tour</h1>
-			<a id='default_tour_page_back_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a> 
+			<a id='default_tour_page_back_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
 			<a href="#popupBasic" data-rel="popup" id='default_tour_page_help_button' class='button' class="ui-btn-left" data-icon="info" data-theme='e' data-direction="reverse"></a>
 			
 			<div data-role="popup" id="popupBasic" data-position-to="window" data-theme="e" class="ui-content">
@@ -84,31 +88,28 @@
 	<div data-theme="a" data-role="footer" data-position="fixed"></div>
 </div>
 
-<!--TOUR PAGE-->
+<!--TOURPAGE-->
 <div data-role="page" id="tourpage">
 	<div id='header' data-role="header" data-theme='b' data-position="inline">
 		<h1 id='headerText'>Tour</h1>
-			<a id='tour_page_back_button' class='button' onclick="location.href='#tourpage_home'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse">
+			<a id='tour_page_back_button' class='button' onclick="app.gotoPage('#tourpage_home')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse">
 			</a>  
 	</div>
 	<div id='slideSize' class='sizeControl'>
 		<div class="flexslider">
 			<ul class="slides">
 				<li>
-					<img class='image_1' src="img/tibbets_1.jpg" />
+					<img class='image_1'/>
 				</li>
 				<li>
-					<img class='image_2' src="img/tibbets_2.jpg" />
+					<img class='image_2'/>
 				</li>
 				<li>
-					<img class='image_3' src="img/tibbets_3.jpg" />
+					<img class='image_3'/>
 				</li>
 				<li>
-					<img class='image_4' src="img/tibbets_4.jpg" />
+					<img class='image_4'/>
 				</li>
-				<!--<li>
-					<img class='image_5' src="img/tibbets_5.jpg" />
-				</li>-->
 			</ul>
 		</div>
 	</div>	
@@ -128,26 +129,27 @@
 <div data-role="page" id="statuelist">
 	<div id='header' data-role="header" data-theme='b' data-position="fixed" data-tap-toggle="false">
 		<h1>Statue List</h1>
-		<a id='tour_page_back_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>  
+		<a id='tour_page_back_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
 	</div>
 	<div data-role="content">
 		<ul data-role="listview" data-theme='a' id='statuelist_holder'></ul>
 	</div>
 </div>
-
 <!--STATUE DETAILS PAGE-->
 <div data-role="page" id="statuedetails">
 	<div id='header' data-role="header" data-theme='b' data-position="fixed" data-tap-toggle="false">
 		<h1>Statue Details</h1>
-		<a id='tour_page_back_button' class='button' onclick="location.href='#statuelist'" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>  
+		<a id='tour_page_back_button' class='button' onclick="app.gotoPage('#statuelist')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
 	</div>
 	<div data-role="content" data-theme='a'>
+        <!--Div stores href to first image in gallery-->
+        <div class="statuedetails_gallery" id="statuedetails_imgholder" href="img/king_1" data-collapsed="false">
+            <!--h3>Gallery</h3-->
 		<table width="100%">
 		<tr>
 			<td width="1%" style="vertical-align: top; padding: 6px">
 				<img id='statuedetails_thumb' src="">      				
 			</td>
-			
 			<td style="vertical-align: top">
 				<div id='statuedetails_thumbtext'>
 				<h2 style="margin-top: 0px"></h2>
@@ -156,7 +158,14 @@
 			</td>				
 		</tr>		      
 		</table>
-		
+        </div>
+		<!--Colorbox invisible images-->
+        <div display='none'>
+            <a id='statuedetails_img_2' class="statuedetails_gallery" href="img/king_1"></a>
+            <a id='statuedetails_img_3' class="statuedetails_gallery" href="img/king_1"></a>
+            <a id='statuedetails_img_4' class="statuedetails_gallery" href="img/king_1"></a>
+        </div>
+        <!--End Colorbox images-->
  		<div id='audio_box' data-role="collapsible" data-theme="b" data-content-theme="e" data-collapsed="false">
 			<h3>Audio</h3>
                 <div id='statuedetails_audio_container'>
@@ -195,7 +204,7 @@
 <div data-role="page" id="settings">
 	<div id='header' data-role="header" data-theme='b' data-position="inline">
 		<h1>Settings</h1>
-        	<a id='settings_home_button' class='button' onclick="location.href='#homepage'" class="ui-btn-left" data-ajax="false" data-icon="home" data-theme='e' data-direction="reverse"></a>
+        	<a id='settings_home_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="home" data-theme='e' data-direction="reverse"></a>
     </div>	
 	<ul data-role="listview" data-theme='c'>
 	<li>
