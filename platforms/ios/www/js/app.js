@@ -169,7 +169,7 @@ var app = {
         app.registerEvents();
 		//initialize and create map
         app.store = new MemoryStore(function() {
-           //window.mapper.initialize();
+           window.mapper.initialize();
            //issues with async loading, dont use
            //app.loadMapScript();
            
