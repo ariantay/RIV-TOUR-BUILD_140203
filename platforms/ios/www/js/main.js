@@ -45,7 +45,7 @@ $(document).on("pagebeforehide", "#homepage", function () {
 });
 //TOURPAGE_HOME EVENTS
 $(document).on("pagecreate", "#tourpage_home", function () {
-
+     //might wanna trigger async loading here, or the map initialization
 });
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
     if (!mapLoaded){
