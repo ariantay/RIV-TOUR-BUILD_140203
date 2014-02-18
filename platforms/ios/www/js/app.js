@@ -21,7 +21,7 @@ var app = {
     },
     gotoPage: function(page) {
         //check html modification
-        app.createStatuelist();
+        //app.createStatuelist();
         //delete createlist when test done
         console.log('changing page to ' + page);
         $.mobile.changePage(page);
@@ -170,11 +170,10 @@ var app = {
         app.lock = 0;
         //this.detailsURL = /^#statues\/(\d{1,})/;
         app.registerEvents();
-
 		//initialize and create map
         app.store = new MemoryStore(function() {
            //map initialize commented for testing purpose
-           //window.mapper.initialize();
+           window.mapper.initialize();
            //issues with async loading, dont use
            //app.loadMapScript();           
         });
