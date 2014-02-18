@@ -1,12 +1,13 @@
 var app = {
     registerEvents: function() {
-        $(window).on('hashchange', $.proxy(this.route, this));
+        console.log('register events called');
+        $(window).on('hashchange', $.proxy(app.route, app));
     },
     /* // LOTS OF ISSUES GETTING THIS TO WORK, SET ASIDE FOR NOW*/
     loadMapScript: function() {
         var script = document.createElement('script');
         script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"
-        +"&callback=mapper.initialize";
+           +"&callback=mapper.initialize";
         //&"+"callback=app.gotoTourHome";
         document.body.appendChild(script);
     },
@@ -19,6 +20,10 @@ var app = {
         }
     },
     gotoPage: function(page) {
+        //check html modification
+        //app.createStatuelist();
+        //delete createlist when test done
+        console.log('changing page to ' + page);
         $.mobile.changePage(page);
     },
 	routeTo: function(statueID) {
@@ -83,22 +88,20 @@ var app = {
         $('#mapit, #statuedetails_static_map_img').click(function(){
              console.log(siteURL);
              window.open(siteURL, '_blank', 'location=yes');
-             });
+        });
         $.mobile.changePage("#statuedetails");
 	},
 	createStatuelist: function() {
 		//append list
-		if (!app.statuelistCreated){
-			var html = '';
-			for (var i=0; i<app.numStatues; i++) {
-				var statue = app.store.statues[i];
-				html += '<li>';
-				html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
-				html += '<h3>' + statue.name + '</h3>';
-				html += '</li>';
-			}
-			$('#statuelist_holder').append(html);
-		}
+        var html = '';
+        for (var i=0; i<app.numStatues; i++) {
+            var statue = app.store.statues[i];
+            html += '<li>';
+            html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
+            html += '<h3>' + statue.name + '</h3>';
+            html += '</li>';
+        }
+        $('#statuelist_holder').append(html);
 		//add onclick 
 		$('#statuelist_holder li').each(function(i) {
 			$(this).click(function(){
@@ -106,7 +109,6 @@ var app = {
 				app.showDetails(i);
 			});
 		});
-		app.statuelistCreated = true;
 	},	
 	startTracking: function() {
         //alert("calling startTracking");
@@ -121,7 +123,8 @@ var app = {
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
 		//update our map marker and radius
-		if (mapper && typeof google === 'object' && typeof google.maps === 'object'){
+		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
+            console.log('calling google maps latlng and referencing mapper');
 			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 			mapper.marker.setPosition(latlng);
 			mapper.circle.setCenter(latlng);
@@ -163,21 +166,17 @@ var app = {
 		return deg * (Math.PI/180);
 	},    
     initialize: function() {
-		//this.statueID = 0;	// **not needed, explicitly call destination **
 		app.numStatues = 6;
-		app.functionRunning = false;
-		app.counter = 0;
         app.lock = 0;
-        var self = this;
         //this.detailsURL = /^#statues\/(\d{1,})/;
-        this.registerEvents();
+        app.registerEvents();
 		//initialize and create map
-        this.store = new MemoryStore(function() {
+        app.store = new MemoryStore(function() {
+           //map initialize commented for testing purpose
            window.mapper.initialize();
            //issues with async loading, dont use
-           //app.loadMapScript();
+           //app.loadMapScript();           
         });
-		this.initialized = true;
-		this.statuelistCreated = false;
+		//app.initialized = true;
     }
 };

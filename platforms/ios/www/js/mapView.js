@@ -6,7 +6,7 @@ var mapper = {
         //mapper.map.setZoom(17);
     },
     mapLoadFail: function() {
-        window.alert("Due to unstable network connection, your experience with the Guided Tour might not be optimal. We suggest using the Statue List page for the moment");
+        window.alert("Due to unstable network connection, your experience with the Guided Tour might not be optimal. We suggest using the Statue List page instead");
         //$.mobile.changePage("#homepage", {allowSamePageTransition:true});
     },
 	createMarker: function(statue) {
