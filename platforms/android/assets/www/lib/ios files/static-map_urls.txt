@@ -1,0 +1,17 @@
+Ysmael:
+http://maps.googleapis.com/maps/api/staticmap?center=33.980080,-117.375471&zoom=18&size=600x300&markers=color:red%7Clabel:S%7C33.980080,-117.375471&sensor=false
+
+MLK:
+http://maps.googleapis.com/maps/api/staticmap?center=33.981092,-117.375075&zoom=18&size=600x300&markers=color:red%7Clabel:S%7C33.981092,-117.375075&sensor=false
+
+Chavez:
+http://maps.googleapis.com/maps/api/staticmap?center=33.981843,-117.374638&zoom=18&size=600x300&markers=color:red%7Clabel:S%7C33.981843,-117.374638&sensor=false
+
+Dosan:
+http://maps.googleapis.com/maps/api/staticmap?center=33.982079,-117.374328&zoom=18&size=600x300&markers=color:red%7Clabel:S%7C33.982079,-117.374328&sensor=false
+
+Gandhi:
+http://maps.googleapis.com/maps/api/staticmap?center=33.982729,-117.373918&zoom=18&size=600x300&markers=color:red%7Clabel:S%7C33.982729,-117.373918&sensor=false
+
+Tibbets:
+http://maps.googleapis.com/maps/api/staticmap?center=33.983756,-117.373358&zoom=18&size=600x300&markers=color:red%7Clabel:S%7C33.983756,-117.373358&sensor=false
