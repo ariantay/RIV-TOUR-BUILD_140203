@@ -6,6 +6,7 @@ var globalLon = 0; //used to store geolocation result
 var mapTimeout = 5; //if map doesn't load in tour home, kick back to homepage
 var mapLoaded = false;
 var timer = 0; //to countdown map loading
+var audioPlaying = false;
 
 //jquery mobile events handling
 //HOMEPAGE

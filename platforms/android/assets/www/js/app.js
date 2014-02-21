@@ -26,6 +26,27 @@ var app = {
         console.log('changing page to ' + page);
         $.mobile.changePage(page);
     },
+	buttonTest: function() {
+		//$('#dynamicButton').toggleClass('red');
+		//$('#dynamicButton').parent().find('.ui-btn-hidden').css("background-color",'red');
+		//alert('audioPlaying' + audioPlaying);
+		if (!audioPlaying){
+			$('#audio-button1').attr('data-theme','b');
+			$('#audio-button1').removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
+			$('#audio-button1 span .ui-btn-text').text("Pause");
+			audioPlaying = true;
+			alert('audioPlaying ' + audioPlaying);
+		}else{
+			$('#audio-button1').attr('data-theme','e');
+			$('#audio-button1').removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
+			$('#audio-button1 span .ui-btn-text').text("Play");
+			audioPlaying = false;
+			alert('audioPlaying ' + audioPlaying);
+		}
+		//$('#dynamicButton').text('pause');
+        //$('#dynamicButton').attr('data-theme','a');
+		//$('#dynamicButton').button('refresh');
+    },
 	routeTo: function(statueID) {
 		//to prevent auto routing
 		if($('#checkbox-1').is(':checked')){
