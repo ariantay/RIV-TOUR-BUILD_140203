@@ -13,7 +13,7 @@ var app = {
     },
     gotoTourHome: function() {
          //window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
-        if (typeof google === 'object' && typeof google.maps === 'object') {
+        if (typeof mapper === 'object' && typeof google === 'object' && typeof google.maps === 'object') {
             $.mobile.changePage('#tourpage_home');
         }else{
             window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
