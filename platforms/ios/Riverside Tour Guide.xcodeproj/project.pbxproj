@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		013E2317FE5D48A79C02DDA3 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D997ED553042CDA98B9CD2 /* CDVSplashScreen.m */; };
 		0AF4CDA0E33B439EB4CAC6EA /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D62A5C295F34366A067D772 /* CDVInAppBrowser.m */; };
@@ -35,6 +34,7 @@
 		C0CBEEDE0370422E890553E4 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA52A2CFA7AD4912B9AE95C6 /* CDVLocation.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
+		1061E1A3560243A6BC4DE5D9 /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21F670891D4186B12DCAB7 /* CDVSound.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +92,8 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Riverside Tour Guide/config.xml"; sourceTree = "<group>"; };
 		FA44753E9226478882FE8E34 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVInAppBrowser.h; path = org.apache.cordova.inappbrowser/CDVInAppBrowser.h; sourceTree = "<group>"; };
 		FA52A2CFA7AD4912B9AE95C6 /* CDVLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVLocation.m; path = org.apache.cordova.geolocation/CDVLocation.m; sourceTree = "<group>"; };
+		1A21F670891D4186B12DCAB7 /* CDVSound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVSound.m"; path = "Plugins\org.apache.cordova.media\CDVSound.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		DA1BE80E60ED4648B61E77B8 /* CDVSound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSound.h"; path = "Plugins\org.apache.cordova.media\CDVSound.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,8 @@
 				FA44753E9226478882FE8E34 /* CDVInAppBrowser.h */,
 				00D997ED553042CDA98B9CD2 /* CDVSplashScreen.m */,
 				5C8C714836B8436AA2672D03 /* CDVSplashScreen.h */,
+				1A21F670891D4186B12DCAB7 /* CDVSound.m */,
+				DA1BE80E60ED4648B61E77B8 /* CDVSound.h */,
 			);
 			name = Plugins;
 			path = "Riverside Tour Guide/Plugins";
@@ -391,6 +395,7 @@
 				C0CBEEDE0370422E890553E4 /* CDVLocation.m in Sources */,
 				0AF4CDA0E33B439EB4CAC6EA /* CDVInAppBrowser.m in Sources */,
 				013E2317FE5D48A79C02DDA3 /* CDVSplashScreen.m in Sources */,
+				1061E1A3560243A6BC4DE5D9 /* CDVSound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
