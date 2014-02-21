@@ -34,12 +34,14 @@ var app = {
 			$('#audio-button1').attr('data-theme','b');
 			$('#audio-button1').removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
 			$('#audio-button1 span .ui-btn-text').text("Pause");
+			audioFile.play();
 			audioPlaying = true;
 			alert('audioPlaying ' + audioPlaying);
 		}else{
 			$('#audio-button1').attr('data-theme','e');
 			$('#audio-button1').removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
 			$('#audio-button1 span .ui-btn-text').text("Play");
+			audioFile.pause();
 			audioPlaying = false;
 			alert('audioPlaying ' + audioPlaying);
 		}
@@ -143,6 +145,7 @@ var app = {
         //update global variables
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
+
 		//update our map marker and radius
 		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
             console.log('calling google maps latlng and referencing mapper');

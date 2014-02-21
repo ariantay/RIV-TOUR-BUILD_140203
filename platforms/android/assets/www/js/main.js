@@ -7,6 +7,7 @@ var mapTimeout = 5; //if map doesn't load in tour home, kick back to homepage
 var mapLoaded = false;
 var timer = 0; //to countdown map loading
 var audioPlaying = false;
+var audioFile = 0;
 
 //jquery mobile events handling
 //HOMEPAGE
@@ -39,6 +40,9 @@ $(document).on("pagebeforeshow", "#homepage", function () {
                         "Riverside fue la primera ciudad Americana en participar en el programa de Ciudades Hermanas Internacionales que empezó después de la segunda guerra mundial. Esa tradición continúa hasta este día y más ciudades como Japón, México, Corea, China, India, Ghana, y Alemania son ya miembros de este gran programa. Las estatuas en la calle Main son un símbolo de orgullo internacional que reconocen a varios e importantes líderes de los derechos humanos y de la historia.");
     }
     $('.home_audioControl').trigger('load');
+	
+	//audioFile = new Media('android_asset/www/audio/spirit_eng.mp3');
+	
 });
 $(document).on("pagebeforehide", "#homepage", function () {
 	$('.home_audioControl').trigger('pause');
