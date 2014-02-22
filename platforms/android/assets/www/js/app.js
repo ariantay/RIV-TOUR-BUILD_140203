@@ -25,12 +25,12 @@ var app = {
         //delete createlist when test done
         console.log('changing page to ' + page);
         $.mobile.changePage(page);
-    },
-	buttonTest: function() {
+    },/*
+	audioPlayPause: function() {
 		//$('#dynamicButton').toggleClass('red');
 		//$('#dynamicButton').parent().find('.ui-btn-hidden').css("background-color",'red');
 		//alert('audioPlaying' + audioPlaying);
-		alert(audioFile);
+		//alert(audioFile);
 		if (!audioPlaying){
 			$('#audio-button1').attr('data-theme','b');
 			$('#audio-button1').removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
@@ -49,6 +49,27 @@ var app = {
 		//$('#dynamicButton').text('pause');
         //$('#dynamicButton').attr('data-theme','a');
 		//$('#dynamicButton').button('refresh');
+    },*/
+	audioPlayPause: function(id) {
+		if (!audioPlaying){
+			$(id).attr('data-theme','b');
+			$(id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
+			$(id+' span .ui-btn-text').text("Pause");
+			audioFile.play();
+			audioPlaying = true;
+		}else{
+			$(id).attr('data-theme','b');
+			$(id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
+			$(id+' span .ui-btn-text').text("Pause");
+			audioFile.pause();
+			audioPlaying = false;
+		}
+    },
+	audioRestart: function() {
+        //check html modification
+        //app.createStatuelist();
+        //delete createlist when test done
+        audioFile.seekTo(0);
     },
 	routeTo: function(statueID) {
 		//to prevent auto routing
@@ -98,10 +119,12 @@ var app = {
 			$('#statuedetails_detailstext p').html(statue.info.english);
             $('#statuedetails_address a').html(statue.street);
 			$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
+			audioFile = new Media('/android_asset/www/audio/'+statue.urlstring+'_eng.mp3');
 		}else{
 			$('#statuedetails_detailstext p').html(statue.info.spanish);
             $('#statuedetails_address a').html(statue.street_spanish);
 			$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_esp.mp3');
+			audioFile = new Media('/android_asset/www/audio/'+statue.urlstring+'_esp.mp3');
 		}
 		$('.statuedetails_audioControl').trigger('load');
 		$('#statuedetails_static_map_img').attr('src','img/'+statue.urlstring+'_map.jpg');
