@@ -30,20 +30,21 @@ var app = {
 		//$('#dynamicButton').toggleClass('red');
 		//$('#dynamicButton').parent().find('.ui-btn-hidden').css("background-color",'red');
 		//alert('audioPlaying' + audioPlaying);
+		alert(audioFile);
 		if (!audioPlaying){
 			$('#audio-button1').attr('data-theme','b');
 			$('#audio-button1').removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
 			$('#audio-button1 span .ui-btn-text').text("Pause");
 			audioFile.play();
 			audioPlaying = true;
-			alert('audioPlaying ' + audioPlaying);
+			//alert('audioPlaying ' + audioPlaying);
 		}else{
 			$('#audio-button1').attr('data-theme','e');
 			$('#audio-button1').removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
 			$('#audio-button1 span .ui-btn-text').text("Play");
 			audioFile.pause();
 			audioPlaying = false;
-			alert('audioPlaying ' + audioPlaying);
+			//alert('audioPlaying ' + audioPlaying);
 		}
 		//$('#dynamicButton').text('pause');
         //$('#dynamicButton').attr('data-theme','a');

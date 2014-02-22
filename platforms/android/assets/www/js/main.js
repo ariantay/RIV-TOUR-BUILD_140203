@@ -41,7 +41,7 @@ $(document).on("pagebeforeshow", "#homepage", function () {
     }
     $('.home_audioControl').trigger('load');
 	
-	//audioFile = new Media('android_asset/www/audio/spirit_eng.mp3');
+	audioFile = new Media('/android_asset/www/audio/spirit_eng.mp3');
 	
 });
 $(document).on("pagebeforehide", "#homepage", function () {
