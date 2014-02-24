@@ -39,8 +39,7 @@ var app = {
 			audioPlaying = true;
 			//alert('audioPlaying ' + audioPlaying);
 		}else{
-			$('#audio-button1').attr('data-theme','e');
-			$('#audio-button1').removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
+			$('#audio-button1').attr('data-theme','e');	$('#audio-button1').removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
 			$('#audio-button1 span .ui-btn-text').text("Play");
 			audioFile.pause();
 			audioPlaying = false;
@@ -52,15 +51,15 @@ var app = {
     },*/
 	audioPlayPause: function(id) {
 		if (!audioPlaying){
-			$(id).attr('data-theme','b');
-			$(id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
-			$(id+' span .ui-btn-text').text("Pause");
+			$('#'+id).attr('data-theme','b');
+			$('#'+id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
+			$('#'+id+' span .ui-btn-text').text("Pause");
 			audioFile.play();
 			audioPlaying = true;
 		}else{
-			$(id).attr('data-theme','b');
-			$(id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
-			$(id+' span .ui-btn-text').text("Pause");
+			$('#'+id).attr('data-theme','e');	
+			$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
+			$('#'+id+' span .ui-btn-text').text("Play");
 			audioFile.pause();
 			audioPlaying = false;
 		}
