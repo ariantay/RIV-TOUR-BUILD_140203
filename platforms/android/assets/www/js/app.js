@@ -49,6 +49,26 @@ var app = {
         //$('#dynamicButton').attr('data-theme','a');
 		//$('#dynamicButton').button('refresh');
     },*/
+	audioUpdateTimer: function(id) {
+		if (mediaTimer == null) {
+			mediaTimer = setInterval(function() {
+				// get my_media position
+				audioFile.getCurrentPosition(
+					// success callback
+					function(position) {
+						if (position > -1) {
+							$('#'+id).text(position + " sec");
+						}
+					},
+					// error callback
+					function(e) {
+						console.log("Error getting pos=" + e);
+						$('#'+id).text("Error: " + e);
+					}
+				);
+			}, 1000);
+		}
+	},
 	audioPlayPause: function(id) {
 		if (!audioPlaying){
 			$('#'+id).attr('data-theme','b');
