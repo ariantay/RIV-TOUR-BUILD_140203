@@ -39,7 +39,11 @@ min-height:100%;
   -o-background-size: cover;
   background-size: cover;
 }
-
+/*hide text box in android audio slider*/
+.ui-mobile .ui-page .ui-slider-input,
+.ui-mobile .ui-dialog .ui-slider-input {
+    display : none;
+}
 /*background color*/
 .ui-page { background: #2E2E2E;}
 

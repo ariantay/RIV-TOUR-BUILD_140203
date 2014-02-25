@@ -74,12 +74,14 @@ var app = {
 			$('#'+id).attr('data-theme','b');
 			$('#'+id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
 			$('#'+id+' span .ui-btn-text').text("Pause");
+			$('#'+id+' span span').removeClass("ui-icon-arrow-r").addClass("ui-icon-delete");
 			audioFile.play();
 			audioPlaying = true;
 		}else{
 			$('#'+id).attr('data-theme','e');	
 			$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
 			$('#'+id+' span .ui-btn-text').text("Play");
+			$('#'+id+' span span').removeClass("ui-icon-delete").addClass("ui-icon-arrow-r");
 			audioFile.pause();
 			audioPlaying = false;
 		}
