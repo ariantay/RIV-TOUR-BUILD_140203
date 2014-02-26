@@ -5,10 +5,11 @@ var globalLat = 0; //used to store geolocation result
 var globalLon = 0; //used to store geolocation result
 var mapTimeout = 5; //if map doesn't load in tour home, kick back to homepage
 var mapLoaded = false;
-var timer = 0; //to countdown map loading
+var mapTimer = 0; //to keep track of map loading time
 //android only vars
-var audioPlaying = false;
-var audioFile = 0;
+var audioPlaying = false; //tracks whether media is playing
+var audioFile = 0;  //references phonegap media object
+var audioTimer = null; //function that tracks current audio position
 
 //jquery mobile events handling
 //HOMEPAGE
@@ -60,8 +61,8 @@ $(document).on("pagecreate", "#tourpage_home", function () {
 });
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
     if (!mapLoaded){
-        window.clearTimeout(timer);
-        timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
+        window.clearTimeout(mapTimer);
+        mapTimer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
     }
     var language = $('input[name="radio-choice-2"]:checked').val();
     if (language == 'english'){

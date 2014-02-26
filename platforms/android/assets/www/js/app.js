@@ -50,10 +50,30 @@ var app = {
 		//$('#dynamicButton').button('refresh');
     },*/
 	audioSliderUpdateMedia: function(id) {
-		$("#"+id).on("slidestop", function (event) {
+		$("#"+id).on("change", function (event) {
 			var audioPosition = $("#"+id).slider().val();
-			alert ("shamanlal"+audioPosition);
+			audioFile.seekTo(audioFile.getDuration()*1000*audioPosition/100)
 		});
+	},
+	audioSlideTrackMedia: function(id) {
+		if (mediaTimer == null) {
+			mediaTimer = setInterval(function() {
+				// get my_media position
+				my_media.getCurrentPosition(
+					// success callback
+					function(position) {
+						if (position > -1) {
+							setAudioPosition((position) + " sec");
+						}
+					},
+					// error callback
+					function(e) {
+						console.log("Error getting pos=" + e);
+						setAudioPosition("Error: " + e);
+					}
+				);
+			}, 1000);
+		}
 	},
 	audioPlayPause: function(id) {
 		if (!audioPlaying){

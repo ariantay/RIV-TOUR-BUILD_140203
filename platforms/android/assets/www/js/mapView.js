@@ -44,7 +44,7 @@ var mapper = {
 		};
 		mapper.map = new google.maps.Map(document.getElementById('map-canvas'),mapper.mapOptions);
         //add timeout counter
-        timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
+        mapTimer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
 		//define current position icon
 		var pinImage = new google.maps.MarkerImage(
 			'img/nav_plain_blue.png',
@@ -91,7 +91,7 @@ var mapper = {
         });
         //Add listener to detect if map has loaded tiles(for timeout)
         google.maps.event.addListener(mapper.map, 'tilesloaded', function() {
-           window.clearTimeout(timer);
+           window.clearTimeout(mapTimer);
            mapLoaded = true;
         });
 		console.log(mapper.map);

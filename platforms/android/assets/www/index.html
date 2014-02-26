@@ -56,34 +56,24 @@
             </ul>
         </div>
     </div>
-	<!--fieldset class="ui-grid-a">
-		<div class="ui-block-a"><a href="#" id="audio-button1" data-role="button" data-theme="e" data-inline="true" data-icon="arrow-r" onclick="app.audioPlayPause('audio-button1')" data-iconpos="notext"  data-mini="true"></a></div>
-		
-		<div class="ui-block-b"><input type="range" id="seek" value="0" min="0" data-mini="true"/></div>
-	</fieldset-->
-		<!--div class="ui-block-c"><input type="text" id="audio-time"/></div-->
-		<!--div class="ui-block-b"><a href="#" id="audio-button2" data-role="button" data-theme="e" data-inline="true" data-icon="refresh" onclick="app.audioRestart()">Restart</a></div-->
+	<!--div id="home_text_container">
+		<p id = "home_title">		
+		</p>
+		<p id='home_text' class="paragraph_display"></p>		
+	</div-->
 	<ul style="margin:0;padding:0">
 		<li style="display: inline-block;vertical-align:text-bottom; padding-right:10px"><a href="#" id="audio-button1" data-role="button" data-theme="e" data-inline="true" data-icon="arrow-r" onclick="app.audioPlayPause('audio-button1')" data-iconpos="notext"></a></li>
 		<!--div class="ui-block-b"><a href="#" id="audio-button2" data-role="button" data-theme="e" data-inline="true" data-icon="refresh" onclick="app.audioRestart()">Restart</a></div-->
-		<li style="display: inline-block; width:100%; margin-left: -20%"><input type="range" id="audio-seek1" value="0" min="0" data-mini="true"/></li>
+		<!--NAME ATTRIBUTE REQUIRED TO GET POSITION VALUES-->
+		<li style="display: inline-block; width:100%; margin-left: -20%"><input type="range" name="audio-seek1" id="audio-seek1" value="0" min="0" max="100" data-mini="true"/></li>
 		<!--div class="ui-block-c"><input type="text" id="audio-time"/></div-->
 	</ul>
-	<!--div class="ui-block-b"><button id="dynamicButton" onclick="app.buttonTest()" type="submit" data-icon="refresh" data-theme="e">Restart</button></div-->
-	<!--
- 	<div id="home_text_container">
- 		<p id = "home_title">		
-		</P>
-		<p id='home_text' class="paragraph_display"></p>		
-	</div>
-
-	<div id='home_audioContainer'>
+	<!--div id='home_audioContainer'>
 		<audio class= 'home_audioControl' controls>
 			<source class='home_audioFile' type="audio/mpeg">
 				Your browser does not support the audio element.
 		</audio>
-	</div>
-	-->
+	</div-->
 </div>
 
 <!--TOURPAGE_HOME-->
