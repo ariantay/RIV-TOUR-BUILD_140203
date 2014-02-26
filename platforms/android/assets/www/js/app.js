@@ -50,20 +50,21 @@ var app = {
 		//$('#dynamicButton').button('refresh');
     },*/
 	audioSliderUpdateMedia: function(id) {
-		$("#"+id).on("change", function (event) {
+		$("#"+id).on("slidestop", function (event) {
 			var audioPosition = $("#"+id).slider().val();
 			audioFile.seekTo(audioFile.getDuration()*1000*audioPosition/100)
 		});
 	},
-	audioSlideTrackMedia: function(id) {
-		if (mediaTimer == null) {
-			mediaTimer = setInterval(function() {
-				// get my_media position
-				my_media.getCurrentPosition(
+	audioSliderTrackMedia: function(id) {
+		if (audioTimer == null) {
+			audioTimer = setInterval(function() {
+				audioFile.getCurrentPosition(
 					// success callback
-					function(position) {
-						if (position > -1) {
-							setAudioPosition((position) + " sec");
+					function(audioPosition) {
+						if (audioPosition > -1) {
+							var sliderPosition = audioPosition/audioFile.getDuration()*100;
+							//alert(sliderPosition);
+							$("#"+id).val(sliderPosition).slider("refresh");
 						}
 					},
 					// error callback
