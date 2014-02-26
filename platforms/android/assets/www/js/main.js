@@ -17,6 +17,7 @@ $(document).on("pagecreate", "#homepage", function () {
     watchID = app.startTracking();
 });
 $(document).on("pagebeforeshow", "#homepage", function () {
+	app.audioSliderUpdateMedia("audio-seek1");
     cur_statue = -1;
     cur_page = 0;
     var language = $('input[name="radio-choice-2"]:checked').val();
