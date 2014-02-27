@@ -58,7 +58,7 @@ $(document).on("pagebeforehide", "#homepage", function () {
 });
 $(document).on("pagehide", "#homepage", function () {
 	//app.audioCleanUp('audio-button1');
-	app.audioButtonReset('audio-button1');
+	app.audioButtonStop('audio-button1');
 });
 //TOURPAGE_HOME EVENTS
 $(document).on("pagecreate", "#tourpage_home", function () {
@@ -226,7 +226,7 @@ $(document).on("pagehide", "#statuedetails", function () {
 	$('#static_map_box').trigger('expand');
 	$('#detail_box').trigger('expand');
 	//app.audioCleanUp("audio-seek2");
-	app.audioButtonReset("audio-seek2");
+	app.audioButtonStop("audio-seek2");
 });
 //fix for ios 7 status bar ** doesnt work leave for later
 /*
