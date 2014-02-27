@@ -24,6 +24,7 @@ var app = {
         //app.createStatuelist();
         //delete createlist when test done
         console.log('changing page to ' + page);
+		alert('chanign gpage ' + page);
         $.mobile.changePage(page);
     },/*
 	audioPlayPause: function() {
@@ -76,10 +77,12 @@ var app = {
 			}, 1000);
 		}
 	},
-	audioCleanUp: function(id) {
+	audioStopandReset: function (){
 		audioFile.stop();
 		audioFile.release();
 		audioPlaying = false;
+	},
+	audioButtonReset: function(id) {
 		$('#'+id).attr('data-theme','e');
 		$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
 		$('#'+id+' span .ui-btn-text').text("Play");

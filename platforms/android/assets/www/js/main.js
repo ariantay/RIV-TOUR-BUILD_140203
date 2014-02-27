@@ -53,10 +53,10 @@ $(document).on("pagebeforeshow", "#homepage", function () {
 $(document).on("pagebeforehide", "#homepage", function () {
 	$('.home_audioControl').trigger('pause');
 	$('.home_audioControl').prop('currentTime',0);
-	//app.audioCleanUp('audio-button1');
+	app.audioStopandReset();
 });
 $(document).on("pagehide", "#homepage", function () {
-	app.audioCleanUp('audio-button1');
+	app.audioButtonReset('audio-button1');
 });
 //TOURPAGE_HOME EVENTS
 $(document).on("pagecreate", "#tourpage_home", function () {
@@ -188,7 +188,6 @@ $(document).on("pagebeforeshow", "#statuelist", function () {
 });
 //STATUEDETAILS EVENTS
 $(document).on("pagebeforeshow", "#statuedetails", function () {
-
     cur_page = 0;
     cur_statue = -1;
     var language = $('input[name="radio-choice-2"]:checked').val();
@@ -214,6 +213,7 @@ $(document).on("pagebeforeshow", "#statuedetails", function () {
 $(document).on("pagebeforehide", "#statuedetails", function () {
     $('.statuedetails_audioControl').trigger('pause');
     $('.statuedetails_audioControl').prop('currentTime',0);
+	app.audioStopandReset();
 });
 $(document).on("pagehide", "#statuedetails", function () {
 	$('.statuedetails_audioControl').trigger('pause');
@@ -222,7 +222,7 @@ $(document).on("pagehide", "#statuedetails", function () {
 	$('#address_box').trigger('expand');
 	$('#static_map_box').trigger('expand');
 	$('#detail_box').trigger('expand');
-	app.audioCleanUp("audio-seek2");
+	//app.audioButtonReset("audio-seek2");
 });
 //fix for ios 7 status bar ** doesnt work leave for later
 /*
