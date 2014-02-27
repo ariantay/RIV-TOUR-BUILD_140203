@@ -76,6 +76,16 @@ var app = {
 			}, 1000);
 		}
 	},
+	audioCleanUp: function(id) {
+		audioFile.stop();
+		audioFile.release();
+		audioPlaying = false;
+		$('#'+id).attr('data-theme','e');
+		$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
+		$('#'+id+' span .ui-btn-text').text("Play");
+		$('#'+id+' span span').removeClass("ui-icon-delete").addClass("ui-icon-arrow-r");
+		audioTimer=null;
+	},
 	audioPlayPause: function(id) {
 		if (!audioPlaying){
 			$('#'+id).attr('data-theme','b');

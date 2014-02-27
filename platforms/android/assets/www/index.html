@@ -63,17 +63,19 @@
 	</div-->
 	<ul style="margin:0;padding:0">
 		<li style="display: inline-block;vertical-align:text-bottom; padding-right:10px"><a href="#" id="audio-button1" data-role="button" data-theme="e" data-inline="true" data-icon="arrow-r" onclick="app.audioPlayPause('audio-button1')" data-iconpos="notext"></a></li>
+		<li style="display: inline-block; width:100%; margin-left: -20%"><input type="range" name="audio-seek1" id="audio-seek1" value="0" min="0" max="100" data-mini="true"/></li>
+	</ul>
 		<!--div class="ui-block-b"><a href="#" id="audio-button2" data-role="button" data-theme="e" data-inline="true" data-icon="refresh" onclick="app.audioRestart()">Restart</a></div-->
 		<!--NAME ATTRIBUTE REQUIRED TO GET POSITION VALUES-->
-		<li style="display: inline-block; width:100%; margin-left: -20%"><input type="range" name="audio-seek1" id="audio-seek1" value="0" min="0" max="100" data-mini="true"/></li>
+		
 		<!--div class="ui-block-c"><input type="text" id="audio-time"/></div-->
-	</ul>
-	<!--div id='home_audioContainer'>
-		<audio class= 'home_audioControl' controls>
-			<source class='home_audioFile' type="audio/mpeg">
-				Your browser does not support the audio element.
-		</audio>
-	</div-->
+	
+		<!--div id='home_audioContainer'>
+			<audio class= 'home_audioControl' controls>
+				<source class='home_audioFile' type="audio/mpeg">
+					Your browser does not support the audio element.
+			</audio>
+		</div-->
 </div>
 
 <!--TOURPAGE_HOME-->
@@ -155,7 +157,7 @@
 		<table width="100%">
 		<tr>
 			<td width="1%" style="vertical-align: top; padding: 6px">
-				<img id='statuedetails_thumb' src="">      				
+				<img id='statuedetails_thumb' src="">      			
 			</td>
 			<td style="vertical-align: top">
 				<div id='statuedetails_thumbtext'>
@@ -175,11 +177,15 @@
         <!--End Colorbox images-->
  		<div id='audio_box' data-role="collapsible" data-theme="b" data-content-theme="e" data-collapsed="false">
 			<h3>Audio</h3>
+				<ul style="margin:0;padding:0">
+					<li style="display: inline-block;vertical-align:text-bottom; padding-right:10px"><a href="#" id="audio-button2" data-role="button" data-theme="e" data-inline="true" data-icon="arrow-r" onclick="app.audioPlayPause('audio-button2')" data-iconpos="notext"></a></li>
+					<li style="display: inline-block; width:100%; margin-left: -20%"><input type="range" name="audio-seek2" id="audio-seek2" value="0" min="0" max="100" data-mini="true"/></li>
+				</ul>
+				<!--
 				<fieldset class="ui-grid-a">
 					<div class="ui-block-a"><a href="#" id="audio-button1-statue" data-role="button" data-theme="e" data-inline="true" data-icon="arrow-r" onclick="app.audioPlayPause('audio-button1-statue')">Play</a></div>
 					<div class="ui-block-b"><a href="#" id="audio-button2" data-role="button" data-theme="e" data-inline="true" data-icon="refresh" onclick="app.audioRestart()">Restart</a></div>
 				<fieldset>
-				<!--
                 <div id='statuedetails_audio_container'>
 					<audio id='statuedetails_audioControl' class= 'statuedetails_audioControl' controls>
 						<source class='statuedetails_audioFile' type="audio/mpeg">
