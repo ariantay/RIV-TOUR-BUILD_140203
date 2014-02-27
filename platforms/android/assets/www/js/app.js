@@ -50,9 +50,13 @@ var app = {
 		//$('#dynamicButton').button('refresh');
     },*/
 	audioSliderUpdateMedia: function(id) {
+		/*$("#"+id).on("slidestart", function (event) {
+			audioFile.pause();
+		});*/
 		$("#"+id).on("slidestop", function (event) {
 			var audioPosition = $("#"+id).slider().val();
-			audioFile.seekTo(audioFile.getDuration()*1000*audioPosition/100)
+			audioFile.seekTo(audioFile.getDuration()*1000*audioPosition/100);
+			//audioFile.play();
 		});
 	},
 	audioSliderTrackMedia: function(id) {
@@ -73,8 +77,20 @@ var app = {
 						setAudioPosition("Error: " + e);
 					}
 				);
-			}, 1000);
+			}, 1600);
 		}
+	},
+	audioButtonReset: function(id){
+		$('#'+id).attr('data-theme','e');
+		$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
+		$('#'+id+' span .ui-btn-text').text("Play");
+		$('#'+id+' span span').removeClass("ui-icon-delete").addClass("ui-icon-arrow-r");
+	},
+	audioFileStopRelease: function(){
+		audioFile.stop();
+		audioFile.release();
+		audioPlaying = false;
+		audioTimer=null;
 	},
 	audioCleanUp: function(id) {
 		audioFile.stop();
