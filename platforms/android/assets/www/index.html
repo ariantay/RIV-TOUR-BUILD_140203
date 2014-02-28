@@ -122,12 +122,16 @@
 			</ul>
 		</div>
 	</div>	
-	<div id='audioContainer'>
+	<ul style="margin:0;padding:0">
+		<li style="display: inline-block;vertical-align:text-bottom; padding-right:10px"><a href="#" id="audio-button3" data-role="button" data-theme="e" data-inline="true" data-icon="arrow-r" onclick="app.audioPlayPause('audio-button3')" data-iconpos="notext"></a></li>
+		<li style="display: inline-block; width:100%; margin-left: -20%"><input type="range" name="audio-seek3" id="audio-seek3" value="0" min="0" max="100" data-mini="true" data-highlight="true"/></li>
+	</ul>
+	<!--div id='audioContainer'>
 		<audio class= 'audioControl' controls>
 			<source class='audioFile' src='audio/tibbets_eng.mp3' type="audio/mpeg">
 			Your browser does not support the audio element.
 		</audio>
-	</div>
+	</div-->
 	<div id='textContainer'>
 		<div id='statue_text' class='paragraph_display'>
 		</div>

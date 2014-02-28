@@ -210,8 +210,8 @@ $(document).on("pagebeforeshow", "#statuedetails", function () {
     $('#address_box').trigger('expand');
     $('#static_map_box').trigger('expand');
     $('#detail_box').trigger('expand');
-	app.audioSliderUpdateMedia("audio-seek2");
-	app.audioSliderTrackMedia("audio-seek2");
+	//app.audioSliderUpdateMedia("audio-seek2");
+	//app.audioSliderTrackMedia("audio-seek2");
 });
 $(document).on("pagebeforehide", "#statuedetails", function () {
     $('.statuedetails_audioControl').trigger('pause');
