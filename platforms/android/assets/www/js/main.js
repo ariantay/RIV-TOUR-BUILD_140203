@@ -20,7 +20,6 @@ $(document).on("pagecreate", "#homepage", function () {
 $(document).on("pagebeforeshow", "#homepage", function () {
 	app.audioSliderTrackMedia("audio-seek1");
 	app.audioSliderUpdateMedia("audio-seek1");
-	//app.audioSliderTrackMedia("audio-seek1");
     cur_statue = -1;
     cur_page = 0;
     var language = $('input[name="radio-choice-2"]:checked').val();
@@ -33,7 +32,6 @@ $(document).on("pagebeforeshow", "#homepage", function () {
     $('#home_title').html("International Spirit of Riverside</br>");
     $('#home_text').html("Riverside has long maintained a spirit of Internationalism and recognition of its multicultural history.  Going back to Frank Miller, the founder of the Mission Inn, Riverside has hosted dignitaries from countries all over the world and provided leadership on an International scale.  Riverside’s multiculturism has existed for nearly 150 years with large segments of various cultures within its population going back to the 1870s.  For example the Mission Inn hosted Japanese, Russian and European dignitaries, national and important state politicians and celebrities, such as several US presidents, Prince Kaya of Japan, Prince Gustav of Sweden, Booker T. Washington, John Muir, and Amelia Earhart.  The World Affairs Council was started in Riverside at the Mission Inn (and was once attended by John F. Kennedy here) and other international peace and social conferences have been hosted here.</br></br>" +
                         "Riverside was the first American city to take part in the International Sister City program initiated after World War II. That tradition continues today with a robust and global Sister City program including cities in the countries of Japan, Mexico, Korea, China, India, Ghana and Germany.  The Statues of Main Street Riverside embody this spirit of internationalism with recognition of various significant civil rights and historical leaders, some with international or national significance, and others of prominent local importance.");
-	//UNCOMMENT THIS LATER!!						
 		audioFile = new Media('/android_asset/www/audio/spirit_eng.mp3');
     }else{
     $('#header h3').html("Guía de Turismo de la Ciudad de Riverside");
@@ -45,22 +43,25 @@ $(document).on("pagebeforeshow", "#homepage", function () {
     $('#home_text').html("Riverside es una ciudad que reconoce su historia multicultural y esta orgullosa de sus relaciones internacionales que mantiene hasta ahora. Todo empezó con el dueño del Mission Inn el señor Frank Miller que invitaba a dignatarios del rededor del mundo a que se hospedaran en este lugar. La riqueza de tantas culturas ha existido por más de 150 años comenzando desde 1870.</br></br>" +
                         "El Mission Inn ha tenido invitados dignitarios  japoneses, rusos,  y europeos. Otros invitados incluyen políticos nacionales y locales, gente famosa, presidentes de los Estados Unidos, el príncipe Kaya de Japón, el príncipe Gustavo de Suecia, el activista Booker T. Washington, el escritor John Muir, y la primera mujer de aviación Amelia Earhart. La Consejería de los Asuntos Mundiales empezó en Riverside en el Mission Inn y fue asistida por John F. Kennedy una vez. Otras conferencias para paz internacional y otros eventos sociales también tomaron lugar en este sitio.</br></br>" +
                         "Riverside fue la primera ciudad Americana en participar en el programa de Ciudades Hermanas Internacionales que empezó después de la segunda guerra mundial. Esa tradición continúa hasta este día y más ciudades como Japón, México, Corea, China, India, Ghana, y Alemania son ya miembros de este gran programa. Las estatuas en la calle Main son un símbolo de orgullo internacional que reconocen a varios e importantes líderes de los derechos humanos y de la historia.");
-	//UNCOMMENT THIS LATER!!						
 		audioFile = new Media('/android_asset/www/audio/spirit_esp.mp3');
     }
     $('.home_audioControl').trigger('load');	
 });
+$(document).on("pageshow", "#homepage", function () {
+    navigator.splashscreen.hide();
+});
 $(document).on("pagebeforehide", "#homepage", function () {
 	$('.home_audioControl').trigger('pause');
 	$('.home_audioControl').prop('currentTime',0);
-	//app.audioCleanUp('audio-button1');
 	app.audioFileStopRelease();
+	navigator.splashscreen.show();
 });
 $(document).on("pagehide", "#homepage", function () {
-	//app.audioCleanUp('audio-button1');
 	app.audioButtonStop('audio-button1');
 });
+///////////////////////
 //TOURPAGE_HOME EVENTS
+///////////////////////
 $(document).on("pagecreate", "#tourpage_home", function () {
      //might wanna trigger async loading here, or the map initialization
 });
@@ -92,36 +93,13 @@ $(document).on("pageshow", "#tourpage_home", function () {
        mapper.resize();
     }
 });
-
-$(document).on("pagebeforehide", "#homepage", function () {
-    navigator.splashscreen.show();
-});
 $(document).on("pagebeforehide", "#tourpage_home", function () {
     navigator.splashscreen.show();
 });
-$(document).on("pagebeforehide", "#settings", function () {
-    navigator.splashscreen.show();
-});
-$(document).on("pagebeforehide", "#statuelist", function () {
-    navigator.splashscreen.show();
-});
-$(document).on("pagebeforehide", "#statuedetails", function () {
-    navigator.splashscreen.show();
-	app.audioCleanUp('audio-button2');
-});
 
-$(document).on("pageshow", "#homepage", function () {
-    navigator.splashscreen.hide();
-});
-$(document).on("pageshow", "#statuelist", function () {
-    navigator.splashscreen.hide();
-});
-$(document).on("pageshow", "#statuedetails", function () {
-    navigator.splashscreen.hide();
-});
+///////////////////////
 //TOURPAGE EVENTS
-$(document).on("pagebeforeshow", "#tourpage", function () {
-});
+///////////////////////
 $(document).on("pageshow", "#tourpage", function () {
     cur_page = 1;
     app.lock = 0;
@@ -153,8 +131,15 @@ $(document).on("pagebeforehide", "#tourpage", function () {
    $('.audioControl').prop('currentTime',0);
    //$('.flexslider').flexslider(0);
    navigator.splashscreen.show();
+   app.audioFileStopRelease();
 });
+$(document).on("pagehide", "#tourpage", function () {
+	app.audioButtonStop("audio-button3");
+});
+
+///////////////////////
 //SETTINGS EVENTS
+///////////////////////
 $(document).on("pagebeforeshow", "#settings", function () {
     cur_page = 0;
     cur_statue = -1;
@@ -174,7 +159,13 @@ $(document).on("pagebeforeshow", "#settings", function () {
 $(document).on("pageshow", "#settings", function () {
     navigator.splashscreen.hide();
 });
+$(document).on("pagebeforehide", "#settings", function () {
+    navigator.splashscreen.show();
+});
+
+///////////////////////
 //STATUELIST EVENTS
+///////////////////////
 $(document).on("pagecreate", "#statuelist", function () {
 	app.createStatuelist();
 });
@@ -188,9 +179,17 @@ $(document).on("pagebeforeshow", "#statuelist", function () {
 		$('#header h1').html("Lista de Estatuas");
 	}
 });
-//STATUEDETAILS EVENTS
-$(document).on("pagebeforeshow", "#statuedetails", function () {
+$(document).on("pageshow", "#statuelist", function () {
+    navigator.splashscreen.hide();
+});
+$(document).on("pagebeforehide", "#statuelist", function () {
+    navigator.splashscreen.show();
+});
 
+///////////////////////
+//STATUEDETAILS EVENTS
+///////////////////////
+$(document).on("pagebeforeshow", "#statuedetails", function () {
     cur_page = 0;
     cur_statue = -1;
     var language = $('input[name="radio-choice-2"]:checked').val();
@@ -213,10 +212,14 @@ $(document).on("pagebeforeshow", "#statuedetails", function () {
 	//app.audioSliderUpdateMedia("audio-seek2");
 	//app.audioSliderTrackMedia("audio-seek2");
 });
+$(document).on("pageshow", "#statuedetails", function () {
+    navigator.splashscreen.hide();
+});
 $(document).on("pagebeforehide", "#statuedetails", function () {
     $('.statuedetails_audioControl').trigger('pause');
     $('.statuedetails_audioControl').prop('currentTime',0);
 	app.audioFileStopRelease();
+	navigator.splashscreen.show();
 });
 $(document).on("pagehide", "#statuedetails", function () {
 	$('.statuedetails_audioControl').trigger('pause');
@@ -226,7 +229,7 @@ $(document).on("pagehide", "#statuedetails", function () {
 	$('#static_map_box').trigger('expand');
 	$('#detail_box').trigger('expand');
 	//app.audioCleanUp("audio-seek2");
-	app.audioButtonStop("audio-seek2");
+	app.audioButtonStop("audio-button2");
 });
 //fix for ios 7 status bar ** doesnt work leave for later
 /*
