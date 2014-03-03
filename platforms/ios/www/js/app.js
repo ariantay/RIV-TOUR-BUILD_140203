@@ -124,7 +124,7 @@ var app = {
         globalLon = position.coords.longitude;
 		//update our map marker and radius
 		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
-            console.log('calling google maps latlng and referencing mapper');
+            console.log('calling google maps latlng and referencing mapper ' + globalLat + " " + globalLon);
 			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 			mapper.marker.setPosition(latlng);
 			mapper.circle.setCenter(latlng);
