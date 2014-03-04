@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>20892EEE-FC22-41FE-BD1E-2BCFA3BD7E8B</string>
+	<string>B37B6F34-0C1A-4400-B160-14CD7A7B29C0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Riverside Tour Guide</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9FEF3B02-9717-4047-8FCD-646CEE1BB1AE</key>
+		<key>3996CA26-321E-4E73-87D2-B7E469429155</key>
 		<string>https://github.com/ariantay/RIV-TOUR-BUILD_140203.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>platforms/ios/Riverside Tour Guide.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9FEF3B02-9717-4047-8FCD-646CEE1BB1AE</key>
+		<key>3996CA26-321E-4E73-87D2-B7E469429155</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9FEF3B02-9717-4047-8FCD-646CEE1BB1AE</string>
+	<string>3996CA26-321E-4E73-87D2-B7E469429155</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9FEF3B02-9717-4047-8FCD-646CEE1BB1AE</string>
+			<string>3996CA26-321E-4E73-87D2-B7E469429155</string>
 			<key>IDESourceControlWCCName</key>
 			<string>RIV-TOUR-BUILD_140203</string>
 		</dict>
