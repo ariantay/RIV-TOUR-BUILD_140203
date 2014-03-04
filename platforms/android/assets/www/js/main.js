@@ -115,14 +115,17 @@ $(document).on("pageshow", "#tourpage", function () {
 			}
 		}
    });
+   	app.audioSliderUpdateMedia("audio-seek3");
+	app.audioSliderTrackMedia("audio-seek3");
 	if(!$('#checkbox-2').is(':checked')){
        //referring to the container also causes issues...
        //$('#audioContainer audio').trigger('play');
-       $('.audioControl').trigger('play');
+       //$('.audioControl').trigger('play');
+	   audioFile.play();
     }
 	//reset position of text
 	$("#textContainer").scrollTop(0);
-    //slider won't show until resize...
+	//slider won't show until resize...
 	$(window).resize();
     navigator.splashscreen.hide();
 });
@@ -213,7 +216,9 @@ $(document).on("pagebeforeshow", "#statuedetails", function () {
 	//app.audioSliderTrackMedia("audio-seek2");
 });
 $(document).on("pageshow", "#statuedetails", function () {
-    navigator.splashscreen.hide();
+	app.audioSliderUpdateMedia("audio-seek2");
+	app.audioSliderTrackMedia("audio-seek2");
+	navigator.splashscreen.hide();
 });
 $(document).on("pagebeforehide", "#statuedetails", function () {
     $('.statuedetails_audioControl').trigger('pause');
@@ -229,6 +234,7 @@ $(document).on("pagehide", "#statuedetails", function () {
 	$('#static_map_box').trigger('expand');
 	$('#detail_box').trigger('expand');
 	//app.audioCleanUp("audio-seek2");
+	$("#audio-seek2").val(0).slider("refresh");
 	app.audioButtonStop("audio-button2");
 });
 //fix for ios 7 status bar ** doesnt work leave for later

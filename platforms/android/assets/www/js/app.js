@@ -162,8 +162,8 @@ var app = {
 			$('.image_5').attr('src','img/'+statue.urlstring+'_5.jpg');
 		}
         cur_statue = statueID;
-		app.audioSliderUpdateMedia("audio-seek3");
-		app.audioSliderTrackMedia("audio-seek3");
+		//app.audioSliderUpdateMedia("audio-seek3");
+		//app.audioSliderTrackMedia("audio-seek3");
 		$.mobile.changePage("#tourpage", {allowSamePageTransition:true});
 	},
 	showDetails: function(statueID) {
@@ -180,8 +180,7 @@ var app = {
 		var language = $('input[name="radio-choice-2"]:checked').val();
 		if (language == 'english'){
 			$('#statuedetails_detailstext p').html(statue.info.english);
-            $('#statuedetails_address a').html(statue.street);
-			//$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
+            $('#statuedetails_address a').html(statue.street);//$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
 			audioFile = new Media('/android_asset/www/audio/'+statue.urlstring+'_eng.mp3');
 		}else{
 			$('#statuedetails_detailstext p').html(statue.info.spanish);
@@ -199,8 +198,8 @@ var app = {
              console.log(siteURL);
              window.open(siteURL, '_blank', 'location=yes');
         });
-		app.audioSliderUpdateMedia("audio-seek2");
-		app.audioSliderTrackMedia("audio-seek2");
+		//app.audioSliderUpdateMedia("audio-seek2");
+		//app.audioSliderTrackMedia("audio-seek2");
         $.mobile.changePage("#statuedetails");
 	},
 	createStatuelist: function() {
