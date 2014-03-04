@@ -138,23 +138,22 @@ var app = {
 		}
 		//change header
 		if (statueID === app.numStatues){
+			//This condition never happens
 			$('#headerText').html('City of Riverside');
-            $('.audioFile_home').attr('src','audio/tourhome_eng.mp3');
-            
+            //$('.audioFile_home').attr('src','audio/tourhome_eng.mp3');            
 		}else{
 			var statue = app.store.statues[statueID];
 			$('#headerText').html(statue.name);
 			var language = $('input[name="radio-choice-2"]:checked').val();
 			if (language == 'english'){
 				$('#statue_text').html(statue.info.english);
-				$('.audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
+				//$('.audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
 				audioFile = new Media('/android_asset/www/audio/'+statue.urlstring+'_eng.mp3'); 
 			}else{
-				$('#statue_text').html(statue.info.spanish);
-				$('.audioFile').attr('src','audio/'+statue.urlstring+'_esp.mp3');
+				$('#statue_text').html(statue.info.spanish);		//$('.audioFile').attr('src','audio/'+statue.urlstring+'_esp.mp3');
 				audioFile = new Media('/android_asset/www/audio/'+statue.urlstring+'_esp.mp3');
 			}
-            $('.audioControl').trigger('load');
+            //$('.audioControl').trigger('load');
 			//change images
 			$('.image_1').attr('src','img/'+statue.urlstring+'_1.jpg');
 			$('.image_2').attr('src','img/'+statue.urlstring+'_2.jpg');
@@ -182,15 +181,15 @@ var app = {
 		if (language == 'english'){
 			$('#statuedetails_detailstext p').html(statue.info.english);
             $('#statuedetails_address a').html(statue.street);
-			$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
+			//$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_eng.mp3');
 			audioFile = new Media('/android_asset/www/audio/'+statue.urlstring+'_eng.mp3');
 		}else{
 			$('#statuedetails_detailstext p').html(statue.info.spanish);
             $('#statuedetails_address a').html(statue.street_spanish);
-			$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_esp.mp3');
+			//$('.statuedetails_audioFile').attr('src','audio/'+statue.urlstring+'_esp.mp3');
 			audioFile = new Media('/android_asset/www/audio/'+statue.urlstring+'_esp.mp3');
 		}
-		$('.statuedetails_audioControl').trigger('load');
+		//$('.statuedetails_audioControl').trigger('load');
 		$('#statuedetails_static_map_img').attr('src','img/'+statue.urlstring+'_map.jpg');
         var siteURL = 'http://maps.google.com/maps?' +
             'saddr=' + globalLat + ',' + globalLon + '&' +
