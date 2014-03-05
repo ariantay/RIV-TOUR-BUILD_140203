@@ -28,6 +28,7 @@ public class RiversideTourGuide extends CordovaActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        super.setIntegerProperty("splashscreen", R.drawable.splash);
         super.init();
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
