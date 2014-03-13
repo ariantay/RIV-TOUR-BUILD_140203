@@ -122,6 +122,7 @@ $(document).on("pageshow", "#tourpage", function () {
        //$('#audioContainer audio').trigger('play');
        //$('.audioControl').trigger('play');
 	   audioFile.play();
+	   audioPlaying = true;
     }
 	//reset position of text
 	$("#textContainer").scrollTop(0);
