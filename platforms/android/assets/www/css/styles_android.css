@@ -29,6 +29,15 @@ min-height:100%;
 height:95%;
 min-height:95%;
 }
+/*
+#audioContainer{
+	display: table;
+    margin: 0 auto;
+	text-align: center;
+	width: 95%;
+	height: 10%;
+	position: relative;
+}
 */
 #homepage, #tourpage_home, #tourpage/*, #statuelist, #statuedetails*/{
 height:100%;
@@ -115,9 +124,20 @@ min-height:100%;
   	border-radius: 25px;
 }
 
-#home_audioContainer
+#home_text
 {
-	/*bottom: 2px;*/
+	margin: 0 auto;
+	height: 100%;
+	width: 95%;
+    padding: 7px; 
+    font-family: Helvetica,Arial,sans-serif; 
+    font-weight: bold;
+    color:black;
+}
+/*****************************/
+/*CURRENT AUDIO CHANGES*/
+#home_audioContainer{
+	padding: 0;
 	display: table;
     margin: 0 auto;
 	text-align: center;
@@ -125,15 +145,23 @@ min-height:100%;
 	height: 10%;
 	position: relative;
 }
-
-#audioContainer{
-	display: table;
-    margin: 0 auto;
-	text-align: center;
-	width: 95%;
-	height: 10%;
-	position: relative;
+#home_audioButton{
+	display: inline-block;
+	vertical-align:text-bottom; 
 }
+#home_audioSlider{
+	display: inline-block;
+	width:100%;
+	margin-left: -20%;
+}
+#audio_table{
+	background: rgba(0,0,0,0.6);
+	margin: 10 auto;
+	height: 10%;
+	width: 94%;
+	border: 0;
+}
+/*****************************/
 #tourhome_audioContainer{
 	top: 15px;
 	display: table;
@@ -171,17 +199,6 @@ audio {
     font-weight: bold;
     color:black;
     text-align: center;
-}
-
-#home_text
-{
-	margin: 0 auto;
-	height: 100%;
-	width: 95%;
-    padding: 7px; 
-    font-family: Helvetica,Arial,sans-serif; 
-    font-weight: bold;
-    color:black;
 }
 
 #popupBasic-popup
