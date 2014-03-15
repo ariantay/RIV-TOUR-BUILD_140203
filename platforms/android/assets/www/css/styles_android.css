@@ -4,7 +4,9 @@
 
 html {
     height: 100%;
+	max-height: 100%;
 	width: 100%;
+	max-width: 100%;
 }
 body {
 	text-align: center;
@@ -13,8 +15,10 @@ body {
     font-size: 18px;
     margin: 0;
     padding: 0;
-    height: 100%;
+	height: 100%;
+	max-height: 100%;
 	width: 100%;
+	max-width: 100%;
     background-color: #fff;
     overflow: hidden;
 	top: 0;
@@ -95,7 +99,8 @@ min-height:100%;
 	padding: 0;
 }
 */
-#textContainer{
+
+#tourpage_textContainer{
 	width: 95%; 
 	max-height:35%;
 	margin: 0 auto;
@@ -108,13 +113,13 @@ min-height:100%;
   	border-radius: 25px;
 }
 
-#home_text_container
+#home_textContainer
 {
 	/*width: 300px; 
 	max-height:330px; */
 	width: 95%; 
-	max-height:60%; 
-	margin: 0 auto;
+	max-height:58%; 
+	margin: auto;
 	text-align: left;
 	overflow: auto;
 	background-color:#FFEC9A;
@@ -124,8 +129,7 @@ min-height:100%;
   	border-radius: 25px;
 }
 
-#home_text
-{
+#home_text{
 	margin: 0 auto;
 	height: 100%;
 	width: 95%;
@@ -135,7 +139,133 @@ min-height:100%;
     color:black;
 }
 /*****************************/
-/*CURRENT AUDIO CHANGES*/
+/*CURRENT AUDIO CHANGES
+@media (max-width: 700px), handheld and (orientation: portrait) {
+	#padding{
+		height: 5%;	
+	}
+}
+@media (min-width: 700px), handheld and (orientation: landscape) {
+	#padding{
+		display: none;
+		height: 0%;	
+	}
+}
+*/
+@media all and (orientation: portrait) {
+	#padding{
+		height: 5%;	
+	}
+	#audio_table{
+		background: rgba(0,0,0,0.6);
+		margin: 10 auto;
+		height: 8%;
+		width: 94%;
+		border: 0;
+	}
+	#home_textContainer{
+		/*width: 300px; 
+		max-height:330px; */
+		width: 95%; 
+		max-height:58%; 
+		margin: auto;
+		text-align: left;
+		overflow: auto;
+		background-color:#FFEC9A;
+		border:2px solid black;
+		/*opacity: 1.0;*/
+		opacity: .8;
+		border-radius: 25px;
+	}
+	#statuedetails_static_map{
+		height: 150px;
+		width: 300px;
+		display: block;
+		margin: auto;
+	}
+	#tourpage_textContainer{
+		width: 95%; 
+		max-height:35%;
+		margin: 0 auto;
+		text-align: left;
+		overflow: auto;
+		background-color:#FFEC9A;
+		border: 2px solid black;
+		/*opacity: 1.0;*/
+		opacity: .9;
+		border-radius: 25px;
+	}	
+	#slideSize{
+		/*margin: 10 10 10 10;*/
+		height: 40%;
+		width: 95%;
+		/*max-height: 340px;
+		max-width: 300px;
+		height: 70%;
+		width: 70%;*/
+		margin: 0 auto;
+		text-align: left;
+		padding: 5px;	
+	}
+}
+@media all and (orientation: landscape) {
+	#padding{
+		display: none;
+		height: 0%;	
+	}
+	#audio_table{
+		background: rgba(0,0,0,0.6);
+		margin: 10 auto;
+		height: 4%;
+		width: 94%;
+		border: 0;
+	}
+	#home_textContainer{
+		/*width: 300px; 
+		max-height:330px; */
+		width: 95%; 
+		max-height:50%; 
+		margin: auto;
+		text-align: left;
+		overflow: auto;
+		background-color:#FFEC9A;
+		border:2px solid black;
+		/*opacity: 1.0;*/
+		opacity: .8;
+		border-radius: 25px;
+	}
+	#statuedetails_static_map{
+		height: 240px;
+		width: 480px;
+		display: block;
+		margin: auto;
+	}
+	#tourpage_textContainer{
+		display: none;
+		width: 95%; 
+		max-height:35%;
+		margin: 0 auto;
+		text-align: left;
+		overflow: auto;
+		background-color:#FFEC9A;
+		border: 2px solid black;
+		/*opacity: 1.0;*/
+		opacity: .9;
+		border-radius: 25px;
+	}
+	#slideSize{
+		/*margin: 10 10 10 10;*/
+		height: 75%;
+		width: 95%;
+		/*max-height: 340px;
+		max-width: 300px;
+		height: 70%;
+		width: 70%;*/
+		margin: 0 auto;
+		text-align: left;
+		padding: 5px;	
+	}
+}
 #home_audioContainer{
 	padding: 0;
 	display: table;
@@ -157,7 +287,7 @@ min-height:100%;
 #audio_table{
 	background: rgba(0,0,0,0.6);
 	margin: 10 auto;
-	height: 10%;
+	height: 8%;
 	width: 94%;
 	border: 0;
 }
@@ -213,13 +343,15 @@ audio {
 	text-align: left;
 }
 #statuedetails_static_map_img{
+	display: block;
+	margin: auto;
 	height: 100%;
 	width: 100%;
-}
+	
+	/*
 
-#statuedetails_static_map_container{
-	height: 120px;
-	width: 240px;
+	*/
+	
 }
 
 #statuedetails_thumb{
