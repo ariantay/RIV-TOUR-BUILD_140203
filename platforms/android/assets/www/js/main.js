@@ -123,6 +123,7 @@ $(document).on("pageshow", "#tourpage", function () {
        //$('.audioControl').trigger('play');
 	   audioFile.play();
 	   audioPlaying = true;
+	   app.audioButtonPlay("audio-button3");
     }
 	//reset position of text
 	$("#textContainer").scrollTop(0);
