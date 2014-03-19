@@ -16,6 +16,8 @@ var audioTimer = null; //function that tracks current audio position
 $(document).on("pagecreate", "#homepage", function () {
     app.initialize();
     watchID = app.startTracking();
+	console.log(watchID);
+	//alert(watchID);
 });
 $(document).on("pagebeforeshow", "#homepage", function () {
 	app.audioSliderTrackMedia("audio-seek1");

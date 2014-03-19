@@ -223,6 +223,8 @@ var app = {
 	},	
 	startTracking: function() {
         //alert("calling startTracking");
+		console.log("calling startTracking");
+		
 		var options = {
 			maximumAge : 1000,
 			enableHighAccuracy : true
@@ -233,11 +235,14 @@ var app = {
         //update global variables
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
+		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
+			
 
 		//update our map marker and radius
 		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
 			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-			console.log('calling google maps latlng and referencing mapper' + latlng);
+			console.log('calling google maps latlng and referencing mapper: ' + globalLat + ", " + globalLon);
+			//alert('calling google maps latlng and referencing mapper: ' + globalLat + ", " + globalLon);
 			mapper.marker.setPosition(latlng);
 			mapper.circle.setCenter(latlng);
 			mapper.circle.setRadius(position.coords.accuracy);
@@ -258,8 +263,10 @@ var app = {
 		}
 	},
 	onError: function (error) {
-		//alert('code: '    + error.code    + '\n' +
-		//	  'message: ' + error.message + '\n');
+		alert('code: '    + error.code    + '\n' +
+			  'message: ' + error.message + '\n');
+		console.log('code: '    + error.code    + '\n' +
+			  'message: ' + error.message + '\n');	  
 	},
 	getDistanceFromLatLonInFeet: function (lat1,lon1,lat2,lon2) {
 		var R = 6371; // Radius of the earth in km
@@ -289,6 +296,8 @@ var app = {
            //issues with async loading, dont use
            //app.loadMapScript();           
         });
+		console.log('app initialized');
+		//alert('map initialized');
 		//app.initialized = true;
     }
 };
