@@ -222,21 +222,23 @@ var app = {
 		});
 	},	
 	startTracking: function() {
-        //alert("calling startTracking");
-		console.log("calling startTracking");
-		
+        alert("calling startTracking");
+		console.log("calling startTracking with maxage: " + app.maxage);
 		var options = {
-			maximumAge : 1000,
+			maximumAge : app.maxage,
 			enableHighAccuracy : true
 		};
 		return navigator.geolocation.watchPosition(app.onSuccess, app.onError, options);
 	},
 	onSuccess: function (position) {
         //update global variables
+		app.maxage = 1000;
+		console.log('maxage is now: ' + app.maxage);
+		alert('maxage is now: ' + app.maxage);
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
 		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
-			
+		alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);	
 
 		//update our map marker and radius
 		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
@@ -285,6 +287,7 @@ var app = {
 		return deg * (Math.PI/180);
 	},    
     initialize: function() {
+		app.maxage = 0;
 		app.numStatues = 6;
         app.lock = 0;
         //this.detailsURL = /^#statues\/(\d{1,})/;

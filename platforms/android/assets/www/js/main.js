@@ -10,14 +10,15 @@ var mapTimer = 0; //to keep track of map loading time
 var audioPlaying = false; //tracks whether media is playing
 var audioFile = 0;  //references phonegap media object
 var audioTimer = null; //function that tracks current audio position
+var watchID = 0; //geolocation tracker id
 
 //jquery mobile events handling
 //HOMEPAGE
 $(document).on("pagecreate", "#homepage", function () {
     app.initialize();
     watchID = app.startTracking();
-	console.log(watchID);
-	//alert(watchID);
+	console.log("navigator geolocation returned with Watch ID: " + watchID);
+	alert("navigator geolocation returned with Watch ID: " + watchID);
 });
 $(document).on("pagebeforeshow", "#homepage", function () {
 	app.audioSliderTrackMedia("audio-seek1");
