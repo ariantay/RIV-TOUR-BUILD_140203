@@ -16,6 +16,7 @@
 	<script src="phonegap.js"></script>
 	<script src="lib/jquery-1.10.2.min.js"></script>
 	<script>
+		$.when(gapReady, jqmReady,docReady).then(app.initialize);
 		function deviceReady() {
 			console.log("Phonegap Ready");
 			alert("Phonegap Ready");
@@ -24,12 +25,18 @@
 		document.addEventListener("deviceready", deviceReady, false);
 		var gapReady = $.Deferred(); 
 		var jqmReady = $.Deferred();
+		var docReady = $.Deferred();
 		$(document).one("mobileinit", function () {
 			console.log("jQueryMobile Ready");
 			alert("JQM RDY");
+			$.mobile.autoInitializePage = false;
 			jqmReady.resolve();
 		});
-		$.when(gapReady, jqmReady).then(function(){alert("BOTH READY");});
+		$(document).ready(function(){
+			console.log("Document ready");
+			alert("Document Ready");
+			docReady.resolve();
+		});
 	</script>
 	<script src="lib/jquery.mobile-1.3.2.min.js"></script>
 	<script src="lib/jquery.flexslider.js"></script>

@@ -301,6 +301,8 @@ var app = {
 		return deg * (Math.PI/180);
 	},    
     initialize: function() {
+		alert("BOTH READY, INITIALIZED CALLED");
+		console.log("Initialized called");
 		app.maxage = 0;
 		app.numStatues = 6;
         app.lock = 0;
@@ -316,5 +318,7 @@ var app = {
 		console.log('app initialized');
 		//alert('map initialized');
 		//app.initialized = true;
+		watchID = app.startTracking();
+		$.mobile.initializePage();
     }
 };

@@ -1,10 +1,8 @@
 //jquery mobile events handling
 //HOMEPAGE
 $(document).on("pagecreate", "#homepage", function () {
-    app.initialize();
-    watchID = app.startTracking();
-	console.log("navigator geolocation returned with Watch ID: " + watchID);
-	alert("navigator geolocation returned with Watch ID: " + watchID);
+	console.log("in pagecreate");
+	alert("in pagecreate");
 });
 $(document).on("pagebeforeshow", "#homepage", function () {
 	app.audioSliderTrackMedia("audio-seek1");

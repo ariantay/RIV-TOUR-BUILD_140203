@@ -29,9 +29,10 @@ public class RiversideTourGuide extends CordovaActivity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+    	/*
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			WebView.setWebContentsDebuggingEnabled(true);
-		}
+		}*/
         super.onCreate(savedInstanceState);
         super.setIntegerProperty("splashscreen", R.drawable.splash);
         super.init();
