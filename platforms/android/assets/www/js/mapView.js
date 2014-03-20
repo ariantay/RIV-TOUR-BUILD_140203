@@ -32,6 +32,7 @@ var mapper = {
 		}
 	},
     initialize: function() {
+		console.log("map initializing");
 		//create the map
 		mapper.mapOptions = {
 			zoom: 16,
@@ -94,6 +95,6 @@ var mapper = {
            window.clearTimeout(mapTimer);
            mapLoaded = true;
         });
-		console.log(mapper.map);
+		console.log("Mapper initialized: " + mapper.map);
     }    
 }

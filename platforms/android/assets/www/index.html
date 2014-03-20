@@ -16,16 +16,15 @@
 	<script src="phonegap.js"></script>
 	<script src="lib/jquery-1.10.2.min.js"></script>
 	<script>
-		$.when(gapReady, jqmReady,docReady).then(app.initialize);
+		document.addEventListener("deviceready", deviceReady, false);
+		var gapReady = $.Deferred(); 
+		var jqmReady = $.Deferred();
+		var docReady = $.Deferred();
 		function deviceReady() {
 			console.log("Phonegap Ready");
 			alert("Phonegap Ready");
 			gapReady.resolve();
 		}
-		document.addEventListener("deviceready", deviceReady, false);
-		var gapReady = $.Deferred(); 
-		var jqmReady = $.Deferred();
-		var docReady = $.Deferred();
 		$(document).one("mobileinit", function () {
 			console.log("jQueryMobile Ready");
 			alert("JQM RDY");
@@ -37,6 +36,7 @@
 			alert("Document Ready");
 			docReady.resolve();
 		});
+		$.when(gapReady, jqmReady,docReady).then(function(){app.initialize();});
 	</script>
 	<script src="lib/jquery.mobile-1.3.2.min.js"></script>
 	<script src="lib/jquery.flexslider.js"></script>

@@ -301,8 +301,8 @@ var app = {
 		return deg * (Math.PI/180);
 	},    
     initialize: function() {
-		alert("BOTH READY, INITIALIZED CALLED");
-		console.log("Initialized called");
+		alert("all scripts and documents loaded, in app.initialize");
+		console.log("all scripts and documents loaded, in app.initialize");
 		app.maxage = 0;
 		app.numStatues = 6;
         app.lock = 0;
@@ -315,10 +315,11 @@ var app = {
            //issues with async loading, dont use
            //app.loadMapScript();           
         });
-		console.log('app initialized');
+		console.log('start tracking with navigator.geolocation');
 		//alert('map initialized');
 		//app.initialized = true;
 		watchID = app.startTracking();
+		console.log('start displaying page with jquery mobile');
 		$.mobile.initializePage();
     }
 };
