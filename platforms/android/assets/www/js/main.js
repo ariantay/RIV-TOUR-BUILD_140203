@@ -1,17 +1,3 @@
-var cur_statue = -1;
-var cur_page = 0;  //used to determine if on tour pages or not
-var first_run = true; //check when app is first opened
-var globalLat = 0; //used to store geolocation result
-var globalLon = 0; //used to store geolocation result
-var mapTimeout = 5; //if map doesn't load in tour home, kick back to homepage
-var mapLoaded = false;
-var mapTimer = 0; //to keep track of map loading time
-//android only vars
-var audioPlaying = false; //tracks whether media is playing
-var audioFile = 0;  //references phonegap media object
-var audioTimer = null; //function that tracks current audio position
-var watchID = 0; //geolocation tracker id
-
 //jquery mobile events handling
 //HOMEPAGE
 $(document).on("pagecreate", "#homepage", function () {
