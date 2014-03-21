@@ -31,7 +31,6 @@
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
 		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
 		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
-		C0CBEEDE0370422E890553E4 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA52A2CFA7AD4912B9AE95C6 /* CDVLocation.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
 		DCFE736BFD14465F97FEA2EB /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F02F466BB542D88B5391C4 /* CDVSound.m */; };
@@ -407,7 +406,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				C0CBEEDE0370422E890553E4 /* CDVLocation.m in Sources */,
 				0AF4CDA0E33B439EB4CAC6EA /* CDVInAppBrowser.m in Sources */,
 				013E2317FE5D48A79C02DDA3 /* CDVSplashScreen.m in Sources */,
 				DCFE736BFD14465F97FEA2EB /* CDVSound.m in Sources */,

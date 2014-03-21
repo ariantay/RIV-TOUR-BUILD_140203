@@ -254,7 +254,7 @@ var app = {
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
 		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
-		alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);	
+		//alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);	
 
 		//update our map marker and radius
 		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
