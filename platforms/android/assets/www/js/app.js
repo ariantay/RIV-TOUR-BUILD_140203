@@ -239,16 +239,18 @@ var app = {
         alert("calling startTracking");
 		console.log("calling startTracking with maxage: " + app.maxage);
 		var options = {
-			maximumAge : app.maxage,
-			enableHighAccuracy : true
+			//maximumAge : app.maxage,
+			maximumAge: 1000,
+			enableHighAccuracy : true,
+			timeout: 10000
 		};
 		return navigator.geolocation.watchPosition(app.onSuccess, app.onError, options);
 	},
 	onSuccess: function (position) {
         //update global variables
-		app.maxage = 1000;
-		console.log('maxage is now: ' + app.maxage);
-		alert('maxage is now: ' + app.maxage);
+		//app.maxage = 1000;
+		//console.log('maxage is now: ' + app.maxage);
+		//alert('maxage is now: ' + app.maxage);
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
 		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
