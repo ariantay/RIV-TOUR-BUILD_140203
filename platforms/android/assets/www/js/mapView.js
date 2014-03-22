@@ -26,7 +26,7 @@ var mapper = {
 			navigator.geolocation.getCurrentPosition(
 				function(position){alert (position.coords.latitude + " " + position.coords.longitude);},
 				function(error){alert (error.code + " " + error.message);},
-				{enableHighAccuracy: true,timeout: 10000,maximumAge: 5000});
+				{enableHighAccuracy: true,timeout: 10000,maximumAge: 1000});
 		}else{
 			alert('no navigator');
 		}
@@ -73,7 +73,7 @@ var mapper = {
 			center: new google.maps.LatLng(33.981905, -117.374513),
 			radius: 60
 		};
-		mapper.circle = new google.maps.Circle(options);
+		//mapper.circle = new google.maps.Circle(options);
 		//current position on click
 		google.maps.event.addListener(mapper.marker, 'click', function() {
 			//app.routeTo(marker.index);
