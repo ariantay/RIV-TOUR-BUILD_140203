@@ -34,43 +34,13 @@ var app = {
         }
     },
     gotoPage: function(page) {
-        //check html modification
-        //app.createStatuelist();
-        //delete createlist when test done
         console.log('changing page to ' + page);
         $.mobile.changePage(page);
-    },/*
-	audioPlayPause: function() {
-		//$('#dynamicButton').toggleClass('red');
-		//$('#dynamicButton').parent().find('.ui-btn-hidden').css("background-color",'red');
-		//alert('audioPlaying' + audioPlaying);
-		//alert(audioFile);
-		if (!audioPlaying){
-			$('#audio-button1').attr('data-theme','b');
-			$('#audio-button1').removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
-			$('#audio-button1 span .ui-btn-text').text("Pause");
-			audioFile.play();
-			audioPlaying = true;
-			//alert('audioPlaying ' + audioPlaying);
-		}else{
-			$('#audio-button1').attr('data-theme','e');	$('#audio-button1').removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
-			$('#audio-button1 span .ui-btn-text').text("Play");
-			audioFile.pause();
-			audioPlaying = false;
-			//alert('audioPlaying ' + audioPlaying);
-		}
-		//$('#dynamicButton').text('pause');
-        //$('#dynamicButton').attr('data-theme','a');
-		//$('#dynamicButton').button('refresh');
-    },*/
+    },
 	audioSliderUpdateMedia: function(id) {
-		/*$("#"+id).on("slidestart", function (event) {
-			audioFile.pause();
-		});*/
 		$("#"+id).on("slidestop", function (event) {
 			var audioPosition = $("#"+id).slider().val();
 			audioFile.seekTo(audioFile.getDuration()*1000*audioPosition/100);
-			//audioFile.play();
 		});
 	},
 	audioSliderTrackMedia: function(id) {
@@ -81,7 +51,6 @@ var app = {
 					function(audioPosition) {
 						if (audioPosition > -1) {
 							var sliderPosition = audioPosition/audioFile.getDuration()*100;
-							//alert(sliderPosition);
 							$("#"+id).val(sliderPosition).slider("refresh");
 						}
 					},
@@ -140,9 +109,6 @@ var app = {
 		}
     },
 	audioRestart: function() {
-        //check html modification
-        //app.createStatuelist();
-        //delete createlist when test done
         audioFile.seekTo(0);
     },
 	routeTo: function(statueID) {

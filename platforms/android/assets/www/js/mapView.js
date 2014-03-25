@@ -1,9 +1,11 @@
 var mapper = {
     resize: function() {
         google.maps.event.trigger(mapper.map, 'resize');
-        var tempCenter = new google.maps.LatLng(33.981905, -117.374513);
-        mapper.map.setCenter(tempCenter);
-        //mapper.map.setZoom(17);
+		var tempLat = (globalLat === 0) ? 33.981905 : globalLat;
+		var tempLon = (globalLon === 0) ? -117.374513 : globalLon;
+		var tempCenter = new google.maps.LatLng(tempLat, tempLon);
+		mapper.map.setCenter(tempCenter);
+		mapper.map.setZoom(16);
     },
     mapLoadFail: function() {
         window.alert("Due to unstable network connection, your experience with the Guided Tour might not be optimal. We suggest using the Statue List page instead");
@@ -86,9 +88,11 @@ var mapper = {
         //Add listener to detect if map.resize() is needed
         google.maps.event.addListenerOnce(mapper.map, 'bounds_changed', function() {
            google.maps.event.trigger(mapper.map, 'resize');
-           var tempCenter = new google.maps.LatLng(33.981905, -117.374513);
+		   var tempLat = (globalLat === 0) ? 33.981905 : globalLat;
+		   var tempLon = (globalLon === 0) ? -117.374513 : globalLon;
+           var tempCenter = new google.maps.LatLng(tempLat, tempLon);
            mapper.map.setCenter(tempCenter);
-           mapper.map.setZoom(17);
+           mapper.map.setZoom(16);
         });
         //Add listener to detect if map has loaded tiles(for timeout)
         google.maps.event.addListener(mapper.map, 'tilesloaded', function() {
