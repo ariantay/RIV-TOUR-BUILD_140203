@@ -239,8 +239,8 @@ var app = {
         alert("calling startTracking");
 		console.log("calling startTracking with maxage: " + app.maxage);
 		var options = {
-			//maximumAge : app.maxage,
-			maximumAge: 1000,
+			maximumAge : app.maxage,
+			//maximumAge: 1000,
 			enableHighAccuracy : true,
 			timeout: 10000
 		};
@@ -248,12 +248,18 @@ var app = {
 	},
 	onSuccess: function (position) {
         //update global variables
-		//app.maxage = 1000;
-		//console.log('maxage is now: ' + app.maxage);
+		app.maxage = 500;
+		console.log('maxage is now: ' + app.maxage);
+		if($('#checkbox-1').is(':checked')){
+			alert('maxage is now: ' + app.maxage);
+		}
 		//alert('maxage is now: ' + app.maxage);
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
 		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
+		if($('#checkbox-1').is(':checked')){
+			alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
+		}
 		//alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);	
 
 		//update our map marker and radius
@@ -262,8 +268,8 @@ var app = {
 			console.log('calling google maps latlng and referencing mapper: ' + globalLat + ", " + globalLon);
 			//alert('calling google maps latlng and referencing mapper: ' + globalLat + ", " + globalLon);
 			mapper.marker.setPosition(latlng);
-			mapper.circle.setCenter(latlng);
-			mapper.circle.setRadius(position.coords.accuracy);
+			//mapper.circle.setCenter(latlng);
+			//mapper.circle.setRadius(position.coords.accuracy);
 		}	
         if (cur_page == 1 && app.lock == 0){
             app.lock = 1;
@@ -273,6 +279,9 @@ var app = {
 				var distance = app.getDistanceFromLatLonInFeet(position.coords.latitude,position.coords.longitude,statue.lat,statue.lon);
 				var htmlString = 'id_' + statue.id + ' is ' + Math.floor(distance) + ' feet away<br/>';
 				if(distance <= statue.distance && cur_statue != statue.id){
+					if($('#checkbox-1').is(':checked')){
+						alert('statue nearby! now switching to statue: ' + statue.name);
+					}
 					app.routeTo(statue.id);
 					return;
 				}
