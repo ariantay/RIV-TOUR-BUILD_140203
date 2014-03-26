@@ -21,8 +21,8 @@ package org.riv.tour;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
-import android.os.Build;
-import android.webkit.WebView;
+//import android.os.Build;
+//import android.webkit.WebView;
 
 public class RiversideTourGuide extends CordovaActivity 
 {

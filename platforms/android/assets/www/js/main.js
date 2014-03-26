@@ -1,9 +1,10 @@
 //jquery mobile events handling
 //HOMEPAGE
+/*
 $(document).on("pagecreate", "#homepage", function () {
 	console.log("in pagecreate");
 	alert("in pagecreate");
-});
+});*/
 $(document).on("pagebeforeshow", "#homepage", function () {
 	app.audioSliderTrackMedia("audio-seek1");
 	app.audioSliderUpdateMedia("audio-seek1");

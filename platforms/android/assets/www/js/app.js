@@ -122,6 +122,10 @@ var app = {
 			$('#headerText').html('City of Riverside');
             //$('.audioFile_home').attr('src','audio/tourhome_eng.mp3');            
 		}else{
+			//statue to statue causes double audio to play
+			//pagebeforehide event seems to be skipped
+			app.audioFileStopRelease();
+			app.audioButtonStop("audio-button3");
 			var statue = app.store.statues[statueID];
 			$('#headerText').html(statue.name);
 			var language = $('input[name="radio-choice-2"]:checked').val();
@@ -202,7 +206,7 @@ var app = {
 		});
 	},	
 	startTracking: function() {
-        alert("calling startTracking");
+        //alert("calling startTracking");
 		console.log("calling startTracking with maxage: " + app.maxage);
 		var options = {
 			maximumAge : app.maxage,
@@ -278,7 +282,7 @@ var app = {
 		return deg * (Math.PI/180);
 	},    
     initialize: function() {
-		alert("all scripts and documents loaded, in app.initialize");
+		//alert("all scripts and documents loaded, in app.initialize");
 		console.log("all scripts and documents loaded, in app.initialize");
 		app.maxage = 0;
 		app.numStatues = 6;
