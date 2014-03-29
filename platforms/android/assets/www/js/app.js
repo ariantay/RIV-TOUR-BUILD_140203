@@ -64,16 +64,16 @@ var app = {
 		}
 	},
 	audioButtonPlay: function(id){
-		$('#'+id).attr('data-theme','b');
-		$('#'+id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
+		//$('#'+id).attr('data-theme','b');
+		//$('#'+id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
 		$('#'+id+' span .ui-btn-text').text("Pause");
-		$('#'+id+' span span').removeClass("ui-icon-arrow-r").addClass("ui-icon-delete");
+		$('#'+id+' span span').removeClass("ui-icon-arrow-r").addClass("ui-icon-pause");
 	},
 	audioButtonStop: function(id){
-		$('#'+id).attr('data-theme','e');
-		$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
+		//$('#'+id).attr('data-theme','e');
+		//$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
 		$('#'+id+' span .ui-btn-text').text("Play");
-		$('#'+id+' span span').removeClass("ui-icon-delete").addClass("ui-icon-arrow-r");
+		$('#'+id+' span span').removeClass("ui-icon-pause").addClass("ui-icon-arrow-r");
 	},
 	audioFileStopRelease: function(){
 		audioFile.stop();
@@ -85,25 +85,25 @@ var app = {
 		audioFile.stop();
 		audioFile.release();
 		audioPlaying = false;
-		$('#'+id).attr('data-theme','e');
-		$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
+		//$('#'+id).attr('data-theme','e');
+		//$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
 		$('#'+id+' span .ui-btn-text').text("Play");
-		$('#'+id+' span span').removeClass("ui-icon-delete").addClass("ui-icon-arrow-r");
+		$('#'+id+' span span').removeClass("ui-icon-pause").addClass("ui-icon-arrow-r");
 		audioTimer=null;
 	},
 	audioPlayPause: function(id) {
 		if (!audioPlaying){
-			$('#'+id).attr('data-theme','b');
-			$('#'+id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
+			//$('#'+id).attr('data-theme','b');
+			//$('#'+id).removeClass("ui-btn-up-e").addClass("ui-btn-up-b");
 			$('#'+id+' span .ui-btn-text').text("Pause");
-			$('#'+id+' span span').removeClass("ui-icon-arrow-r").addClass("ui-icon-delete");
+			$('#'+id+' span span').removeClass("ui-icon-arrow-r").addClass("ui-icon-pause");
 			audioFile.play();
 			audioPlaying = true;
 		}else{
-			$('#'+id).attr('data-theme','e');	
-			$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
+			//$('#'+id).attr('data-theme','e');	
+			//$('#'+id).removeClass("ui-btn-up-b").addClass("ui-btn-up-e");
 			$('#'+id+' span .ui-btn-text').text("Play");
-			$('#'+id+' span span').removeClass("ui-icon-delete").addClass("ui-icon-arrow-r");
+			$('#'+id+' span span').removeClass("ui-icon-pause").addClass("ui-icon-arrow-r");
 			audioFile.pause();
 			audioPlaying = false;
 		}

@@ -156,6 +156,9 @@ min-height:100%;
 	#padding{
 		height: 5%;	
 	}
+	#small_padding{
+		height: 2.5%;
+	}
 	#audio_table{
 		background: rgba(0,0,0,0.6);
 		margin: 10 auto;
