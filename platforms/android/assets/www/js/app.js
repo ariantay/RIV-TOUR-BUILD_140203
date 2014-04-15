@@ -263,7 +263,12 @@ var app = {
 		alert('code: '    + error.code    + '\n' +
 			  'message: ' + error.message + '\n');
 		console.log('code: '    + error.code    + '\n' +
-			  'message: ' + error.message + '\n');	  
+			  'message: ' + error.message + '\n');
+		//will this fix the issue?? 140415
+		if (error.code===2){
+			navigator.geolocation.clearWatch(watchID);
+			watchID = app.startTracking();
+		}
 	},
 	getDistanceFromLatLonInFeet: function (lat1,lon1,lat2,lon2) {
 		var R = 6371; // Radius of the earth in km
