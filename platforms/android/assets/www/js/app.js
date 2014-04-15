@@ -267,6 +267,8 @@ var app = {
 		//will this fix the issue?? 140415
 		if (error.code===2){
 			navigator.geolocation.clearWatch(watchID);
+			alert('geolocation tracking restarted');
+			console.log('geolocation tracking restarted');
 			watchID = app.startTracking();
 		}
 	},
