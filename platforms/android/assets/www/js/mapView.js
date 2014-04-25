@@ -8,7 +8,7 @@ var mapper = {
 		mapper.map.setZoom(16);
     },
     mapLoadFail: function() {
-        window.alert("Due to unstable network connection, your experience with the Guided Tour might not be optimal. We suggest using the Statue List page instead");
+        //window.alert("Due to unstable network connection, your experience with the Guided Tour might not be optimal. We suggest using the Statue List page instead");
         //$.mobile.changePage("#homepage", {allowSamePageTransition:true});
     },
 	createMarker: function(statue) {
@@ -26,11 +26,11 @@ var mapper = {
 	announcePosition: function(){
 		if (navigator.geolocation){
 			navigator.geolocation.getCurrentPosition(
-				function(position){alert (position.coords.latitude + " " + position.coords.longitude);},
-				function(error){alert (error.code + " " + error.message);},
+				function(position){//alert (position.coords.latitude + " " + position.coords.longitude);},
+				function(error){//alert (error.code + " " + error.message);},
 				{enableHighAccuracy: true,timeout: 10000,maximumAge: 1000});
 		}else{
-			alert('no navigator');
+			//alert('no navigator');
 		}
 	},
     initialize: function() {

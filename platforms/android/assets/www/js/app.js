@@ -30,7 +30,7 @@ var app = {
         if (typeof google === 'object' && typeof google.maps === 'object') {
             $.mobile.changePage('#tourpage_home');
         }else{
-            window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
+            //window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
         }
     },
     gotoPage: function(page) {
@@ -221,14 +221,14 @@ var app = {
 		app.maxage = 500;
 		console.log('maxage is now: ' + app.maxage);
 		if($('#checkbox-1').is(':checked')){
-			alert('maxage is now: ' + app.maxage);
+			//alert('maxage is now: ' + app.maxage);
 		}
 		//alert('maxage is now: ' + app.maxage);
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
 		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
 		if($('#checkbox-1').is(':checked')){
-			alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
+			//alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
 		}
 		//alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);	
 
@@ -250,7 +250,7 @@ var app = {
 				var htmlString = 'id_' + statue.id + ' is ' + Math.floor(distance) + ' feet away<br/>';
 				if(distance <= statue.distance && cur_statue != statue.id){
 					if($('#checkbox-1').is(':checked')){
-						alert('statue nearby! now switching to statue: ' + statue.name);
+						//alert('statue nearby! now switching to statue: ' + statue.name);
 					}
 					app.routeTo(statue.id);
 					return;
@@ -260,14 +260,14 @@ var app = {
 		}
 	},
 	onError: function (error) {
-		alert('code: '    + error.code    + '\n' +
+		//alert('code: '    + error.code    + '\n' +
 			  'message: ' + error.message + '\n');
 		console.log('code: '    + error.code    + '\n' +
 			  'message: ' + error.message + '\n');
 		//will this fix the issue?? 140415
 		if (error.code===2){
 			navigator.geolocation.clearWatch(watchID);
-			alert('geolocation tracking restarted');
+			//alert('geolocation tracking restarted');
 			console.log('geolocation tracking restarted');
 			watchID = app.startTracking();
 		}
