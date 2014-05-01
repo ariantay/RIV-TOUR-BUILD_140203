@@ -293,7 +293,7 @@ var app = {
 		//alert("all scripts and documents loaded, in app.initialize");
 		console.log("all scripts and documents loaded, in app.initialize");
 		app.maxage = 0;
-		app.numStatues = 6;
+		app.numStatues = 12;
         app.lock = 0;
         //this.detailsURL = /^#statues\/(\d{1,})/;
         app.registerEvents();
