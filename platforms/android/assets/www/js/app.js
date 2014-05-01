@@ -260,8 +260,9 @@ var app = {
 		}
 	},
 	onError: function (error) {
-		//alert('code: '    + error.code    + '\n' +
+		/*alert('code: '    + error.code    + '\n' +
 			  'message: ' + error.message + '\n');
+		*/	  
 		console.log('code: '    + error.code    + '\n' +
 			  'message: ' + error.message + '\n');
 		//will this fix the issue?? 140415
