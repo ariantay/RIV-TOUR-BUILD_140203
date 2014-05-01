@@ -26,11 +26,16 @@ var mapper = {
 	announcePosition: function(){
 		if (navigator.geolocation){
 			navigator.geolocation.getCurrentPosition(
-				function(position){//alert (position.coords.latitude + " " + position.coords.longitude);},
-				function(error){//alert (error.code + " " + error.message);},
+				/*
+				function(position){alert (position.coords.latitude + " " + position.coords.longitude);},
+				function(error){alert (error.code + " " + error.message);},
+				*/
+				function(position){console.log(position.coords.latitude + " " + position.coords.longitude);},
+				function(error){console.log(error.code + " " + error.message);},
 				{enableHighAccuracy: true,timeout: 10000,maximumAge: 1000});
 		}else{
 			//alert('no navigator');
+			console.log('no navigator');
 		}
 	},
     initialize: function() {
