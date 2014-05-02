@@ -204,7 +204,28 @@ var app = {
 				app.showDetails(i);
 			});
 		});
-	},	
+	},
+	createMarkerList: function() {
+	/*test for generating multiple markers*/
+		//append list
+		var html = '';
+		for (var i=0; i<app.numStatues; i++) {
+			var statue = app.store.statues[i];
+			html += '<li>';
+			html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
+			html += '<h3>' + statue.name + '</h3>';
+			html += '</li>';
+		}
+		$('#popupMarkers').append(html);
+		//add onclick 
+		$('#popupMarkers li').each(function(i) {
+			$(this).click(function(){
+				//change page to statuedetails
+				app.showDetails(i);
+			});
+		});
+		$('#popupMarkers').popup('open');
+	},		
 	startTracking: function() {
         //alert("calling startTracking");
 		console.log("calling startTracking with maxage: " + app.maxage);

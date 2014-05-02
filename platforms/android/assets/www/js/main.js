@@ -5,6 +5,20 @@ $(document).on("pagecreate", "#homepage", function () {
 	console.log("in pagecreate");
 	alert("in pagecreate");
 });*/
+/*
+$(document).on('popupafteropen', '.ui-popup', function() {
+	alert("event triggered");
+	setTimeout(function () {
+		$(this).popup('close');
+	}, 5000);
+});
+*/
+$(document).on('popupafteropen', '#popupMarkers', function() {
+	//alert("event triggered");
+	setTimeout(function () {
+		$('#popupMarkers').popup('close');
+	}, 5000);
+});
 $(document).on("pagebeforeshow", "#homepage", function () {
 	app.audioSliderTrackMedia("audio-seek1");
 	app.audioSliderUpdateMedia("audio-seek1");

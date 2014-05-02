@@ -113,18 +113,22 @@
 <div data-role="page" id="tourpage_home">
 	<div id='header' data-role="header" data-theme='b' data-position="inline">
 		<h1>Tour</h1>
-			<a id='default_tour_page_back_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
-			<a href="#popupBasic" data-rel="popup" id='default_tour_page_help_button' class='button' class="ui-btn-left" data-icon="info" data-theme='e' data-direction="reverse"></a>
-			
-			<div data-role="popup" id="popupBasic" data-position-to="window" data-theme="e" class="ui-content">
-				<a data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-				<p></p>
-			</div>
+		<a id='default_tour_page_back_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
+		<!--
+		<a href="#popupBasic" data-rel="popup" id='default_tour_page_help_button' class='button' class="ui-btn-left" data-icon="info" data-theme='e' data-direction="reverse"></a>
+		-->
+		<a href="#" onclick="app.createMarkerList()" id='default_tour_page_help_button' class='button' class="ui-btn-left" data-icon="info" data-theme='e' data-direction="reverse"></a>
+	</div>
+	<div data-role="popup" id="popupBasic" data-position-to="window" data-theme="e" class="ui-content">
+		<a data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+		<p></p>
+	</div>
+	<!--new popup here-->
+	<div data-role="popup" id="popupMarkers" data-position-to="window" data-theme="e" class="ui-content">
 	</div>
 	<div id='map-canvas_holder'>
 		<div id='map-canvas'></div>
-	</div>  	  
-	
+	</div>  	  	
 	<div data-theme="a" data-role="footer" data-position="fixed"></div>
 </div>
 
