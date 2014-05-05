@@ -13,11 +13,16 @@ $(document).on('popupafteropen', '.ui-popup', function() {
 	}, 5000);
 });
 */
+$(document).on('popupafterclose', '#popupMarkers', function() {
+	console.log('popupTimer!! ' + popupTimer);
+	$('#popupMarkers ul').remove();
+	window.clearTimeout(popupTimer);
+});
 $(document).on('popupafteropen', '#popupMarkers', function() {
 	//alert("event triggered");
-	setTimeout(function () {
+	popupTimer = setTimeout(function () {
 		$('#popupMarkers').popup('close');
-	}, 5000);
+	}, 3500);
 });
 $(document).on("pagebeforeshow", "#homepage", function () {
 	app.audioSliderTrackMedia("audio-seek1");
