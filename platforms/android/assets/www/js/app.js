@@ -210,16 +210,12 @@ var app = {
 	/*test for generating multiple markers*/
 		//append list
 		var html = '';
-		html += '<ul id="markerList" data-role="listview" data-inset="true">'
+		html += '<ul id="markerList" data-role="listview" data-inset="true" data-theme="b">'
 		for (var i=0; i<1/*app.numStatues*/; i++) {
 			var statue = app.store.statues[i];
-			html += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">';
-			html += '<div>';
+			html += '<li>';
 			html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
-			html += '</div>';
-			html += '<div>';
 			html += '<h3>' + statue.name + '</h3>';
-			html += '</div>';
 			html += '</li>';
 		}
 		html +="</ul>";
