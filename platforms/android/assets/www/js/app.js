@@ -11,6 +11,7 @@ var audioPlaying = false; //tracks whether media is playing
 var audioFile = 0;  //references phonegap media object
 var audioTimer = null; //function that tracks current audio position
 var watchID = 0; //geolocation tracker id
+var popupTimer = 0; //timer for popup close
 
 var app = {
     registerEvents: function() {
@@ -209,12 +210,14 @@ var app = {
 	/*test for generating multiple markers*/
 		//append list
 		var html = '';
-		html += '<ul data-role="listview" data-inset="true">'
-		for (var i=0; i<app.numStatues; i++) {
+		html += '<ul id="markerList" data-role="listview" data-inset="true">'
+		for (var i=0; i<1/*app.numStatues*/; i++) {
 			var statue = app.store.statues[i];
-			html += '<li data-creners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">';
+			html += '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right">';
 			html += '<div>';
 			html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
+			html += '</div>';
+			html += '<div>';
 			html += '<h3>' + statue.name + '</h3>';
 			html += '</div>';
 			html += '</li>';
@@ -228,6 +231,14 @@ var app = {
 				app.showDetails(i);
 			});
 		});
+		/*
+		try {
+			$('#markerList').listview('refresh');
+		} catch(e) {
+			 $('#markerList').listview();
+		}*/
+		$('#markerList').listview();
+		//$('#markerList').listview('refresh');
 		$('#popupMarkers').popup('open');
 	},		
 	startTracking: function() {
