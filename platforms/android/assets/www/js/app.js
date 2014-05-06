@@ -13,6 +13,7 @@ var audioTimer = null; //function that tracks current audio position
 var watchID = 0; //geolocation tracker id
 var popupTimer = 0; //timer for popup close
 
+
 var app = {
     registerEvents: function() {
         console.log('register events called');
@@ -211,7 +212,7 @@ var app = {
 		//append list
 		var html = '';
 		html += '<ul id="markerList" data-role="listview" data-inset="true" data-theme="b">'
-		for (var i=0; i<1/*app.numStatues*/; i++) {
+		for (var i=0; i<3/*app.numStatues*/; i++) {
 			var statue = app.store.statues[i];
 			html += '<li>';
 			html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
@@ -224,18 +225,18 @@ var app = {
 		$('#popupMarkers li').each(function(i) {
 			$(this).click(function(){
 				//change page to statuedetails
-				app.showDetails(i);
+				//app.showDetails(i);
+				app.routeTo(i);
 			});
 		});
-		/*
-		try {
+		$('#markerList').listview();
+		$('#popupMarkers').popup('open');
+		/*try {
 			$('#markerList').listview('refresh');
 		} catch(e) {
-			 $('#markerList').listview();
+			$('#markerList').listview();
 		}*/
-		$('#markerList').listview();
 		//$('#markerList').listview('refresh');
-		$('#popupMarkers').popup('open');
 	},		
 	startTracking: function() {
         //alert("calling startTracking");
@@ -281,9 +282,11 @@ var app = {
 				var distance = app.getDistanceFromLatLonInFeet(position.coords.latitude,position.coords.longitude,statue.lat,statue.lon);
 				var htmlString = 'id_' + statue.id + ' is ' + Math.floor(distance) + ' feet away<br/>';
 				if(distance <= statue.distance && cur_statue != statue.id){
+					/*
 					if($('#checkbox-1').is(':checked')){
-						//alert('statue nearby! now switching to statue: ' + statue.name);
+						alert('statue nearby! now switching to statue: ' + statue.name);
 					}
+					*/
 					app.routeTo(statue.id);
 					return;
 				}
