@@ -230,7 +230,7 @@ var app = {
 			$(this).click(function(){
 				//change page to statuedetails
 				//app.showDetails(i);
-				app.routeTo(i);
+				app.routeTo(markerArray[i]);
 			});
 		});
 		$('#markerList').listview();
@@ -255,7 +255,7 @@ var app = {
 	},
 	onSuccess: function (position) {
         //update global variables
-		app.maxage = 500;
+		app.maxage = 1000;
 		console.log('maxage is now: ' + app.maxage);
 		if($('#checkbox-1').is(':checked')){
 			//alert('maxage is now: ' + app.maxage);
@@ -301,7 +301,7 @@ var app = {
 				}
 			}
 			alert("creating marker list with array: " + markerArray.toString());
-			createMarkerList(markerArray);
+			app.createMarkerList(markerArray);
 			//app.pageLock = 0;
 		}
 	},
