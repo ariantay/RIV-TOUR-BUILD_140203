@@ -13,7 +13,7 @@ var audioTimer = null; //function that tracks current audio position
 var watchID = 0; //geolocation tracker id
 var popupTimer = 0; //timer for popup close
 //var markerArray = 0; //array for holding matched markers **this shouldnt be global..
-var pageLock = 1; //variable to prevent pageChange/popups
+var pageLock = 0; //variable to prevent pageChange/popups
 
 
 var app = {
@@ -280,10 +280,10 @@ var app = {
 		}
 
 		//limit to fire only every 5 seconds
-		setInterval(function(){app.pageLock=0; alert("lock released: " + app.pageLock);},7000);
         if (cur_page == 1 && app.pageLock == 0){
+			app.pageLock = 1;
+			setTimeout(function(){app.pageLock=0; alert("lock released: " + app.pageLock);},5000);
 			var markerArray = [];
-            app.pageLock = 1;
 			console.log("calling on success");			
 			for (var i=0; i<app.numStatues; i++) {
 				var statue = app.store.statues[i];
@@ -300,7 +300,7 @@ var app = {
 					markerArray.push(i);
 				}
 			}
-			alert("creating marker list with array: " markerArray.toString());
+			alert("creating marker list with array: " + markerArray.toString());
 			createMarkerList(markerArray);
 			//app.pageLock = 0;
 		}
