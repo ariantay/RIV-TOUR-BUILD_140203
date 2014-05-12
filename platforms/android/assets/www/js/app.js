@@ -212,9 +212,11 @@ var app = {
 	createMarkerList: function(markerArray) {
 	/*test for generating multiple markers*/
 		//append list
+		alert("In createMarkerList with array: " + markerArray.toString());
 		var html = '';
 		html += '<ul id="markerList" data-role="listview" data-inset="true" data-theme="b">'
 		for (var i=0; i<markerArray.length/*app.numStatues*/; i++) {
+			alert("in loop creating markers: " + app.store.statues[markerArray[i]].name);
 			var statue = app.store.statues[markerArray[i]];
 			html += '<li>';
 			html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
@@ -278,7 +280,7 @@ var app = {
 		}
 
 		//limit to fire only every 5 seconds
-		setInterval(function(){app.pageLock=0;},5000);
+		setInterval(function(){app.pageLock=0; alert("lock released: " + app.pageLock);},7000);
         if (cur_page == 1 && app.pageLock == 0){
 			var markerArray = [];
             app.pageLock = 1;
@@ -298,6 +300,7 @@ var app = {
 					markerArray.push(i);
 				}
 			}
+			alert("creating marker list with array: " markerArray.toString());
 			createMarkerList(markerArray);
 			//app.pageLock = 0;
 		}
