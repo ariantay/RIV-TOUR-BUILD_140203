@@ -92,7 +92,7 @@ $(document).on("pagebeforeshow", "#tourpage_home", function () {
    first_run=false;
    cur_page = 1;
    cur_statue = -1;
-   app.lock = 0;
+   //app.lock = 0;
 });
 $(document).on("pageshow", "#tourpage_home", function () {
     navigator.splashscreen.hide();
@@ -109,7 +109,7 @@ $(document).on("pagebeforehide", "#tourpage_home", function () {
 ///////////////////////
 $(document).on("pageshow", "#tourpage", function () {
     cur_page = 1;
-    app.lock = 0;
+    //app.lock = 0;
 	$('.flexslider').flexslider({
 		animation: "slide",
 		slideshowSpeed: 6000,

@@ -12,6 +12,8 @@ var audioFile = 0;  //references phonegap media object
 var audioTimer = null; //function that tracks current audio position
 var watchID = 0; //geolocation tracker id
 var popupTimer = 0; //timer for popup close
+//var markerArray = 0; //array for holding matched markers **this shouldnt be global..
+var pageLock = 1; //variable to prevent pageChange/popups
 
 
 var app = {
@@ -207,13 +209,13 @@ var app = {
 			});
 		});
 	},
-	createMarkerList: function() {
+	createMarkerList: function(markerArray) {
 	/*test for generating multiple markers*/
 		//append list
 		var html = '';
 		html += '<ul id="markerList" data-role="listview" data-inset="true" data-theme="b">'
-		for (var i=0; i<3/*app.numStatues*/; i++) {
-			var statue = app.store.statues[i];
+		for (var i=0; i<markerArray.length/*app.numStatues*/; i++) {
+			var statue = app.store.statues[markerArray[i]];
 			html += '<li>';
 			html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
 			html += '<h3>' + statue.name + '</h3>';
@@ -273,25 +275,31 @@ var app = {
 			mapper.marker.setPosition(latlng);
 			//mapper.circle.setCenter(latlng);
 			//mapper.circle.setRadius(position.coords.accuracy);
-		}	
-        if (cur_page == 1 && app.lock == 0){
-            app.lock = 1;
+		}
+
+		//limit to fire only every 5 seconds
+		setInterval(function(){app.pageLock=0;},5000);
+        if (cur_page == 1 && app.pageLock == 0){
+			var markerArray = [];
+            app.pageLock = 1;
 			console.log("calling on success");			
 			for (var i=0; i<app.numStatues; i++) {
 				var statue = app.store.statues[i];
 				var distance = app.getDistanceFromLatLonInFeet(position.coords.latitude,position.coords.longitude,statue.lat,statue.lon);
 				var htmlString = 'id_' + statue.id + ' is ' + Math.floor(distance) + ' feet away<br/>';
 				if(distance <= statue.distance && cur_statue != statue.id){
-					/*
+					//if checked use old method	
 					if($('#checkbox-1').is(':checked')){
 						alert('statue nearby! now switching to statue: ' + statue.name);
+						app.routeTo(statue.id);
+						return;
 					}
-					*/
-					app.routeTo(statue.id);
-					return;
+					//use popups instead of auto change page
+					markerArray.push(i);
 				}
 			}
-			app.lock = 0;
+			createMarkerList(markerArray);
+			//app.pageLock = 0;
 		}
 	},
 	onError: function (error) {
@@ -329,7 +337,7 @@ var app = {
 		console.log("all scripts and documents loaded, in app.initialize");
 		app.maxage = 0;
 		app.numStatues = 12;
-        app.lock = 0;
+        app.pageLock = 0;
         //this.detailsURL = /^#statues\/(\d{1,})/;
         app.registerEvents();
 		//initialize and create map
