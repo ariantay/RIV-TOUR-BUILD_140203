@@ -212,11 +212,11 @@ var app = {
 	createMarkerList: function(markerArray) {
 	/*test for generating multiple markers*/
 		//append list
-		alert("In createMarkerList with array: " + markerArray.toString());
+		//alert("In createMarkerList with array: " + markerArray.toString());
 		var html = '';
 		html += '<ul id="markerList" data-role="listview" data-inset="true" data-theme="b">'
 		for (var i=0; i<markerArray.length/*app.numStatues*/; i++) {
-			alert("in loop creating markers: " + app.store.statues[markerArray[i]].name);
+			//alert("in loop creating markers: " + app.store.statues[markerArray[i]].name);
 			var statue = app.store.statues[markerArray[i]];
 			html += '<li>';
 			html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
@@ -255,7 +255,7 @@ var app = {
 	},
 	onSuccess: function (position) {
         //update global variables
-		app.maxage = 1000;
+		app.maxage = 250;
 		console.log('maxage is now: ' + app.maxage);
 		if($('#checkbox-1').is(':checked')){
 			//alert('maxage is now: ' + app.maxage);
@@ -282,7 +282,7 @@ var app = {
 		//limit to fire only every 5 seconds
         if (cur_page == 1 && app.pageLock == 0){
 			app.pageLock = 1;
-			setTimeout(function(){app.pageLock=0; alert("lock released: " + app.pageLock);},5000);
+			setTimeout(function(){app.pageLock=0; /*alert("lock released: " + app.pageLock);*/},5000);
 			var markerArray = [];
 			console.log("calling on success");			
 			for (var i=0; i<app.numStatues; i++) {
@@ -292,7 +292,7 @@ var app = {
 				if(distance <= statue.distance && cur_statue != statue.id){
 					//if checked use old method	
 					if($('#checkbox-1').is(':checked')){
-						alert('statue nearby! now switching to statue: ' + statue.name);
+						//alert('statue nearby! now switching to statue: ' + statue.name);
 						app.routeTo(statue.id);
 						return;
 					}
@@ -300,7 +300,7 @@ var app = {
 					markerArray.push(i);
 				}
 			}
-			alert("creating marker list with array: " + markerArray.toString());
+			//alert("creating marker list with array: " + markerArray.toString());
 			app.createMarkerList(markerArray);
 			//app.pageLock = 0;
 		}
