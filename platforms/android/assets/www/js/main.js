@@ -22,7 +22,7 @@ $(document).on('popupafteropen', '#popupMarkers', function() {
 	//alert("event triggered");
 	popupTimer = setTimeout(function () {
 		$('#popupMarkers').popup('close');
-	}, 3500);
+	}, 3200);
 });
 $(document).on("pagebeforeshow", "#homepage", function () {
 	app.audioSliderTrackMedia("audio-seek1");

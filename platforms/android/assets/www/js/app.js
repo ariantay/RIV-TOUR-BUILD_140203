@@ -117,9 +117,11 @@ var app = {
     },
 	routeTo: function(statueID) {
 		//to prevent auto routing
+		/*
 		if($('#checkbox-1').is(':checked')){
 			return;
 		}
+		*/
 		//change header
 		if (statueID === app.numStatues){
 			//This condition never happens
@@ -210,12 +212,15 @@ var app = {
 		});
 	},
 	createMarkerList: function(markerArray) {
-	/*test for generating multiple markers*/
-		//append list
-		//alert("In createMarkerList with array: " + markerArray.toString());
+		if($('#checkbox-1').is(':checked')){
+			if (markerArray.length==1){
+				app.routeTo(markerArray[0]);
+			}
+			return;
+		}
 		var html = '';
 		html += '<ul id="markerList" data-role="listview" data-inset="true" data-theme="b">'
-		for (var i=0; i<markerArray.length/*app.numStatues*/; i++) {
+		for (var i=0; i<markerArray.length; i++) {
 			//alert("in loop creating markers: " + app.store.statues[markerArray[i]].name);
 			var statue = app.store.statues[markerArray[i]];
 			html += '<li>';
@@ -228,13 +233,12 @@ var app = {
 		//add onclick to each element
 		$('#popupMarkers li').each(function(i) {
 			$(this).click(function(){
-				//change page to statuedetails
-				//app.showDetails(i);
 				app.routeTo(markerArray[i]);
 			});
 		});
 		$('#markerList').listview();
 		$('#popupMarkers').popup('open');
+		/*list generated dynamicaly; need to make sure jqm styling is applied*/
 		/*try {
 			$('#markerList').listview('refresh');
 		} catch(e) {
@@ -257,16 +261,10 @@ var app = {
         //update global variables
 		app.maxage = 250;
 		console.log('maxage is now: ' + app.maxage);
-		if($('#checkbox-1').is(':checked')){
-			//alert('maxage is now: ' + app.maxage);
-		}
 		//alert('maxage is now: ' + app.maxage);
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
 		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
-		if($('#checkbox-1').is(':checked')){
-			//alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
-		}
 		//alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);	
 
 		//update our map marker and radius
@@ -278,11 +276,10 @@ var app = {
 			//mapper.circle.setCenter(latlng);
 			//mapper.circle.setRadius(position.coords.accuracy);
 		}
-
 		//limit to fire only every 5 seconds
         if (cur_page == 1 && app.pageLock == 0){
 			app.pageLock = 1;
-			setTimeout(function(){app.pageLock=0; /*alert("lock released: " + app.pageLock);*/},5000);
+			setTimeout(function(){app.pageLock=0; /*alert("lock released: " + app.pageLock);*/},4500);
 			var markerArray = [];
 			console.log("calling on success");			
 			for (var i=0; i<app.numStatues; i++) {
@@ -291,11 +288,13 @@ var app = {
 				var htmlString = 'id_' + statue.id + ' is ' + Math.floor(distance) + ' feet away<br/>';
 				if(distance <= statue.distance && cur_statue != statue.id){
 					//if checked use old method	
+					/*
 					if($('#checkbox-1').is(':checked')){
 						//alert('statue nearby! now switching to statue: ' + statue.name);
 						app.routeTo(statue.id);
 						return;
 					}
+					*/
 					//use popups instead of auto change page
 					markerArray.push(i);
 				}
