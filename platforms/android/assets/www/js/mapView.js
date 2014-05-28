@@ -38,6 +38,20 @@ var mapper = {
 			console.log('no navigator');
 		}
 	},
+	/*
+	function geocodePosition(pos) {
+		geocoder.geocode({
+			latLng: pos
+		}, 
+		function(responses) {
+			if (responses && responses.length > 0) {
+				updateMarkerAddress(responses[0].formatted_address);
+			} else {
+				updateMarkerAddress('Cannot determine address at this location.');
+			}
+		});
+	},
+	*/
     initialize: function() {
 		console.log("map initializing");
 		//create the map
@@ -67,7 +81,8 @@ var mapper = {
 			map: mapper.map,
 			title:"You are here",
 			index: app.numStatues,
-			icon: pinImage
+			icon: pinImage,
+			draggable: true
 		});
 		//define current position radius
 		var options = {
@@ -81,6 +96,7 @@ var mapper = {
 			radius: 60
 		};
 		//mapper.circle = new google.maps.Circle(options);
+		//EVENT LISTENERS
 		//current position on click
 		google.maps.event.addListener(mapper.marker, 'click', function() {
 			//app.routeTo(marker.index);
@@ -104,6 +120,12 @@ var mapper = {
            window.clearTimeout(mapTimer);
            mapLoaded = true;
         });
+		google.maps.event.addListener(mapper.marker, 'dragend', function() {
+			//geocodePosition(marker.getPosition());
+			globalLat = mapper.marker.getPosition().lat();
+			globalLon = mapper.marker.getPosition().lng();
+			console.log("debug marker at: " + globalLat + ", " + globalLon );
+		});
 		console.log("Mapper initialized: " + mapper.map);
     }    
 }

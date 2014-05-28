@@ -257,34 +257,15 @@ var app = {
 		};
 		return navigator.geolocation.watchPosition(app.onSuccess, app.onError, options);
 	},
-	onSuccess: function (position) {
-        //update global variables
-		app.maxage = 250;
-		console.log('maxage is now: ' + app.maxage);
-		//alert('maxage is now: ' + app.maxage);
-        globalLat = position.coords.latitude;
-        globalLon = position.coords.longitude;
-		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
-		//alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);	
-
-		//update our map marker and radius
-		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
-			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-			console.log('calling google maps latlng and referencing mapper: ' + globalLat + ", " + globalLon);
-			//alert('calling google maps latlng and referencing mapper: ' + globalLat + ", " + globalLon);
-			mapper.marker.setPosition(latlng);
-			//mapper.circle.setCenter(latlng);
-			//mapper.circle.setRadius(position.coords.accuracy);
-		}
-		//limit to fire only every 5 seconds
-        if (cur_page == 1 && app.pageLock == 0){
-			app.pageLock = 1;
-			setTimeout(function(){app.pageLock=0; /*alert("lock released: " + app.pageLock);*/},4500);
+	//decoupled from onsuccess.  onsuccess just updates globallat and globallon
+	checkNearbyStatues: function(){
+		console.log("in checkNearbyStatues");
+        if (cur_page == 1){
 			var markerArray = [];
 			console.log("calling on success");			
 			for (var i=0; i<app.numStatues; i++) {
 				var statue = app.store.statues[i];
-				var distance = app.getDistanceFromLatLonInFeet(position.coords.latitude,position.coords.longitude,statue.lat,statue.lon);
+				var distance = app.getDistanceFromLatLonInFeet(globalLat,globalLon,statue.lat,statue.lon);
 				var htmlString = 'id_' + statue.id + ' is ' + Math.floor(distance) + ' feet away<br/>';
 				if(distance <= statue.distance && cur_statue != statue.id){
 					//if checked use old method	
@@ -300,9 +281,55 @@ var app = {
 				}
 			}
 			//alert("creating marker list with array: " + markerArray.toString());
+			console.log("creating marker list with array: " + markerArray.toString());
 			app.createMarkerList(markerArray);
 			//app.pageLock = 0;
 		}
+	},
+	onSuccess: function (position) {
+        //update global variables
+		app.maxage = 250;
+		console.log('maxage is now: ' + app.maxage);
+		//alert('maxage is now: ' + app.maxage);
+		
+		//EDITED 0528
+        //globalLat = position.coords.latitude;
+        //globalLon = position.coords.longitude;
+		
+		
+		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
+		//alert('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);	
+
+		//update our map marker and radius
+		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
+			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			console.log('calling google maps latlng and referencing mapper: ' + globalLat + ", " + globalLon);
+			//alert('calling google maps latlng and referencing mapper: ' + globalLat + ", " + globalLon);
+			mapper.marker.setPosition(latlng);
+			//mapper.circle.setCenter(latlng);
+			//mapper.circle.setRadius(position.coords.accuracy);
+		}
+		//limit to fire only every 5 seconds
+		/*
+        if (cur_page == 1 && app.pageLock == 0){
+			app.pageLock = 1;
+			setTimeout(function(){app.pageLock=0;},4500);
+			var markerArray = [];
+			console.log("calling on success");			
+			for (var i=0; i<app.numStatues; i++) {
+				var statue = app.store.statues[i];
+				var distance = app.getDistanceFromLatLonInFeet(position.coords.latitude,position.coords.longitude,statue.lat,statue.lon);
+				var htmlString = 'id_' + statue.id + ' is ' + Math.floor(distance) + ' feet away<br/>';
+				if(distance <= statue.distance && cur_statue != statue.id){	
+					//use popups instead of auto change page
+					markerArray.push(i);
+				}
+			}
+			//alert("creating marker list with array: " + markerArray.toString());
+			app.createMarkerList(markerArray);
+			//app.pageLock = 0;
+		}
+		*/
 	},
 	onError: function (error) {
 		/*alert('code: '    + error.code    + '\n' +
@@ -355,5 +382,6 @@ var app = {
 		watchID = app.startTracking();
 		console.log('start displaying page with jquery mobile');
 		$.mobile.initializePage();
+		setInterval(function(){app.checkNearbyStatues();},6800);
     }
 };

@@ -14,7 +14,7 @@ $(document).on('popupafteropen', '.ui-popup', function() {
 });
 */
 $(document).on('popupafterclose', '#popupMarkers', function() {
-	console.log('popupTimer!! ' + popupTimer);
+	//console.log('popupTimer!! ' + popupTimer);
 	$('#popupMarkers ul').remove();
 	window.clearTimeout(popupTimer);
 });
