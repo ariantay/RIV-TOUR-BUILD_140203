@@ -13,7 +13,7 @@ var audioTimer = null; //function that tracks current audio position
 var watchID = 0; //geolocation tracker id
 var popupTimer = 0; //timer for popup close
 //var markerArray = 0; //array for holding matched markers **this shouldnt be global..
-var pageLock = 0; //variable to prevent pageChange/popups
+//var pageLock = 0; //variable to prevent pageChange/popups
 
 
 var app = {
@@ -332,7 +332,7 @@ var app = {
 		console.log("all scripts and documents loaded, in app.initialize");
 		app.maxage = 0;
 		app.numStatues = 12;
-        app.pageLock = 0;
+        //app.pageLock = 0;
         //this.detailsURL = /^#statues\/(\d{1,})/;
         app.registerEvents();
 		//initialize and create map
