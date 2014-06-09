@@ -1,3 +1,20 @@
+var cur_statue = -1;
+var cur_page = 0;  //used to determine if on tour pages or not
+var first_run = true; //check when app is first opened
+var globalLat = 0; //used to store geolocation result
+var globalLon = 0; //used to store geolocation result
+var mapTimeout = 5; //if map doesn't load in tour home, kick back to homepage
+var mapLoaded = false;
+var mapTimer = 0; //to keep track of map loading time
+//android only vars
+var audioPlaying = false; //tracks whether media is playing
+var audioFile = 0;  //references phonegap media object
+var audioTimer = null; //function that tracks current audio position
+var watchID = 0; //geolocation tracker id
+var popupTimer = 0; //timer for popup close
+//var markerArray = 0; //array for holding matched markers **this shouldnt be global..
+var pageLock = 0; //variable to prevent pageChange/popups
+
 var app = {
     registerEvents: function() {
         console.log('register events called');
@@ -16,13 +33,10 @@ var app = {
         if (typeof mapper === 'object' && typeof google === 'object' && typeof google.maps === 'object') {
             $.mobile.changePage('#tourpage_home');
         }else{
-            window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
+            //window.alert("Map page is still loading.  Please be patient, your network might be unstable. For the meanwhile, please use the Statue List page instead");
         }
     },
     gotoPage: function(page) {
-        //check html modification
-        //app.createStatuelist();
-        //delete createlist when test done
         console.log('changing page to ' + page);
         $.mobile.changePage(page);
     },
@@ -110,13 +124,51 @@ var app = {
 			});
 		});
 	},	
+	createMarkerList: function(markerArray) {
+		if($('#checkbox-1').is(':checked')){
+			if (markerArray.length==1){
+				app.routeTo(markerArray[0]);
+			}
+			return;
+		}
+		var html = '';
+		html += '<ul id="markerList" data-role="listview" data-inset="true" data-theme="b">'
+		for (var i=0; i<markerArray.length; i++) {
+			//alert("in loop creating markers: " + app.store.statues[markerArray[i]].name);
+			var statue = app.store.statues[markerArray[i]];
+			html += '<li>';
+			html += '<img src=img/' + statue.urlstring + '_thumb3.jpg>';
+			html += '<h3>' + statue.name + '</h3>';
+			html += '</li>';
+		}
+		html +="</ul>";
+		$('#popupMarkers').append(html);
+		//add onclick to each element
+		$('#popupMarkers li').each(function(i) {
+			$(this).click(function(){
+				app.routeTo(markerArray[i]);
+			});
+		});
+		$('#markerList').listview();
+		$('#popupMarkers').popup('open');
+		/*list generated dynamicaly; need to make sure jqm styling is applied*/
+		/*try {
+			$('#markerList').listview('refresh');
+		} catch(e) {
+			$('#markerList').listview();
+		}*/
+		//$('#markerList').listview('refresh');
+	},	
 	startTracking: function() {
         //alert("calling startTracking");
+		console.log("calling startTracking with maxage: " + app.maxage);
 		var options = {
-			maximumAge : 1000,
-			enableHighAccuracy : true
+			maximumAge : app.maxage,
+			enableHighAccuracy : true,
+			timeout: 10000
 		};
 		return navigator.geolocation.watchPosition(app.onSuccess, app.onError, options);
+///////////////////////////////////////////STOPPED HERE ON 140609		
 	},
 	onSuccess: function (position) {
         //update global variables
