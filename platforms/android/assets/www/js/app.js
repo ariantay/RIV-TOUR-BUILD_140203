@@ -216,7 +216,7 @@ var app = {
 			if (markerArray.length==1){
 				app.routeTo(markerArray[0]);
 			}
-			return;
+			//return;
 		}
 		var html = '';
 		html += '<ul id="markerList" data-role="listview" data-inset="true" data-theme="b">'
@@ -379,7 +379,7 @@ var app = {
 		console.log('start tracking with navigator.geolocation');
 		//alert('map initialized');
 		//app.initialized = true;
-		watchID = app.startTracking();
+		//watchID = app.startTracking();
 		console.log('start displaying page with jquery mobile');
 		$.mobile.initializePage();
 		setInterval(function(){app.checkNearbyStatues();},6800);

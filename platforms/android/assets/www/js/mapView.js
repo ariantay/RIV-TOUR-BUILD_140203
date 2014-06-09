@@ -122,6 +122,7 @@ var mapper = {
         });
 		google.maps.event.addListener(mapper.marker, 'dragend', function() {
 			//geocodePosition(marker.getPosition());
+			mapper.marker.setPosition(mapper.marker.getPosition());
 			globalLat = mapper.marker.getPosition().lat();
 			globalLon = mapper.marker.getPosition().lng();
 			console.log("debug marker at: " + globalLat + ", " + globalLon );
