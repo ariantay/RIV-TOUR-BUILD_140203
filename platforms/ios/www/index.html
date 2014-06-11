@@ -15,6 +15,29 @@
 	<!--SCRIPT IMPORTS-->
 	<script src="phonegap.js"></script>
 	<script src="lib/jquery-1.10.2.min.js"></script>
+	<script>
+		document.addEventListener("deviceready", deviceReady, false);
+		var gapReady = $.Deferred(); 
+		var jqmReady = $.Deferred();
+		var docReady = $.Deferred();
+		function deviceReady() {
+			console.log("Phonegap Ready");
+			//alert("Phonegap Ready");
+			gapReady.resolve();
+		}
+		$(document).one("mobileinit", function () {
+			console.log("jQueryMobile Ready");
+			//alert("JQM RDY");
+			$.mobile.autoInitializePage = false;
+			jqmReady.resolve();
+		});
+		$(document).ready(function(){
+			console.log("Document ready");
+			//alert("Document Ready");
+			docReady.resolve();
+		});
+		$.when(gapReady, jqmReady,docReady).then(function(){app.initialize();});
+	</script>
 	<script src="lib/jquery.mobile-1.3.2.min.js"></script>
 	<script src="lib/jquery.flexslider.js"></script>
     <script src="lib/jquery.colorbox-min.js"></script>
@@ -74,18 +97,18 @@
 <div data-role="page" id="tourpage_home">
 	<div id='header' data-role="header" data-theme='b' data-position="inline">
 		<h1>Tour</h1>
-			<a id='default_tour_page_back_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
-			<a href="#popupBasic" data-rel="popup" id='default_tour_page_help_button' class='button' class="ui-btn-left" data-icon="info" data-theme='e' data-direction="reverse"></a>
-			
-			<div data-role="popup" id="popupBasic" data-position-to="window" data-theme="e" class="ui-content">
-				<a data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-				<p></p>
-			</div>
+		<a id='default_tour_page_back_button' class='button' onclick="app.gotoPage('#homepage')" class="ui-btn-left" data-ajax="false" data-icon="arrow-l" data-theme='e' data-direction="reverse"></a>
+		<a href="#popupBasic" data-rel="popup" id='default_tour_page_help_button' class='button' class="ui-btn-left" data-icon="info" data-theme='e' data-direction="reverse"></a>
+	</div>
+	<div data-role="popup" id="popupBasic" data-position-to="window" data-theme="e" class="ui-content">
+		<a data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+		<p></p>
+	</div>
+	<div data-role="popup" id="popupMarkers" data-position-to="window" data-theme="e" data-transition="pop">
 	</div>
 	<div id='map-canvas_holder'>
 		<div id='map-canvas'></div>
 	</div>  	  
-	
 	<div data-theme="a" data-role="footer" data-position="fixed"></div>
 </div>
 

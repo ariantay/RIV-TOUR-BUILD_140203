@@ -13,7 +13,7 @@ var audioTimer = null; //function that tracks current audio position
 var watchID = 0; //geolocation tracker id
 var popupTimer = 0; //timer for popup close
 //var markerArray = 0; //array for holding matched markers **this shouldnt be global..
-var pageLock = 0; //variable to prevent pageChange/popups
+//var pageLock = 0; //variable to prevent pageChange/popups
 
 var app = {
     registerEvents: function() {
@@ -172,34 +172,58 @@ var app = {
 	},
 	onSuccess: function (position) {
         //update global variables
+		app.maxage = 250;
+		console.log('maxage is now: ' + app.maxage);
         globalLat = position.coords.latitude;
         globalLon = position.coords.longitude;
+		console.log('position obj and coords: ' + position + ": " + position.coords.latitude + ", " + position.coords.longitude);
 		//update our map marker and radius
 		if (mapLoaded && typeof google === 'object' && typeof google.maps === 'object'){
             console.log('calling google maps latlng and referencing mapper ' + globalLat + " " + globalLon);
 			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 			mapper.marker.setPosition(latlng);
-			mapper.circle.setCenter(latlng);
-			mapper.circle.setRadius(position.coords.accuracy);
+			//mapper.circle.setCenter(latlng);
+			//mapper.circle.setRadius(position.coords.accuracy);
 		}	
-        if (cur_page == 1 && app.lock == 0){
-            app.lock = 1;
+	},
+	checkNearbyStatues: function(){
+		console.log("in checkNearbyStatues");
+        if (cur_page == 1){
+			var markerArray = [];
 			console.log("calling on success");			
 			for (var i=0; i<app.numStatues; i++) {
 				var statue = app.store.statues[i];
-				var distance = app.getDistanceFromLatLonInFeet(position.coords.latitude,position.coords.longitude,statue.lat,statue.lon);
+				var distance = app.getDistanceFromLatLonInFeet(globalLat,globalLon,statue.lat,statue.lon);
 				var htmlString = 'id_' + statue.id + ' is ' + Math.floor(distance) + ' feet away<br/>';
 				if(distance <= statue.distance && cur_statue != statue.id){
-					app.routeTo(statue.id);
-					return;
+					//if checked use old method	
+					/*
+					if($('#checkbox-1').is(':checked')){
+						//alert('statue nearby! now switching to statue: ' + statue.name);
+						app.routeTo(statue.id);
+						return;
+					}
+					*/
+					//use popups instead of auto change page
+					markerArray.push(i);
 				}
 			}
-			app.lock = 0;
+			console.log("creating marker list with array: " + markerArray.toString());
+			app.createMarkerList(markerArray);
 		}
 	},
 	onError: function (error) {
 		//alert('code: '    + error.code    + '\n' +
 		//	  'message: ' + error.message + '\n');
+		console.log('code: '    + error.code    + '\n' +
+			  'message: ' + error.message + '\n');
+		//will this fix the issue?? 140415
+		if (error.code===2){
+			navigator.geolocation.clearWatch(watchID);
+			//alert('geolocation tracking restarted');
+			console.log('geolocation tracking restarted');
+			watchID = app.startTracking();
+		}
 	},
 	getDistanceFromLatLonInFeet: function (lat1,lon1,lat2,lon2) {
 		var R = 6371; // Radius of the earth in km
@@ -218,8 +242,11 @@ var app = {
 		return deg * (Math.PI/180);
 	},    
     initialize: function() {
-		app.numStatues = 6;
-        app.lock = 0;
+		//alert("all scripts and documents loaded, in app.initialize");
+		console.log("all scripts and documents loaded, in app.initialize");
+		app.maxage = 0;
+		app.numStatues = 12;
+        //app.pageLock = 0;
         //this.detailsURL = /^#statues\/(\d{1,})/;
         app.registerEvents();
 		//initialize and create map
@@ -229,6 +256,14 @@ var app = {
            //issues with async loading, dont use
            //app.loadMapScript();           
         });
+		console.log('start tracking with navigator.geolocation');
+		//alert('map initialized');
 		//app.initialized = true;
+		watchID = app.startTracking();
+		console.log('start displaying page with jquery mobile');
+		$.mobile.initializePage();
+		setInterval(function(){app.checkNearbyStatues();},6800);
     }
 };
+///////////////////////////////////////////FINISHED 140611
+///////////SHOULD BE IDENTICAL TO ANDROID VERSION EXCEPT FOR MEDIA CODE
