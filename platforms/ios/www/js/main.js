@@ -1,17 +1,15 @@
-var cur_statue = -1;
-var cur_page = 0;  //used to determine if on tour pages or not
-var first_run = true; //check when app is first opened
-var globalLat = 0; //used to store geolocation result
-var globalLon = 0; //used to store geolocation result
-var mapTimeout = 5; //if map doesn't load in tour home, kick back to homepage
-var mapLoaded = false;
-var timer = 0; //to countdown map loading
-
 //jquery mobile events handling
 //HOMEPAGE
-$(document).on("pagecreate", "#homepage", function () {
-    app.initialize();
-    watchID = app.startTracking();
+$(document).on('popupafterclose', '#popupMarkers', function() {
+	//console.log('popupTimer!! ' + popupTimer);
+	$('#popupMarkers ul').remove();
+	window.clearTimeout(popupTimer);
+});
+$(document).on('popupafteropen', '#popupMarkers', function() {
+	//alert("event triggered");
+	popupTimer = setTimeout(function () {
+		$('#popupMarkers').popup('close');
+	}, 3200);
 });
 $(document).on("pagebeforeshow", "#homepage", function () {
     cur_statue = -1;
@@ -42,6 +40,7 @@ $(document).on("pagebeforeshow", "#homepage", function () {
 $(document).on("pagebeforehide", "#homepage", function () {
 	$('.home_audioControl').trigger('pause');
 	$('.home_audioControl').prop('currentTime',0);
+	navigator.splashscreen.show();
 });
 //TOURPAGE_HOME EVENTS
 $(document).on("pagecreate", "#tourpage_home", function () {
@@ -49,8 +48,8 @@ $(document).on("pagecreate", "#tourpage_home", function () {
 });
 $(document).on("pagebeforeshow", "#tourpage_home", function () {
     if (!mapLoaded){
-        window.clearTimeout(timer);
-        timer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
+        window.clearTimeout(mapTimer);
+        mapTimer = window.setTimeout(mapper.mapLoadFail, mapTimeout * 1000);
     }
     var language = $('input[name="radio-choice-2"]:checked').val();
     if (language == 'english'){
@@ -67,7 +66,7 @@ $(document).on("pagebeforeshow", "#tourpage_home", function () {
    first_run=false;
    cur_page = 1;
    cur_statue = -1;
-   app.lock = 0;
+   //app.lock = 0;
 });
 $(document).on("pageshow", "#tourpage_home", function () {
     navigator.splashscreen.hide();
@@ -75,38 +74,13 @@ $(document).on("pageshow", "#tourpage_home", function () {
        mapper.resize();
     }
 });
-
-$(document).on("pagebeforehide", "#homepage", function () {
-    navigator.splashscreen.show();
-});
 $(document).on("pagebeforehide", "#tourpage_home", function () {
     navigator.splashscreen.show();
 });
-$(document).on("pagebeforehide", "#settings", function () {
-    navigator.splashscreen.show();
-});
-$(document).on("pagebeforehide", "#statuelist", function () {
-    navigator.splashscreen.show();
-});
-$(document).on("pagebeforehide", "#statuedetails", function () {
-    navigator.splashscreen.show();
-});
-
-$(document).on("pageshow", "#homepage", function () {
-    navigator.splashscreen.hide();
-});
-$(document).on("pageshow", "#statuelist", function () {
-    navigator.splashscreen.hide();
-});
-$(document).on("pageshow", "#statuedetails", function () {
-    navigator.splashscreen.hide();
-});
 //TOURPAGE EVENTS
-$(document).on("pagebeforeshow", "#tourpage", function () {
-});
 $(document).on("pageshow", "#tourpage", function () {
     cur_page = 1;
-    app.lock = 0;
+    //app.lock = 0;
 	$('.flexslider').flexslider({
 		animation: "slide",
 		slideshowSpeed: 6000,
@@ -156,6 +130,9 @@ $(document).on("pagebeforeshow", "#settings", function () {
 $(document).on("pageshow", "#settings", function () {
     navigator.splashscreen.hide();
 });
+$(document).on("pagebeforehide", "#settings", function () {
+    navigator.splashscreen.show();
+});
 //STATUELIST EVENTS
 $(document).on("pagecreate", "#statuelist", function () {
 	app.createStatuelist();
@@ -170,6 +147,13 @@ $(document).on("pagebeforeshow", "#statuelist", function () {
 		$('#header h1').html("Lista de Estatuas");
 	}
 });
+$(document).on("pageshow", "#statuelist", function () {
+    navigator.splashscreen.hide();
+});
+$(document).on("pagebeforehide", "#statuelist", function () {
+    navigator.splashscreen.show();
+});
+
 //STATUEDETAILS EVENTS
 $(document).on("pagebeforeshow", "#statuedetails", function () {
     cur_page = 0;
@@ -192,9 +176,13 @@ $(document).on("pagebeforeshow", "#statuedetails", function () {
     $('#static_map_box').trigger('expand');
     $('#detail_box').trigger('expand');
 });
+$(document).on("pageshow", "#statuedetails", function () {
+	navigator.splashscreen.hide();
+});
 $(document).on("pagebeforehide", "#statuedetails", function () {
     $('.statuedetails_audioControl').trigger('pause');
     $('.statuedetails_audioControl').prop('currentTime',0);
+	navigator.splashscreen.show();
 });
 $(document).on("pagehide", "#statuedetails", function () {
 	$('.statuedetails_audioControl').trigger('pause');

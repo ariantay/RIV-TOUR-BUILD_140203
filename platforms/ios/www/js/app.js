@@ -244,6 +244,10 @@ var app = {
     initialize: function() {
 		//alert("all scripts and documents loaded, in app.initialize");
 		console.log("all scripts and documents loaded, in app.initialize");
+		//test
+		if (parseFloat(window.device.version) === 7.0) {
+          document.body.style.marginTop = "20px";
+		}
 		app.maxage = 0;
 		app.numStatues = 12;
         //app.pageLock = 0;
