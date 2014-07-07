@@ -244,7 +244,7 @@ var app = {
     initialize: function() {
 		//alert("all scripts and documents loaded, in app.initialize");
 		console.log("all scripts and documents loaded, in app.initialize");
-		//test
+		//test140707
 		if (parseFloat(window.device.version) === 7.0) {
           document.body.style.marginTop = "20px";
 		}
