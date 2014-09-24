@@ -238,6 +238,7 @@ var app = {
 		});
 		$('#markerList').listview();
 		$('#popupMarkers').popup('open');
+		//140923notes - MIGHT NEED TO BE CLOSURE.. it might be a timing issue
 		/*list generated dynamicaly; need to make sure jqm styling is applied*/
 		/*try {
 			$('#markerList').listview('refresh');
