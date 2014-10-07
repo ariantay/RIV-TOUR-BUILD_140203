@@ -229,14 +229,16 @@ var app = {
 			html += '</li>';
 		}
 		html +="</ul>";
-		$('#popupMarkers').append(html);
+		//$('#popupMarkers').append(html);
+		//this is working.. for now.. might still need to implement callback for the popup.open call
+		$('#popupMarkers').append(html).trigger("create"); 
 		//add onclick to each element
 		$('#popupMarkers li').each(function(i) {
 			$(this).click(function(){
 				app.routeTo(markerArray[i]);
 			});
 		});
-		$('#markerList').listview();
+		//$('#markerList').listview();
 		$('#popupMarkers').popup('open');
 		//140923notes - MIGHT NEED TO BE CLOSURE.. it might be a timing issue
 		/*list generated dynamicaly; need to make sure jqm styling is applied*/
@@ -349,6 +351,6 @@ var app = {
 		watchID = app.startTracking();
 		console.log('start displaying page with jquery mobile');
 		$.mobile.initializePage();
-		setInterval(function(){app.checkNearbyStatues();},6800);
+		setInterval(function(){app.checkNearbyStatues();},8800);
     }
 };
